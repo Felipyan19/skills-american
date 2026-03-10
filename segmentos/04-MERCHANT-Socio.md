@@ -508,6 +508,247 @@ El footer de MERCHANT siempre mantiene este orden:
 
 ---
 
+## Modulos dinamicos reutilizables
+
+Estos bloques se insertan dentro del contenido dinamico. Se pueden combinar libremente segun el tipo de email (Shot, Newsletter, Special Offers).
+
+---
+
+### TM01 - Encabezado de seccion con icono
+
+Barra azul `#006FCF` con icono + titulo. Separa secciones dentro de un Newsletter (ej: COMPRAS, VIAJES, GASTRONOMIA).
+
+```html
+<!-- START: TM01-v4.2 Section Header -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#006FCF">
+  <tr>
+    <td bgcolor="#006FCF" width="620" align="center" valign="middle" style="width: 620px; padding: 25px 0px;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="auto">
+        <tr>
+          <td valign="middle" style="padding: 0 5px 0 0;">
+            <img src="[IMG_ICONO_SECCION]" alt="[NOMBRE SECCION]" width="51" height="auto" style="color: #000000; display: block;">
+          </td>
+          <td valign="middle" style="padding: 0px;">
+            <h2 style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #ffffff; font-size: 20px; line-height: 23px;">
+              <strong style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">[NOMBRE SECCION]</strong>
+            </h2>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END: TM01-v4.2 Section Header -->
+```
+
+---
+
+### HB08 - Layout de dos columnas 50-50
+
+Dos columnas de 309-310px con contenido independiente. Cada columna puede tener imagen de oferta, badge, texto, superindice legal y link. Separadas por borde `#C8C9C7`. Usar con `dir="ltr"` para compatibilidad RTL.
+
+```html
+<!-- START: ID=HB08-v4.2 50-50 -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" dir="ltr" style="direction: ltr; width: 100%;">
+  <tr>
+    <!-- Columna izquierda -->
+    <th class="full-width-auto pd40 BrdrMobile" width="309" style="direction: ltr; padding: 0 15px; width: 309px; font-weight: normal; border-right: 1px solid #C8C9C7;" align="center" valign="top">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td align="center" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; padding: 0px 0px 5px 15px; color: #00175A; font-size: 23px; line-height: 26px; font-weight: bold;">
+            [Titulo promo columna izquierda]
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 0px; color: #00175a; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 21px;">
+            [Subtitulo o fecha]
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 0px;">
+            <img src="[IMG_BADGE_DESCUENTO]" alt="[20% OFF]" width="169" style="width: 169px; height: auto; color: #333333; display: block;">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 0px; color: #00175a; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 20px;">
+            [Descripcion breve del descuento]
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 0px;">
+            <img src="[IMG_PLUS_SIGN]" alt="+" width="25" style="width: 25px; height: auto; color: #333333; display: block;">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 0px;">
+            <img src="[IMG_CUOTAS]" alt="[3 y 6 cuotas sin interes]" width="259" style="width: 259px; height: auto; color: #333333; display: block;">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 0px; color: #00175a; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 20px;">
+            en marcas participantes<span style="font-size: 8px; line-height: 8px; vertical-align: 7px;">1</span>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 25px 0px 20px; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 18px; color: #00175a;">
+            <a href="[URL_PROMO_IZQUIERDA]" target="_blank" style="text-decoration: underline; color: #00175a; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+              <strong>Compr&aacute; ahora</strong>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 0px; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 10px; line-height: 12px; color: #333333; padding-bottom: 40px;">
+            [RESTRICCION LEGAL BREVE EN MAYUSCULAS]
+          </td>
+        </tr>
+      </table>
+    </th>
+    <!-- Columna derecha -->
+    <th class="full-width-block pdtop50 BrdrMobile" width="310" style="direction: ltr; width: 310px;" align="center" valign="top">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td align="center" style="padding: 0px;">
+            <img src="[IMG_LOGO_COMERCIO]" alt="[NOMBRE COMERCIO]" width="154" style="width: 154px; height: auto; color: #333333; display: block;">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 20px 0px 0px; color: #006fcf; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 18px;">
+            <strong>[Nombre comercio o beneficio]</strong>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 0px;">
+            <img src="[IMG_BADGE_DERECHA]" alt="[BENEFICIO]" width="214" style="width: 214px; height: auto; color: #333333; display: block;">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 2px 0 0px; color: #00175a; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 20px;">
+            [Descripcion del beneficio]<span style="font-size: 8px; line-height: 8px; vertical-align: 7px;">2</span>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 3px 0px 0px; color: #006fcf; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 18px;">
+            [Condicion o vigencia]
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 35px 0px 0px; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 18px; color: #00175a; padding-bottom: 40px;">
+            <a href="[URL_PROMO_DERECHA]" target="_blank" style="text-decoration: underline; color: #00175a; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+              <strong>Suscribite ahora</strong>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </th>
+  </tr>
+</table>
+<!-- END: HB08-v4.2 50-50 -->
+```
+
+---
+
+### TM04 - Beneficios apilados con badges + logos + CTA (SHOT)
+
+Patron tipico de Shot con descuento en imagen, signo +, cuotas en imagen, texto y logos de comercios en fila. Incluye nota legal mini y borde inferior `#006FCF`. Usado en shots de deporte, gastronomia, etc.
+
+```html
+<!-- START: ID=TM04-v4.2 Offer Code -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td style="padding: 0px 40px;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td align="center" style="padding: 0px; color: #00175a; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 18px; line-height: 21px;">
+            [Vigencia: "Del X al Y de mes"]
+          </td>
+        </tr>
+        <!-- Fila de badges: OFF% + signo + + cuotas -->
+        <tr>
+          <td align="center" style="padding: 12px 0 0px;">
+            <table width="auto" role="none" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding: 0px;" align="center" valign="top">
+                  <img src="[IMG_DESCUENTO]" alt="[10% OFF sin tope y en el acto]" width="153" height="auto" style="display: block; width: 153px; max-width: 153px;">
+                </td>
+                <td style="padding: 0px 13px 0px;" align="center" valign="top">
+                  <img src="[IMG_PLUS]" alt="+" width="25" height="auto" style="display: block; width: 25px; max-width: 25px;">
+                </td>
+                <td style="padding: 0px;" align="center" valign="top">
+                  <img src="[IMG_CUOTAS]" alt="[3, 6, 9 Y 12 CUOTAS SIN INTERES]" width="244" height="auto" style="display: block; width: 244px; max-width: 244px;">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 10px 0 0px; color: #00175a; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 18px; line-height: 21px;">
+            [Condicion: "en nuevos planes o renovaciones"]
+          </td>
+        </tr>
+        <!-- Fila de logos de comercios -->
+        <tr>
+          <td align="center" style="padding: 20px 0 0px;">
+            <table width="auto" role="none" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding: 0px;" align="center" valign="middle">
+                  <img src="[IMG_LOGO_COMERCIO_1]" alt="[NOMBRE COMERCIO 1]" width="222" height="auto" style="display: block; width: 222px; max-width: 222px;">
+                </td>
+                <td style="padding: 0px 0px 0px 30px;" align="center" valign="middle">
+                  <img src="[IMG_LOGO_COMERCIO_2]" alt="[NOMBRE COMERCIO 2]" width="117" height="auto" style="display: block; width: 117px; max-width: 117px;">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- CTA solido azul -->
+        <tr>
+          <td align="center" style="padding-top: 23px;">
+            <table role="none" cellpadding="0" cellspacing="0" border="0" width="126" height="44" style="width:126px; height:44px; border-radius: 3px; background:#006FCF;" class="button-primary-light">
+              <tr>
+                <td align="center" valign="middle">
+                  <table role="none" cellpadding="0" cellspacing="0" border="0" style="border-radius: 3px; border: 2px solid #006FCF; mso-border-alt: 2px solid #006FCF; width:122px; height:42px;">
+                    <tr>
+                      <td align="center" valign="middle" height="44">
+                        <a href="[URL_PROMO]" target="_blank" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #FFFFFF; display: inline-block; padding: 12px 0; text-decoration: none; width: 122px; font-size: 15px; line-height: 22px;">
+                          <strong style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #FFFFFF; font-weight: normal;">M&aacute;s info</strong>
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Nota legal mini + borde inferior -->
+        <tr>
+          <td align="center" style="padding: 30px 0px 40px; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 10px; line-height: 12px; color: #000000; text-transform: uppercase; border-bottom: 1px solid #006FCF;">
+            [RESTRICCION LEGAL BREVE]
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END: TM04-v4.2 Offer Code -->
+```
+
+---
+
+### SEPARATOR - Separador vertical entre bloques
+
+```html
+<!-- START: SEPARATOR -->
+<table class="mobile-off" role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FFFFFF;" align="center">
+  <tr>
+    <td style="height: 35px;" height="35"></td>
+  </tr>
+</table>
+<!-- END: SEPARATOR -->
+```
+
+---
+
 ## Checklist de validacion rapida para MERCHANT
 
 - Header fijo presente y sin cambios en links de preheader/login.

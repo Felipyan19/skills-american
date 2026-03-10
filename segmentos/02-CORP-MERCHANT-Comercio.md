@@ -284,6 +284,240 @@ Tipos frecuentes:
 
 ---
 
+## Modulos dinamicos reutilizables
+
+Estos bloques se combinan dentro del contenido dinamico segun el tipo de email.
+
+---
+
+### HB03 - Hero con imagen de fondo y texto superpuesto
+
+Usado como hero principal en emails de Travel y contenidos con imagen de fondo.
+Requiere imagen de fondo 620x320px. Incluye fallback VML para Outlook y imagen mobile.
+
+```html
+<!-- START: ID=HB03-v4.2 Overlay -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td class="background-none" align="center" bgcolor="#ffffff" background="[IMG_HERO_BG]" width="620" height="320" valign="top" style="background: url('[IMG_HERO_BG]') center / cover no-repeat #ffffff; background-position: center; background-size: cover; background-repeat: no-repeat;">
+      <!--[if gte mso 9]>
+      <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0;display: inline-block; width: 465pt; height: 240pt;" src="[IMG_HERO_BG]" />
+      <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0;display: inline-block;position: absolute; width: 465pt; height: 240pt;">
+      <v:fill opacity="0%" color="#ffffff" />
+      <v:textbox inset="0,0,0,0">
+      <![endif]-->
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <th class="full-width-auto" style="width: 300px; font-weight: normal;" valign="middle">
+            <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" height="320" class="height-auto">
+              <tr>
+                <td class="mobile-off" style="height: 320px; width: 16px;">&nbsp;</td>
+                <td class="height-auto pd40 center-align" style="height: 320px;" align="left" valign="top">
+                  <table class="center-align" role="none" cellpadding="0" cellspacing="0" border="0" width="auto">
+                    <tr>
+                      <td class="pd0" align="center" valign="top" style="padding: 60px 0 0;">
+                        <table class="BgWhite background-none" role="none" cellpadding="0" cellspacing="0" border="0" width="230" bgcolor="#00175a" align="center">
+                          <tr>
+                            <td class="TxtBlue pd0 center-text background-none" valign="top" align="left" style="font-family: 'BentonSans500', HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 22px; line-height: 25px; color: #ffffff; padding: 7px 20px; background: #006FCF;">
+                              <h1 class="TxtBlue" style="font-family: 'BentonSans400', HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; margin: 0; font-size: 22px; line-height: 25px; color: #FFFFFF; font-weight: normal;">[MES / TITULAR BREVE]</h1>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="TxtBlue pd0 center-text" valign="top" align="left" style="font-family: 'BentonSans400', HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 33px; line-height: 36px; color: #ffffff; padding: 14px 20px;">
+                              [Titulo principal]<br>
+                              <strong style="font-family: 'BentonSans500', HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #ffffff;">#conAmex.</strong>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </th>
+          <!-- Imagen mobile fallback -->
+          <th class="full-width-auto" width="290" align="center" valign="middle" style="mso-hide: all;">
+            <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td align="center">
+                  <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="display: none;" class="mobile-on">
+                    <tr>
+                      <td><img src="[IMG_HERO_BG_MOBILE]" alt="[ALT HERO]" width="100%" style="color: #3D3D3D; height: auto; display: block;"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </th>
+        </tr>
+      </table>
+      <!--[if gte mso 9]>
+      </v:textbox>
+      </v:rect>
+      <![endif]-->
+    </td>
+  </tr>
+</table>
+<!-- END: HB03-v4.2 Overlay -->
+```
+
+---
+
+### TM01 - Encabezado de seccion con icono
+
+Barra azul `#006FCF` con icono + titulo. Separa secciones de contenido (ej: VIAJES, COMPRAS, HOTELES).
+
+```html
+<!-- START: TM01-v4.2 Section Header -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#006FCF">
+  <tr>
+    <td bgcolor="#006FCF" width="620" align="center" valign="middle" style="width: 620px; padding: 25px 0px;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="auto">
+        <tr>
+          <td valign="middle" style="padding: 0 10px 0 0;">
+            <img src="[IMG_ICONO_SECCION]" alt="[NOMBRE SECCION]" width="40" height="auto" style="color: #000000; display: block;">
+          </td>
+          <td valign="middle" style="padding: 0px;">
+            <h2 style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #ffffff; font-size: 20px; line-height: 23px;">
+              <strong style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">[NOMBRE SECCION]</strong>
+            </h2>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END: TM01-v4.2 Section Header -->
+```
+
+---
+
+### HB16 - Hero con fondo oscuro + imagen centrada + texto debajo
+
+Usado como encabezado de Special Offers / The Blue Box Market. Logo del programa sobre fondo `#00175A`, imagen de portada con barras laterales oscuras, bajada de texto centrada.
+
+```html
+<!-- START: ID=HB16-v4.2 Image Background Split -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td>
+      <!-- Bloque logo + subtitulo sobre fondo oscuro -->
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#00175A">
+        <tr>
+          <td align="center" valign="top" style="padding: 38px 0px 18px;">
+            <img src="[IMG_LOGO_PROGRAMA]" alt="[NOMBRE PROGRAMA]" width="230" style="height: auto; color: #333333; display: block;">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" valign="top" style="padding: 0px 0px 35px;">
+            <img src="[IMG_SUBTITULO]" alt="[SUBTITULO]" width="319" style="height: auto; color: #333333; display: block;">
+          </td>
+        </tr>
+      </table>
+      <!-- Imagen de portada con barras laterales oscuras -->
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td width="40" valign="top" style="width: 40px;">
+            <table role="none" cellpadding="0" cellspacing="0" border="0" width="40">
+              <tr><td width="40" height="210" bgcolor="#00175A" style="background-color: #00175A;">&nbsp;</td></tr>
+            </table>
+          </td>
+          <td width="540" valign="top" style="background-color: #FFFFFF;">
+            <img src="[IMG_PORTADA]" alt="[ALT PORTADA]" width="540" style="display: block; height: auto;" class="full-width">
+          </td>
+          <td width="40" valign="top" style="width: 40px;">
+            <table role="none" cellpadding="0" cellspacing="0" border="0" width="40">
+              <tr><td width="40" height="210" bgcolor="#00175A" style="background-color: #00175A;">&nbsp;</td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- Texto centrado debajo -->
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td align="center" style="padding: 35px 20px 20px;">
+            <table role="none" cellpadding="0" cellspacing="0" border="0" width="580" style="width:580px;" class="full-width">
+              <tr>
+                <td align="center" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; padding: 0px;">
+                  <p style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; margin: 0px; color: #006FCF; font-size: 22px; line-height: 25px;">
+                    <strong style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">[FECHA O TITULAR]</strong>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; padding: 5px 0px 0px;">
+                  <p style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; margin: 0px; color: #00175A; font-size: 18px; line-height: 23px;">
+                    [Descripcion breve con <strong style="color: #006FCF;">beneficio destacado</strong>.]
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END: HB16-v4.2 Image Background Split -->
+```
+
+---
+
+### SEPARATOR - Separador vertical entre bloques
+
+```html
+<!-- START: SEPARATOR -->
+<table class="mobile-off" role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FFFFFF;" align="center">
+  <tr>
+    <td style="height: 35px;" height="35"></td>
+  </tr>
+</table>
+<!-- END: SEPARATOR -->
+```
+
+---
+
+### CTA Button - Variantes
+
+**Boton outlined azul (sobre fondo claro):**
+```html
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="135" height="40" style="width:135px; height:40px; border-radius:8px; background:#deedfa;" class="button-primary-light">
+  <tr>
+    <td align="center" valign="middle">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" style="border-radius: 8px; border: 2px solid #006FCF; mso-border-alt: 2px solid #006FCF; width:135px; height:40px;">
+        <tr>
+          <td align="center" valign="middle" height="40">
+            <a href="[URL_DESTINO]" target="_blank" aria-label="[TEXTO CTA]" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #006FCF; display: inline-block; padding: 0px 0; text-decoration: none; width: 135px; font-size: 15px; line-height: 22px;">[Texto CTA]</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+```
+
+**Boton solido azul (sobre fondo blanco / contenido):**
+```html
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="126" height="44" style="width:126px; height:44px; border-radius:3px; background:#006FCF;" class="button-primary-light">
+  <tr>
+    <td align="center" valign="middle">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" style="border-radius: 3px; border: 2px solid #006FCF; mso-border-alt: 2px solid #006FCF; width:122px; height:42px;">
+        <tr>
+          <td align="center" valign="middle" height="44">
+            <a href="[URL_DESTINO]" target="_blank" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #FFFFFF; display: inline-block; padding: 12px 0; text-decoration: none; width: 122px; font-size: 15px; line-height: 22px;">
+              <strong style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #FFFFFF; font-weight: normal;">[Texto CTA]</strong>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+```
+
+---
+
 ## Checklist rapido
 
 - Header fijo presente (`PH01 + Consumer Default CORP`).
