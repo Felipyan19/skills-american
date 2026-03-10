@@ -1,0 +1,5 @@
+# Ignorar carpetas locales no rastreadas
+.claude/
+.tmp-n8n-mcp/
+1. Referencias por segmento/
+2. Modulos maquetados/

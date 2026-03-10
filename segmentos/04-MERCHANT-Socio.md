@@ -1,65 +1,96 @@
 # Skill: Segmento MERCHANT - Socio
 
-## Descripción del Segmento
-Emails para **socios/beneficiarios** de comercios que aceptan American Express. Incluye newsletters con múltiples promociones, "Shots" (email de una sola oferta) y Special Offers (catálogo de comercios).
+## Descripcion del segmento
+Emails para socios/beneficiarios de comercios adheridos a American Express.
+Este segmento usa template v4.2 y se divide en 3 tipos principales:
 
-**Archivos de referencia:**
-- `MERCHANT-Newsletter-Dic25.html` → Newsletter multipromociones
-- `MERCHANT-Shot-Travel-Agst25.html` → Shot travel (email único, viajes)
-- `MERCHANT-Shot-deporte-DIC25.html` → Shot deporte (email único, deportes)
-- `MERCHANT-SHOT-Navidad-Dic25.html` → Shot navidad
-- `MERCHANT-Special-Offers-Dic25.html` → Catálogo de ofertas especiales
+- Newsletter (multiples promos apiladas)
+- Shot (una promo principal)
+- Special Offers (catalogo o grilla de comercios)
+
+## Referencias fuente (usar como patron real)
+- `1. Referencias por segmento/MERCHANT - Socio/MERCHANT-Newsletter-Dic25/MERCHANT-Newsletter-Dic25.html`
+- `1. Referencias por segmento/MERCHANT - Socio/MERCHANT-Shot-Travel-Agst25/MERCHANT-Shot-Travel-Agst25.html`
+- `1. Referencias por segmento/MERCHANT - Socio/MERCHANT-Shot-deporte-DIC25/MERCHANT-Shot-deporte-DIC25.html`
+- `1. Referencias por segmento/MERCHANT - Socio/MERCHANT-SHOT-Navidad-Dic25/MERCHANT-SHOT-Navidad-Dic25.html`
+- `1. Referencias por segmento/MERCHANT - Socio/MERCHANT-Special-Offers-Dic25/MERCHANT-Special-Offers-Dic25.html`
 
 ---
 
-## Características Distintivas
+## Reglas obligatorias (siempre mantener)
 
-| Atributo | Valor |
+| Item | Regla |
 |---|---|
 | Template | `AMX_GBS Templates 4.2` |
 | Fondo body | `#E0E0E0` |
-| Brand Panel | `Consumer Default-v4.2` (logo Amex + tagline + cuenta) |
-| Tagline logo | "No vivas la vida sin ella" |
-| Personalización | `{(FULLNAME)}`, `{(LAST_5)}`, `{(MEMBER_SINCE)}` |
-| Tipos de email | Newsletter (multi), Shot (mono), Special Offers |
-| Formato Newsletter | Varias promociones apiladas con separadores |
-| Formato Shot | Una sola oferta con hero grande |
+| Tracking pixel | obligatorio: `<custom name="opencounter" type="tracking"/>` |
+| Header | siempre: `PH01-v4.2 + Consumer Default-v4.2` |
+| Footer | siempre: `FM05 + FM02 + FM03 + FM04` (orden fijo) |
+| Personalizacion | `{(FULLNAME)}`, `{(LAST_5)}`, `{(MEMBER_SINCE)}`, `{(URLSignature1)}`, `{(EMAIL)}` |
+| CTA principal | azul `#006FCF` |
+| Legales | siempre numerados con superindice y texto legal completo al final |
 
 ---
 
-## Brand Panel MERCHANT Socio (Consumer Default-v4.2)
+## Header fijo (no cambiar estructura)
+
+Este bloque va siempre al inicio del container de 620px.
 
 ```html
-<!-- START: Consumer Default-v4.2 (MERCHANT Socio) -->
-<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF">
+<!-- START: HEADER FIJO MERCHANT -->
+
+<!-- START: ID=PH01-v4.2 Preheader Text -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
   <tr>
-    <td style="border-bottom:solid 1px #E0E0E0; padding:20px;" class="pd10">
+    <td style="padding: 8px 0;">
       <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
-          <td valign="top" width="137" style="width:137px;">
+          <td valign="middle" width="310" class="full-width-block ph-text" style="padding-left: 10px;">
+            <p style="font-size: 14px; line-height: 20px; color: #3D3D3D; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+              PUBLICIDAD
+            </p>
+          </td>
+          <td align="right" valign="middle" width="310" class="full-width-block ph-text" style="padding-right: 10px;">
+            <p style="font-size: 14px; line-height: 20px; color: #3D3D3D; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+              &iquest;No pod&eacute;s ver el mail?
+              <a href="https://x.email.americanexpress.com/ats/msg.aspx?sg1={(URLSignature1)}" style="color: #333333; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+                <strong style="font-weight: normal; text-decoration: underline; color:#333333;">Hac&eacute; click aqu&iacute;</strong>
+              </a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END: PH01-v4.2 Preheader Text -->
+
+<!-- START: Consumer Default-v4.2 -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td style="padding:20px;" class="pd10">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td valign="top" width="137" style="width: 137px;">
             <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
               <tr>
-                <td width="60" style="width:60px;" class="bp-logo">
+                <td width="60" style="width: 60px;" class="bp-logo">
                   <a href="http://www.americanexpress.com.ar" target="_blank">
-                    <img src="[IMG_LOGO_AMEX]" alt="American Express, opens a new tab" width="60"
-                         style="width:60px; height:auto; color:#3D3D3D;" class="bp-logo">
+                    <img src="[IMG_LOGO_AMEX]" alt="American Express" width="60" style="width:60px; height:auto; color:#3D3D3D;" class="bp-logo">
                   </a>
                 </td>
-                <td width="150" style="padding-left:10px" class="mobile-off">
+                <td width="150" style="padding-left: 10px" class="mobile-off">
                   <a href="http://www.americanexpress.com.ar" target="_blank">
-                    <img src="[IMG_TAGLINE]" alt="No vivas la vida sin ella" width="150"
-                         style="width:150px; height:auto; color:#3D3D3D;">
+                    <img src="[IMG_TAGLINE_NO_VIVAS]" alt="No vivas la vida sin ella(TM)" width="150" style="width:150px; height:auto; color:#3D3D3D;">
                   </a>
                 </td>
               </tr>
             </table>
           </td>
           <td align="right" valign="top">
-            <p class="bp-text"
-               style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                      color:#3D3D3D; font-size:15px; line-height:22px;">
-              Tu cuenta termina en: <br class="mobile-on" style="display:none;" />
-              {(LAST_5)} <br>
+            <p class="bp-text" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #3D3D3D; font-size: 15px; line-height: 22px;">
+              Tu cuenta termina en: <br class="mobile-on" style="display: none;" />
+              {(LAST_5)}<br>
               <span class="mobile-off">Miembro desde: {(MEMBER_SINCE)}</span>
             </p>
           </td>
@@ -68,23 +99,16 @@ Emails para **socios/beneficiarios** de comercios que aceptan American Express. 
     </td>
   </tr>
   <tr>
-    <td style="padding:10px 20px 11px; border-bottom:solid 1px #E0E0E0; border-top:solid 1px #E0E0E0" class="pd10">
+    <td style="padding: 10px 20px 11px 20px; border-bottom: solid 1px #E0E0E0; border-top: solid 1px #E0E0E0;" class="pd10">
       <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
-          <td style="padding-right:20px;">
-            <p style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                      color:#3D3D3D; font-size:15px; line-height:22px;" class="bp-text">
+          <td style="padding-right: 20px;">
+            <p style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #3D3D3D; font-size: 15px; line-height: 22px;" class="bp-text">
               Hola {(FULLNAME)}
             </p>
           </td>
           <td align="right">
-            <a href="https://www.americanexpress.com/es-ar/account/login?email_consumer"
-               class="button-secondary-light bp-login-button" target="_blank"
-               style="border:2px solid #006FCF; border-radius:3px; color:#006FCF;
-                      display:inline-block; font-size:15px; line-height:100%;
-                      padding:13px 12px; text-decoration:none; text-align:center;
-                      font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                      white-space:nowrap;">
+            <a href="https://www.americanexpress.com/es-ar/account/login?email_consumer" class="button-secondary-light bp-login-button" target="_blank" aria-label="American Express account, opens a new tab" style="border: 2px solid #006FCF; mso-border-alt: 2px solid #006FCF; border-radius: 3px; color: #006FCF; display: inline-block; font-size: 15px; line-height: 100%; padding: 13px 12px 13px; text-decoration: none; text-align: center; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; white-space: nowrap;">
               Mi cuenta
             </a>
           </td>
@@ -94,76 +118,222 @@ Emails para **socios/beneficiarios** de comercios que aceptan American Express. 
   </tr>
 </table>
 <!-- END: Consumer Default-v4.2 -->
+
+<!-- END: HEADER FIJO MERCHANT -->
 ```
 
 ---
 
-## Formato: SHOT (Email Mono-Oferta)
+## Footer fijo (no cambiar orden)
 
-Un solo beneficio destacado con imagen hero grande y CTA claro.
-
-```
-1. Preheader
-2. Brand Panel (Consumer Default-v4.2)
-3. Hero Banner full width o con overlay (imagen temática: viaje, deporte, navidad)
-4. Bloque de texto con beneficio
-5. CTA principal
-6. Legales
-7. Footer
-```
+El footer de MERCHANT siempre mantiene este orden:
+`FM05 Tagline/Banner` -> `FM02 Social` -> `FM03 Nav` -> `FM04 Terms and Conditions`.
 
 ```html
-<!-- Hero Shot - Full Width con texto debajo -->
+<!-- START: FOOTER FIJO MERCHANT -->
+
+<!-- START: ID=FM05-v4.2 Footer Tagline -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FFFFFF">
+  <tr>
+    <td align="center" style="padding: 0px; border-bottom: 1px solid #DEDEDE;">
+      <span class="mobile-off">
+        <img src="[IMG_FM05_DESKTOP]" alt="No vivas la vida sin ella(TM)" width="100%" style="vertical-align: top; height: auto; color: #333333;" />
+      </span>
+      <span class="mobile-on" style="display: none;">
+        <img src="[IMG_FM05_MOBILE]" alt="No vivas la vida sin ella(TM)" width="100%" style="display:block; vertical-align: top; height: auto; color: #333333;" />
+      </span>
+    </td>
+  </tr>
+</table>
+<!-- END: FM05-v4.2 Footer Tagline -->
+
+<!-- START: FM02 Social Icons -->
+<!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="620" align="center" style="width:620px;">
+<tr>
+<td style="line-height:0px; font-size:0px; mso-line-height-rule:exactly; background:#FFFFFF; border:none;">
+<![endif]-->
+<div style="background: #FFFFFF; margin: 0px auto; max-width: 620px; border:none;" align="center">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" align="center" style="border-collapse: collapse; font-size: 0px; margin: 0 auto; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+    <tbody>
+      <tr>
+        <td align="center" valign="top" style="border-collapse: collapse; direction: ltr; font-size: 0px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 20px 0px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse: collapse; font-size: 0px; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+            <tbody>
+              <tr>
+                <th style="font-weight: normal; width: 28px;" align="left">
+                  <a href="https://www.instagram.com/americanexpressarg/" target="_blank" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+                    <img src="[IMG_SOCIAL_INSTAGRAM]" alt="S&iacute;guenos en Instagram" title="S&iacute;guenos en Instagram" height="28" width="28" style="-ms-interpolation-mode: bicubic; border: 0 none; display: block; height: 28px; line-height: 100%; outline: none; text-decoration: none; width: 28px;">
+                  </a>
+                </th>
+                <th style="font-weight: normal; padding-left: 30px; width: 28px;" align="left">
+                  <a href="https://www.facebook.com/americanexpressargentina" target="_blank" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+                    <img src="[IMG_SOCIAL_FACEBOOK]" alt="S&iacute;guenos en Facebook" title="S&iacute;guenos en Facebook" height="28" width="28" style="-ms-interpolation-mode: bicubic; border: 0 none; display: block; height: 28px; line-height: 100%; outline: none; text-decoration: none; width: 28px;">
+                  </a>
+                </th>
+                <th style="font-weight: normal; padding-left: 30px; width: 28px;" align="left">
+                  <a href="https://www.youtube.com/user/AmericanExpressArg" target="_blank" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+                    <img src="[IMG_SOCIAL_YOUTUBE]" alt="S&iacute;guenos en Youtube" title="S&iacute;guenos en Youtube" height="28" width="28" style="-ms-interpolation-mode: bicubic; border: 0 none; display: block; height: 28px; line-height: 100%; outline: none; text-decoration: none; width: 28px;">
+                  </a>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--[if mso | IE]>
+</td></tr></table>
+<![endif]-->
+<!-- END: FM02 Social Icons -->
+
+<!-- START: ID=FM03-v4.2 Footer Nav Bar -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td class="pd0" style="padding: 16px 0px 15px; border-top: 1px solid #DEDEDE;" align="center" valign="top">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr role="list">
+          <th role="listitem" class="fm-nav-link full-width-block" style="padding: 0 10px; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+            <a href="https://www.americanexpress.com/argentina/legal/privacy_statement.shtml" class="link" target="_blank" style="color: #006fcf; font-weight: normal; font-size: 15px; line-height: 22px; text-decoration: none; display: block; padding: 12px 0; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">Privacidad</a>
+          </th>
+          <th role="listitem" class="fm-nav-link full-width-block fm-border" style="padding: 0 10px; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+            <a href="https://www.americanexpress.com/ar/content/ayuda/contactenos.html" target="_blank" class="link" style="color: #006fcf; font-weight: normal; font-size: 15px; line-height: 22px; text-decoration: none; display: block; padding: 12px 0; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">Contacto</a>
+          </th>
+          <th role="listitem" class="fm-nav-link full-width-block fm-border" style="padding: 0 10px; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+            <a href="https://www.americanexpress.com/es-ar/account/login?DestPage=https%3A%2F%2Fglobal.americanexpress.com%2Fmyca%2Fintl%2Facctmaintain%2Fcanlac%2FchangeDetails.do%3Frequest_type%3D%26Face%3Des_AR%26sorted_index%3D0" target="_blank" class="link" style="color: #006fcf; font-weight: normal; font-size: 15px; line-height: 22px; text-decoration: none; display: block; padding: 12px 0; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">Actualizar email</a>
+          </th>
+          <th role="listitem" class="fm-nav-link full-width-block fm-border" style="padding: 0 10px; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+            <a href="https://global.americanexpress.com/privacy/argentina/#/ipp" target="_blank" class="link" style="color: #006fcf; font-weight: normal; font-size: 15px; line-height: 22px; text-decoration: none; display: block; padding: 12px 0; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">Desuscribirse</a>
+          </th>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END: FM03-v4.2 Footer Nav Bar -->
+
+<!-- START: ID=FM04-v4.2 Terms and Conditions -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#E0E0E0">
+  <tr>
+    <td style="border-collapse: collapse; direction: ltr; font-size: 0px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 10px 10px 0px;" valign="top">
+      <div style="color: #3f3f3f; cursor: auto; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size: 12px;">
+        <p style="display: block; margin: 0px; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+          <img class="Cft" src="[IMG_CFT]" alt="[ALT_CFT]" width="368" height="65" style="display: inline-block; outline: none; border:0; text-decoration: none;">
+        </p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td align="justify" style="padding: 5px 10px 16px; color: #53565A; font-size: 13px; line-height: 18px; text-align: justify; text-transform: uppercase; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+      AMERICAN EXPRESS ARGENTINA S.A., ARENALES 707- CABA - CP: 1061, CUIT 30-57481687-0.<br><br>
+      1) [TEXTO LEGAL 1 CON URL DE CONDICIONES].<br><br>
+      2) [TEXTO LEGAL 2 CON URL DE CONDICIONES].<br><br>
+      [AGREGAR TODOS LOS LEGALES QUE CORRESPONDAN AL SUPERINDICE USADO EN EL CONTENIDO].<br><br>
+      Los datos personales son almacenados en una base de datos, cuyo responsable es American Express Argentina S.A. con domicilio legal en Arenales 707, entrepiso, CP C1061AAA, C.A.B.A. Usted podra solicitar el retiro o bloqueo de su nombre, total o parcial, de la base de datos conforme Ley 25.326 y Decreto 1558/01.<br><br>
+      Instrucciones para cancelar la suscripcion: este correo electronico publicitario esta destinado a residentes de Argentina y fue enviado a <strong style="color:#000000; font-weight:normal; word-wrap: break-word; word-break: break-all;">{(EMAIL)}</strong>. Si no desea recibir nuevos mensajes publicitarios, responda este e-mail con la palabra "borrar" o visite <a href="https://global.americanexpress.com/privacy/argentina/#/ipp" target="_blank" style="color: #00175A; text-decoration: none;">preferencias de correo electronico</a>.<br><br>
+      Servicio al cliente: no responder este e-mail; dirigir consultas a <a href="https://www.americanexpress.com/ar/content/ayuda/contactenos.html" target="_blank" style="color: #00175A; text-decoration: none;">Servicio al Cliente</a>. Privacidad: <a href="http://www.americanexpress.com/argentina/legal/privacy_statement.shtml" target="_blank" style="color: #00175A; text-decoration: none;">www.americanexpress.com.ar/privacidad</a>.<br><br>
+      &copy; [ANIO] American Express Company.
+    </td>
+  </tr>
+</table>
+<!-- END: FM04-v4.2 Terms and Conditions -->
+
+<!-- END: FOOTER FIJO MERCHANT -->
+```
+
+---
+
+## Estructura fija del email completo (base MERCHANT)
+
+```html
+<!-- START: ESTRUCTURA BASE COMPLETA MERCHANT -->
+<div style="display:none;">
+  <custom name="opencounter" type="tracking"/>
+</div>
+
+<div role="article" aria-roledescription="email" aria-label="Email from American Express" lang="en" dir="ltr" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; font-size: 15px; line-height: 22px;">
+  <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#E0E0E0">
+    <tr>
+      <td align="center">
+        <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td align="center" background="images/wsp-grey.png" bgcolor="#E0E0E0">
+              <table role="none" cellpadding="0" cellspacing="0" border="0" width="620" style="width: 620px;" class="container">
+                <tr>
+                  <td>
+                    <!-- PEGAR AQUI EL HEADER FIJO -->
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <table role="none" cellpadding="0" cellspacing="0" border="0" width="620" style="width:620px; background:#FFFFFF" class="container">
+          <tr>
+            <td>
+              <!-- PEGAR AQUI EL CONTENIDO DINAMICO -->
+              <!-- PEGAR AQUI EL FOOTER FIJO -->
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+<!-- END: ESTRUCTURA BASE COMPLETA MERCHANT -->
+```
+
+---
+
+## Ejemplo completo SHOT (contenido dinamico)
+
+```html
+<!-- START: SHOT CONTENT -->
 <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
   <tr>
     <td>
-      <a href="[URL_CTA]" target="_blank" style="text-decoration:none; border:none; outline:0;">
-        <img src="[IMG_SHOT_HERO]" alt="[Descripción del beneficio]" width="620"
-             style="height:auto; display:block; color:#3D3D3D; width:100%;" class="full-width">
+      <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/promo/especial-viajes/" target="_blank" style="text-decoration:none; border:none; outline:0;">
+        <img src="https://i.email.americanexpress.com/wpm/1288/Images/[SHOT_HERO_DESKTOP].jpg" alt="Especial viajes para Socios American Express" width="620" style="height:auto; display:block; color:#3D3D3D; width:100%;" class="full-width">
       </a>
     </td>
   </tr>
 </table>
 
-<!-- Bloque texto principal -->
 <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF">
   <tr>
-    <td align="center" style="padding: 40px 40px 20px;">
+    <td align="center" style="padding: 40px 40px 20px;" class="pd20">
       <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
-          <td align="center"
-              style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                     font-size:26px; line-height:30px; padding-bottom:15px;">
+          <td align="center" style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:26px; line-height:30px; padding-bottom:15px;">
             <strong style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
-              Título principal del beneficio
+              Hasta 6 cuotas sin interes en viajes<span style="font-size:11px; line-height:8px; vertical-align:7px; font-weight:normal;">1</span>
             </strong>
           </td>
         </tr>
         <tr>
-          <td align="center"
-              style="color:#3D3D3D; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                     font-size:15px; line-height:22px; padding-bottom:30px;">
-            Descripción detallada del beneficio para socios American Express.
+          <td align="center" style="color:#3D3D3D; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:15px; line-height:22px; padding-bottom:30px;">
+            Aprovecha beneficios exclusivos para tus proximas reservas en agencias y aerolineas seleccionadas.
           </td>
         </tr>
-        <!-- CTA -->
         <tr>
           <td align="center">
-            <table role="none" cellpadding="0" cellspacing="0" border="0" width="180" height="44"
-                   style="width:180px; height:44px; border-radius:4px; background:#006FCF;" class="button-primary-light">
-              <tr><td align="center" valign="middle">
-                <table role="none" cellpadding="0" cellspacing="0" border="0"
-                       style="border-radius:4px; border:2px solid #006FCF; width:176px; height:42px">
-                  <tr><td align="center" valign="middle" height="44">
-                    <a href="[URL_CTA]" target="_blank"
-                       style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                              color:#FFFFFF; display:inline-block; padding:12px 0;
-                              text-decoration:none; width:176px; font-size:15px; line-height:22px;">
-                      <strong style="font-weight:normal; color:#FFFFFF;">Conoc&eacute; el beneficio</strong>
-                    </a>
-                  </td></tr>
-                </table>
-              </td></tr>
+            <table role="none" cellpadding="0" cellspacing="0" border="0" width="190" height="44" style="width:190px; height:44px; border-radius:4px; background:#006FCF;" class="button-primary-light">
+              <tr>
+                <td align="center" valign="middle">
+                  <table role="none" cellpadding="0" cellspacing="0" border="0" style="border-radius:4px; border:2px solid #006FCF; width:186px; height:42px;">
+                    <tr>
+                      <td align="center" valign="middle" height="44">
+                        <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/promo/especial-viajes/" target="_blank" style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color:#FFFFFF; display:inline-block; padding:12px 0; text-decoration:none; width:186px; font-size:15px; line-height:22px;">
+                          <strong style="font-weight:normal; color:#FFFFFF;">Conoc&eacute; el beneficio</strong>
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
             </table>
           </td>
         </tr>
@@ -171,68 +341,54 @@ Un solo beneficio destacado con imagen hero grande y CTA claro.
     </td>
   </tr>
 </table>
+<!-- END: SHOT CONTENT -->
 ```
 
 ---
 
-## Formato: NEWSLETTER (Email Multi-Oferta)
-
-Múltiples promociones apiladas, cada una con su propia imagen, título y CTA. Separadas por `Separator`.
-
-```
-1. Preheader
-2. Brand Panel(s) (puede haber más de uno si es co-branded)
-3. Hero Banner principal
-4. [Promoblock 1: Imagen + Texto + CTA]
-5. Separator
-6. [Promoblock 2: Imagen + Texto + CTA]
-7. Separator
-8. [Promoblock 3...]
-9. Footer con todos los legales numerados
-```
-
-### Bloque de Promoción (Newsletter)
+## Ejemplo completo NEWSLETTER (contenido dinamico)
 
 ```html
-<!-- PROMO BLOCK — para cada oferta en el newsletter -->
+<!-- START: NEWSLETTER CONTENT -->
+
+<!-- HERO PRINCIPAL -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td>
+      <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/" target="_blank" style="text-decoration:none; border:none; outline:0;">
+        <img src="https://i.email.americanexpress.com/wpm/1288/Images/[NEWSLETTER_HERO].jpg" alt="Beneficios para disfrutar este mes" width="620" style="height:auto; display:block; color:#3D3D3D; width:100%;" class="full-width">
+      </a>
+    </td>
+  </tr>
+</table>
+
+<!-- PROMO BLOCK 1 -->
 <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF">
   <tr>
     <td style="padding: 30px 40px;" class="pd20">
       <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
-        <!-- Imagen del comercio/oferta -->
         <tr>
           <td align="center" style="padding-bottom: 20px;">
-            <a href="[URL_OFERTA]" target="_blank" style="text-decoration:none; border:none; outline:0;">
-              <img src="[IMG_OFERTA]" alt="[Nombre Comercio]" width="540"
-                   style="height:auto; display:block; color:#3D3D3D;" class="full-width">
+            <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/promo/shopping-days/" target="_blank" style="text-decoration:none; border:none; outline:0;">
+              <img src="https://i.email.americanexpress.com/wpm/1288/Images/[PROMO1_IMAGE].jpg" alt="Shopping Days" width="540" style="height:auto; display:block; color:#3D3D3D;" class="full-width">
             </a>
           </td>
         </tr>
-        <!-- Título oferta -->
         <tr>
-          <td align="center"
-              style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                     font-size:22px; line-height:26px; padding-bottom:10px;">
+          <td align="center" style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:22px; line-height:26px; padding-bottom:10px;">
             <strong style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
-              [X]% OFF en [Comercio]<span style="font-size:11px; line-height:8px; vertical-align:7px; font-weight:normal;">1</span>
+              Hasta 25% OFF en comercios adheridos<span style="font-size:11px; line-height:8px; vertical-align:7px; font-weight:normal;">1</span>
             </strong>
           </td>
         </tr>
-        <!-- Descripción -->
         <tr>
-          <td align="center"
-              style="color:#3D3D3D; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                     font-size:15px; line-height:22px; padding-bottom:20px;">
-            Pagando con tu tarjeta American Express.
+          <td align="center" style="color:#3D3D3D; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:15px; line-height:22px; padding-bottom:20px;">
+            Pagando con tus Tarjetas American Express en locales participantes.
           </td>
         </tr>
-        <!-- CTA -->
         <tr>
           <td align="center">
-            <a href="[URL_OFERTA]" target="_blank"
-               style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                      color:#006FCF; font-size:15px; line-height:22px; text-decoration:underline;
-                      border:none; outline:0;">
+            <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/promo/shopping-days/" target="_blank" style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color:#006FCF; font-size:15px; line-height:22px; text-decoration:underline; border:none; outline:0;">
               Ver m&aacute;s
             </a>
           </td>
@@ -241,46 +397,123 @@ Múltiples promociones apiladas, cada una con su propia imagen, título y CTA. S
     </td>
   </tr>
 </table>
-```
 
----
+<!-- SEPARATOR -->
+<table class="Separator" role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FFFFFF">
+  <tr>
+    <td style="height: 30px;" height="30"></td>
+  </tr>
+</table>
 
-## Formato: SPECIAL OFFERS (Grilla de Comercios)
-
-Grid de logos o thumbnails de comercios participantes, organizados en 2-3 columnas.
-
-```html
-<!-- Grid de 2 comercios por fila -->
+<!-- PROMO BLOCK 2 -->
 <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF">
   <tr>
-    <!-- Comercio 1 -->
-    <td width="50%" align="center" valign="top" style="padding: 20px 10px;"
-        class="half-width-block BrdrMobile">
-      <a href="[URL_COMERCIO_1]" target="_blank" style="text-decoration:none;">
-        <img src="[LOGO_COMERCIO_1]" alt="[Nombre]" width="250"
-             style="height:auto; display:block;" class="full-width">
-      </a>
-      <p style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                font-size:16px; line-height:20px; padding-top:10px; text-align:center;">
-        <strong>[X]% OFF</strong><span style="font-size:11px; line-height:8px; vertical-align:7px; font-weight:normal;">1</span>
-      </p>
-    </td>
-    <!-- Comercio 2 -->
-    <td width="50%" align="center" valign="top" style="padding: 20px 10px;"
-        class="half-width-block">
-      <!-- misma estructura -->
+    <td style="padding: 30px 40px;" class="pd20">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td align="center" style="padding-bottom: 20px;">
+            <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/promo/especial-gastronomia/" target="_blank" style="text-decoration:none; border:none; outline:0;">
+              <img src="https://i.email.americanexpress.com/wpm/1288/Images/[PROMO2_IMAGE].jpg" alt="Especial gastronomia" width="540" style="height:auto; display:block; color:#3D3D3D;" class="full-width">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:22px; line-height:26px; padding-bottom:10px;">
+            <strong style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+              Beneficios en restaurantes seleccionados<span style="font-size:11px; line-height:8px; vertical-align:7px; font-weight:normal;">2</span>
+            </strong>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="color:#3D3D3D; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:15px; line-height:22px; padding-bottom:20px;">
+            Descubri propuestas gastron&oacute;micas para compartir y ahorrar.
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/promo/especial-gastronomia/" target="_blank" style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color:#006FCF; font-size:15px; line-height:22px; text-decoration:underline; border:none; outline:0;">
+              Ver m&aacute;s
+            </a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
 </table>
+
+<!-- END: NEWSLETTER CONTENT -->
 ```
 
 ---
 
-## Notas
+## Ejemplo completo SPECIAL OFFERS (contenido dinamico)
 
-- Newsletter usa `BrdrMobile` en mobile para mostrar separadores entre columnas
-- Los Shot emails son más simples y directos, el Newsletter es más complejo con múltiples secciones
-- En Special Offers, los porcentajes de descuento se destacan en azul `#00175A`
-- Siempre incluir referencia numérica a legales en superíndice al lado de cada descuento
-- El footer del Newsletter incluye todos los legales de todas las promos numeradas
-- Temáticas recurrentes: viajes, deporte, gastronomía, navidad/temporada
+```html
+<!-- START: SPECIAL OFFERS CONTENT -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td>
+      <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/" target="_blank" style="text-decoration:none; border:none; outline:0;">
+        <img src="https://i.email.americanexpress.com/wpm/1288/Images/[SPECIAL_HERO].jpg" alt="Special Offers para Socios American Express" width="620" style="height:auto; display:block; color:#3D3D3D; width:100%;" class="full-width">
+      </a>
+    </td>
+  </tr>
+</table>
+
+<!-- FILA 1 -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td width="50%" align="center" valign="top" style="padding: 20px 10px;" class="half-width-block BrdrMobile">
+      <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/moda/comercio-1" target="_blank" style="text-decoration:none; border:none; outline:0;">
+        <img src="https://i.email.americanexpress.com/wpm/1288/Images/[GRID_1].jpg" alt="Comercio 1" width="250" style="height:auto; display:block;" class="full-width">
+      </a>
+      <p style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:16px; line-height:20px; padding-top:10px; text-align:center;">
+        <strong>20% OFF</strong><span style="font-size:11px; line-height:8px; vertical-align:7px; font-weight:normal;">1</span>
+      </p>
+    </td>
+    <td width="50%" align="center" valign="top" style="padding: 20px 10px;" class="half-width-block">
+      <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/moda/comercio-2" target="_blank" style="text-decoration:none; border:none; outline:0;">
+        <img src="https://i.email.americanexpress.com/wpm/1288/Images/[GRID_2].jpg" alt="Comercio 2" width="250" style="height:auto; display:block;" class="full-width">
+      </a>
+      <p style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:16px; line-height:20px; padding-top:10px; text-align:center;">
+        <strong>15% OFF</strong><span style="font-size:11px; line-height:8px; vertical-align:7px; font-weight:normal;">2</span>
+      </p>
+    </td>
+  </tr>
+</table>
+
+<!-- FILA 2 -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td width="50%" align="center" valign="top" style="padding: 20px 10px;" class="half-width-block BrdrMobile">
+      <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/gastronomia/comercio-3" target="_blank" style="text-decoration:none; border:none; outline:0;">
+        <img src="https://i.email.americanexpress.com/wpm/1288/Images/[GRID_3].jpg" alt="Comercio 3" width="250" style="height:auto; display:block;" class="full-width">
+      </a>
+      <p style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:16px; line-height:20px; padding-top:10px; text-align:center;">
+        <strong>10% OFF</strong><span style="font-size:11px; line-height:8px; vertical-align:7px; font-weight:normal;">3</span>
+      </p>
+    </td>
+    <td width="50%" align="center" valign="top" style="padding: 20px 10px;" class="half-width-block">
+      <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/viajes/comercio-4" target="_blank" style="text-decoration:none; border:none; outline:0;">
+        <img src="https://i.email.americanexpress.com/wpm/1288/Images/[GRID_4].jpg" alt="Comercio 4" width="250" style="height:auto; display:block;" class="full-width">
+      </a>
+      <p style="color:#00175A; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; font-size:16px; line-height:20px; padding-top:10px; text-align:center;">
+        <strong>25% OFF</strong><span style="font-size:11px; line-height:8px; vertical-align:7px; font-weight:normal;">4</span>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- END: SPECIAL OFFERS CONTENT -->
+```
+
+---
+
+## Checklist de validacion rapida para MERCHANT
+
+- Header fijo presente y sin cambios en links de preheader/login.
+- Footer fijo presente en orden `FM05 -> FM02 -> FM03 -> FM04`.
+- Tracking pixel presente.
+- Todos los descuentos con superindice legal correcto.
+- Cantidad de legales en FM04 coincide con la cantidad de superindices del contenido.
+- CTA y links de nav con `target="_blank"`.
+- Imagenes con `alt` descriptivo y `height:auto`.

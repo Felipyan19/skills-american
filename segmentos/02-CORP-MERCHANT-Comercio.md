@@ -1,294 +1,294 @@
 # Skill: Segmento CORP y MERCHANT Comercio
 
-## Descripción del Segmento
-Emails para tarjetas **corporativas** (CORP) y **comercios/merchants** (MERCHANT Comercio). Foco en beneficios de negocio: viajes corporativos, ofertas especiales, Instagram/redes.
+## Descripcion del segmento
+Emails para audiencia corporativa y comercios (CORP / MERCHANT Comercio), sobre template `AMX_GBS Templates 4.2`.
 
-**Archivos de referencia:**
-- `CORP-IG-Sep25.html` → Campaña Instagram / Redes sociales corporativo
-- `CORP-Travel-Octubre25.html` → Beneficios de viaje corporativo
-- `CORP-Special-Offers-Navidad-Dic25.html` → Ofertas especiales navidad
+Tipos frecuentes:
+- IG / redes
+- Travel corporativo
+- Special Offers (catalogo de categorias/comercios)
+
+## Referencias fuente
+- `1. Referencias por segmento/CORP y MERCHANT Comercio/CORP-IG-Sep25/CORP-IG-Sep25.html`
+- `1. Referencias por segmento/CORP y MERCHANT Comercio/CORP-Travel-Octubre25/CORP-Travel-Octubre25.html`
+- `1. Referencias por segmento/CORP y MERCHANT Comercio/CORP-Special-Offers-Navidad-Dic25/CORP-Special-Offers-Navidad-Dic25.html`
 
 ---
 
-## Características Distintivas
+## Reglas fijas (obligatorias)
 
-| Atributo | Valor |
+| Item | Regla |
 |---|---|
 | Template | `AMX_GBS Templates 4.2` |
 | Fondo body | `#E0E0E0` |
-| Brand Panel | `Consumer Default-v4.2` (simplificado, sin tarjeta) |
-| Tagline logo | "No hagas negocios sin ella" |
-| Saludo | Puede ser sin saludo personalizado (solo logo) |
-| Color primario | `#00175A` (azul profundo) |
-| Audiencia | Titulares corporativos / dueños de comercios |
+| Tracking pixel | obligatorio: `<custom name="opencounter" type="tracking"/>` |
+| Header | siempre `PH01-v4.2 + Consumer Default-v4.2 (CORP)` |
+| Footer | siempre `FM05 -> FM02 -> FM03 -> FM04` |
+| Tagline CORP | `No hagas negocios sin ella` |
+| Personalizacion minima | `{(URLSignature1)}`, `{(EMAIL)}` |
+| Legales | superindices en contenido y desarrollo completo en FM04 |
 
 ---
 
-## Brand Panel CORP — Sin Saludo (simplificado)
-
-Para emails corporativos donde el titular no siempre es identificable individualmente.
+## Header fijo CORP/MERCHANT
 
 ```html
-<!-- START: Consumer Default-v4.2 (CORP — sin greeting personalizado) -->
+<!-- START: HEADER FIJO CORP/MERCHANT -->
+<!-- START: PH01-v4.2 -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td style="padding: 8px 0;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td valign="middle" width="310" class="full-width-block ph-text" style="padding-left: 10px;">
+            <p style="font-size: 14px; line-height: 20px; color: #3D3D3D; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">PUBLICIDAD</p>
+          </td>
+          <td align="right" valign="middle" width="310" class="full-width-block ph-text" style="padding-right: 10px;">
+            <p style="font-size: 14px; line-height: 20px; color: #3D3D3D; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+              &iquest;No pod&eacute;s ver el mail?
+              <a href="https://x.email.americanexpress.com/ats/msg.aspx?sg1={(URLSignature1)}" style="color: #333333; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+                <strong style="font-weight: normal; text-decoration: underline; color:#333333;">Hac&eacute; click aqu&iacute;</strong>
+              </a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END: PH01-v4.2 -->
+
+<!-- START: Consumer Default-v4.2 (CORP sin saludo) -->
 <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF">
   <tr>
-    <td style="border-bottom: solid 1px #d9d9d7; padding: 20px;" class="pd10">
+    <td style="border-bottom: solid 1px #E0E0E0; padding:20px;" class="pd10">
       <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
           <td valign="top" width="137" style="width: 137px;">
             <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
               <tr>
-                <!-- Logo Amex -->
                 <td width="60" style="width: 60px;" class="bp-logo">
                   <a href="http://www.americanexpress.com.ar" target="_blank">
-                    <img src="[IMG_LOGO_AMEX]" alt="American Express, opens a new tab" width="60"
-                         style="width:60px; height:auto; color:#3D3D3D;" class="bp-logo">
+                    <img src="[IMG_LOGO_AMEX]" alt="American Express" width="60" style="width:60px; height:auto; color:#3D3D3D;" class="bp-logo">
                   </a>
                 </td>
-                <!-- Tagline "No hagas negocios sin ella" (desktop only) -->
-                <td class="Slogn" width="150" style="padding-left: 10px">
+                <td class="Slogn" width="150" style="padding-left: 10px;">
                   <a href="http://www.americanexpress.com.ar" target="_blank">
-                    <img src="[IMG_TAGLINE_CORP]" alt="No hagas negocios sin ella" width="150"
-                         style="width:150px; height:auto; color:#3D3D3D;">
+                    <img src="[IMG_TAGLINE_CORP]" alt="No hagas negocios sin ella" width="150" style="width:150px; height:auto; color:#3D3D3D;">
                   </a>
                 </td>
               </tr>
             </table>
           </td>
-          <!-- Espacio derecho (sin datos de cuenta en versión corporativa) -->
-          <td align="right" valign="top">
-            <p class="bp-text"
-               style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                      color: #3D3D3D; font-size: 15px; line-height: 22px;">&nbsp;</p>
-          </td>
+          <td align="right" valign="top"><p class="bp-text" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif; color: #3D3D3D; font-size: 15px; line-height: 22px;">&nbsp;</p></td>
         </tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- END: Consumer Default-v4.2 -->
+<!-- END: HEADER FIJO CORP/MERCHANT -->
 ```
 
 ---
 
-## Hero Banner Full Width (HB15-v4.2)
-
-Imagen full width sin overlay de texto (imagen ya contiene el copy).
+## Footer fijo CORP/MERCHANT
 
 ```html
-<!-- START: HB15-v4.2 Full Width Hero -->
+<!-- START: FOOTER FIJO CORP/MERCHANT -->
+<!-- START: FM05 -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FFFFFF">
+  <tr>
+    <td align="center" style="padding: 0px; border-bottom: 1px solid #DEDEDE;">
+      <span class="mobile-off"><img src="[IMG_FM05_DESKTOP]" alt="No hagas negocios sin ella(TM)" width="100%" style="vertical-align: top; height: auto; color: #333333" /></span>
+      <span class="mobile-on" style="display: none;"><img src="[IMG_FM05_MOBILE]" alt="No hagas negocios sin ella(TM)" width="100%" style="display:block; vertical-align: top; height: auto; color: #333333" /></span>
+    </td>
+  </tr>
+</table>
+<!-- END: FM05 -->
+
+<!-- START: FM02 Social -->
+<div style="background: #FFFFFF; margin: 0px auto; max-width: 620px; border:none;" align="center">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" align="center">
+    <tbody><tr><td align="center" valign="top" style="padding: 20px 0px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center"><tbody><tr>
+        <th style="font-weight: normal; width: 28px;" align="left"><a href="https://www.instagram.com/americanexpressarg/" target="_blank"><img src="[IMG_SOCIAL_INSTAGRAM]" alt="Instagram" height="28" width="28" style="display:block;"></a></th>
+        <th style="font-weight: normal; padding-left: 30px; width: 28px;" align="left"><a href="https://www.facebook.com/americanexpressargentina" target="_blank"><img src="[IMG_SOCIAL_FACEBOOK]" alt="Facebook" height="28" width="28" style="display:block;"></a></th>
+        <th style="font-weight: normal; padding-left: 30px; width: 28px;" align="left"><a href="https://www.youtube.com/user/AmericanExpressArg" target="_blank"><img src="[IMG_SOCIAL_YOUTUBE]" alt="YouTube" height="28" width="28" style="display:block;"></a></th>
+      </tr></tbody></table>
+    </td></tr></tbody>
+  </table>
+</div>
+<!-- END: FM02 Social -->
+
+<!-- START: FM03 Nav -->
 <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
   <tr>
-    <td>
-      <a href="[URL_CTA]" target="_blank" style="text-decoration: none; border: none; outline: 0;">
-        <img src="[URL_IMG_HERO_FULL]" alt="[Descripción del beneficio]" width="620"
-             style="height: auto; display: block; color: #3D3D3D;" class="full-width">
+    <td class="pd0" style="padding: 16px 0px 15px; border-top: 1px solid #DEDEDE;" align="center" valign="top">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr role="list">
+          <th role="listitem" class="fm-nav-link full-width-block" style="padding: 0 10px;"><a href="https://www.americanexpress.com/argentina/legal/privacy_statement.shtml" class="link" target="_blank" style="color: #006fcf; font-size: 15px; line-height: 22px; text-decoration: none; display: block; padding: 12px 0; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">Privacidad</a></th>
+          <th role="listitem" class="fm-nav-link full-width-block fm-border" style="padding: 0 10px;"><a href="https://www.americanexpress.com/ar/content/ayuda/contactenos.html" target="_blank" class="link" style="color: #006fcf; font-size: 15px; line-height: 22px; text-decoration: none; display: block; padding: 12px 0; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">Contacto</a></th>
+          <th role="listitem" class="fm-nav-link full-width-block fm-border" style="padding: 0 10px;"><a href="https://www.americanexpress.com/es-ar/account/login?DestPage=https%3A%2F%2Fglobal.americanexpress.com%2Fmyca%2Fintl%2Facctmaintain%2Fcanlac%2FchangeDetails.do%3Frequest_type%3D%26Face%3Des_AR%26sorted_index%3D0" target="_blank" class="link" style="color: #006fcf; font-size: 15px; line-height: 22px; text-decoration: none; display: block; padding: 12px 0; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">Actualizar email</a></th>
+          <th role="listitem" class="fm-nav-link full-width-block fm-border" style="padding: 0 10px;"><a href="https://global.americanexpress.com/privacy/argentina/#/ipp" target="_blank" class="link" style="color: #006fcf; font-size: 15px; line-height: 22px; text-decoration: none; display: block; padding: 12px 0; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">Desuscribirse</a></th>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END: FM03 Nav -->
+
+<!-- START: FM04 Legales -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#E0E0E0">
+  <tr>
+    <td align="justify" style="padding: 5px 10px 16px; color: #53565A; font-size: 13px; line-height: 18px; text-align: justify; text-transform: uppercase; font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
+      1) [LEGAL 1 CON URL].<br><br>
+      2) [LEGAL 2 CON URL].<br><br>
+      [AGREGAR TODOS LOS LEGALES SEGUN SUPERINDICES].<br><br>
+      Los datos personales son almacenados en una base de datos, cuyo responsable es American Express Argentina S.A. con domicilio legal en Arenales 707, entrepiso, CP C1061AAA, C.A.B.A.<br><br>
+      Instrucciones para cancelar la suscripcion: enviado a <strong style="color:#000000; font-weight:normal; word-wrap: break-word; word-break: break-all;">{(EMAIL)}</strong>. Para baja, responder con "borrar" o visitar <a href="https://global.americanexpress.com/privacy/argentina/#/ipp" target="_blank" style="color: #00175A; text-decoration: none;">preferencias de correo electronico</a>.<br><br>
+      &copy; [ANIO] American Express Company.
+    </td>
+  </tr>
+</table>
+<!-- END: FM04 Legales -->
+<!-- END: FOOTER FIJO CORP/MERCHANT -->
+```
+
+---
+
+## Estructura base del email completo
+
+```html
+<div style="display:none;"><custom name="opencounter" type="tracking"/></div>
+<div role="article" aria-roledescription="email" aria-label="Email from American Express" lang="en" dir="ltr" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 22px;">
+  <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#E0E0E0"><tr><td align="center">
+    <table role="none" cellpadding="0" cellspacing="0" border="0" width="620" style="width:620px;" class="container"><tr><td><!-- HEADER FIJO --></td></tr></table>
+    <table role="none" cellpadding="0" cellspacing="0" border="0" width="620" style="width:620px; background:#FFFFFF" class="container"><tr><td><!-- CONTENIDO DINAMICO --><!-- FOOTER FIJO --></td></tr></table>
+  </td></tr></table>
+</div>
+```
+
+---
+
+## Ejemplo completo IG (contenido dinamico)
+
+```html
+<!-- HERO IG -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td align="center" bgcolor="#00175a" background="[IMG_HERO_IG]" width="620" height="620" valign="top" style="background: url('[IMG_HERO_IG]') center / cover no-repeat #ffffff;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="620" style="width:620px;" class="full-width">
+        <tr>
+          <td align="center" style="padding:40px;">
+            <table role="none" cellpadding="0" cellspacing="0" border="0" width="540" style="width:540px;" class="full-width">
+              <tr><td align="center" style="font-family:'BentonSans400', HelveticaNeue, Helvetica, Arial, sans-serif; font-size:51px; line-height:50px; color:#00175A;">SEGUINOS</td></tr>
+              <tr><td align="center"><table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#006FCD" style="font-family:'BentonSans500', HelveticaNeue, Helvetica, Arial, sans-serif; font-size:44px; line-height:47px; color:#FFFFFF; padding:7px 33px;"><strong>en Instagram.</strong></td></tr></table></td></tr>
+              <tr><td align="center" style="font-family:HelveticaNeue, Helvetica, Arial, sans-serif; font-size:18px; line-height:23px; color:#00175A; padding-top:24px;">Entr&aacute; a nuestro Instagram y no te pierdas de nada.</td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- BLOQUE SEGURIDAD -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#EBECED" style="background:#EBECED;">
+  <tr>
+    <td style="padding:30px 40px;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr><td align="center" style="color:#00175A; font-family:HelveticaNeue, Helvetica, Arial, sans-serif; font-size:20px; line-height:23px;"><strong>Consejos de seguridad:</strong></td></tr>
+        <tr><td align="center" style="color:#00175A; font-family:HelveticaNeue, Helvetica, Arial, sans-serif; font-size:16px; line-height:20px; padding-top:12px;">Nuestras cuentas oficiales tienen tilde azul y nunca pedimos informacion por redes.</td></tr>
+        <tr><td align="center" style="padding-top:24px;"><a href="https://www.instagram.com/americanexpressarg/" target="_blank" style="font-family:HelveticaNeue, Helvetica, Arial, sans-serif; color:#00175A; text-decoration:none;"><strong>@AmericanExpressArg</strong></a></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+```
+
+---
+
+## Ejemplo completo TRAVEL (contenido dinamico)
+
+```html
+<!-- HERO TRAVEL -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td align="center" bgcolor="#ffffff" background="[IMG_HERO_TRAVEL]" width="620" height="320" valign="top" style="background: url('[IMG_HERO_TRAVEL]') center / cover no-repeat #ffffff;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td align="left" style="padding:60px 40px;">
+            <table role="none" cellpadding="0" cellspacing="0" border="0" width="230" bgcolor="#00175A">
+              <tr><td style="padding:7px 20px; background:#006FCF; color:#FFFFFF; font-family:'BentonSans400', HelveticaNeue, Helvetica, Arial, sans-serif; font-size:22px; line-height:25px;">NOVIEMBRE</td></tr>
+              <tr><td style="padding:14px 20px; color:#FFFFFF; font-family:'BentonSans400', HelveticaNeue, Helvetica, Arial, sans-serif; font-size:33px; line-height:36px;">Beneficios en viajes<br><strong>#conAmex.</strong></td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- OFERTA TRAVEL -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td style="padding:48px 20px;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr><td align="center" style="color:#006FCF; font-family:HelveticaNeue, Helvetica, Arial, sans-serif; font-size:15px; line-height:19px;">Del 1 de noviembre al 20 de diciembre</td></tr>
+        <tr><td align="center" style="padding-top:7px;"><img src="[IMG_BADGE_10OFF]" alt="10% OFF" width="154" style="display:block; height:auto;"></td></tr>
+        <tr><td align="center" style="color:#006FCF; font-family:HelveticaNeue, Helvetica, Arial, sans-serif; font-size:15px; line-height:18px; padding-top:4px;"><strong>Upgrade en Day Tour<span style="font-size:8px;line-height:8px;vertical-align:8px;font-weight:normal;">1</span></strong></td></tr>
+        <tr><td align="center" style="padding-top:26px;"><a href="[URL_TRAVEL]" target="_blank" style="font-family:HelveticaNeue, Helvetica, Arial, sans-serif; color:#00175A; text-decoration:underline;"><strong>Conoc&eacute; m&aacute;s</strong></a></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+```
+
+---
+
+## Ejemplo completo SPECIAL OFFERS (contenido dinamico)
+
+```html
+<!-- IM03 - PARES -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <th width="310" class="full-width-block" align="left" valign="top" style="background-color:#deedfa;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr><td align="center"><a href="[URL_CAT_1]" target="_blank"><img src="[IMG_CAT_1]" alt="Gaming y tecnologia" width="310" style="display:block; height:auto;" class="full-width"></a></td></tr>
+        <tr><td align="center" style="color:#00175A; font-family:HelveticaNeue, Helvetica, Arial, sans-serif; font-size:18px; line-height:21px;"><strong>GAMING &amp; TECNOLOGIA</strong></td></tr>
+        <tr><td align="center" style="padding:25px 0 40px;"><a href="[URL_CAT_1]" target="_blank" style="font-family:HelveticaNeue, Helvetica, Arial, sans-serif; color:#006FCF; text-decoration:none;"><strong>Compr&aacute; ahora</strong></a></td></tr>
+      </table>
+    </th>
+    <th width="310" class="full-width-block" valign="top" style="background-color:#edf5fc;">
+      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr><td align="center"><a href="[URL_CAT_2]" target="_blank"><img src="[IMG_CAT_2]" alt="Pequenos electrodomesticos" width="310" style="display:block; height:auto;" class="full-width"></a></td></tr>
+        <tr><td align="center" style="color:#00175A; font-family:HelveticaNeue, Helvetica, Arial, sans-serif; font-size:18px; line-height:21px;"><strong>PEQUENOS ELECTRODOMESTICOS</strong></td></tr>
+        <tr><td align="center" style="padding:25px 0 40px;"><a href="[URL_CAT_2]" target="_blank" style="font-family:HelveticaNeue, Helvetica, Arial, sans-serif; color:#006FCF; text-decoration:none;"><strong>Compr&aacute; ahora</strong></a></td></tr>
+      </table>
+    </th>
+  </tr>
+</table>
+
+<!-- CTA FINAL -->
+<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td align="center" style="padding:38px 0;">
+      <a href="[URL_TBBM]" target="_blank" style="display:inline-block; width:292px; background:#006FCF; color:#FFFFFF; font-family:HelveticaNeue, Helvetica, Arial, sans-serif; font-size:15px; line-height:22px; text-decoration:none; padding:8px 0;">
+        Descubr&iacute; m&aacute;s en <strong style="color:#FFFFFF;">The Blue Box Market</strong>
       </a>
     </td>
   </tr>
 </table>
-<!-- END: HB15-v4.2 Full Width Hero -->
 ```
 
 ---
 
-## Módulo: Pares de Imágenes Verticales (IM03-v4.2)
+## Checklist rapido
 
-Dos columnas de imagen + título + subtítulo + botón CTA. Ideal para mostrar dos ofertas distintas.
-
-```html
-<!-- START: ID=IM03-v4.2 Vertical Pairs -->
-<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
-  <tr>
-    <!-- COLUMNA IZQUIERDA -->
-    <th width="305" class="full-width-block pdbtm40" align="left" valign="top">
-      <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
-        <tr>
-          <td class="height-auto" height="207" align="center" valign="bottom" style="height:207px;">
-            <a href="[URL_OFERTA_1]" target="_blank" style="text-decoration:none; border:none; outline:0;">
-              <img src="[IMG_OFERTA_1]" alt="[Nombre oferta 1]" width="305"
-                   style="height:auto; display:block; color:#3D3D3D;" class="full-width">
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td valign="top">
-            <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
-              <tr>
-                <td align="center"
-                    style="color:#00175a; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                           font-size:19px; line-height:21px; padding:15px 10px 0;">
-                  <strong style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
-                    Título oferta 1
-                  </strong>
-                </td>
-              </tr>
-              <tr>
-                <td align="center"
-                    style="color:#3D3D3D; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                           font-size:15px; line-height:22px; padding:8px 10px 0;">
-                  Descripción breve del beneficio.
-                </td>
-              </tr>
-              <tr>
-                <td align="center" style="padding-top: 20px; padding-bottom: 20px;">
-                  <!-- Botón CTA -->
-                  <table role="none" cellpadding="0" cellspacing="0" border="0" width="126" height="44"
-                         style="width:126px; height:44px; border-radius:3px; background:#006fcf;" class="button-primary-light">
-                    <tr><td align="center" valign="middle">
-                      <table role="none" cellpadding="0" cellspacing="0" border="0"
-                             style="border-radius:3px; border:2px solid #006fcf; width:122px; height:42px">
-                        <tr><td align="center" valign="middle" height="44">
-                          <a href="[URL_OFERTA_1]" target="_blank"
-                             style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                                    color:#FFFFFF; display:inline-block; padding:12px 0;
-                                    text-decoration:none; width:122px; font-size:15px; line-height:22px;">
-                            <strong style="font-weight:normal; color:#FFFFFF;">Ver m&aacute;s</strong>
-                          </a>
-                        </td></tr>
-                      </table>
-                    </td></tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </th>
-
-    <!-- COLUMNA DERECHA (misma estructura) -->
-    <th width="305" class="full-width-block pdbtm40" align="left" valign="top">
-      <!-- Repetir la misma estructura con oferta 2 -->
-    </th>
-  </tr>
-</table>
-<!-- END: IM03-v4.2 Vertical Pairs -->
-```
-
----
-
-## Módulo: Oferta Especial con Borde (TM04-v4.2)
-
-Caja con borde, descuento grande (ej: "40% OFF"), subtítulo, logo de comercio y botón.
-
-```html
-<!-- START: ID=TM04-v4.2 Offer Code -->
-<table role="none" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF">
-  <tr>
-    <td align="center" style="padding: 0px;">
-      <table role="none" cellpadding="0" cellspacing="0" border="0" width="90%">
-        <tr>
-          <td align="center"
-              style="color:#000000; font-size:0px; padding:40px 20px; border:1px solid #737880;">
-            <table width="100%" role="none" cellpadding="0" cellspacing="0" border="0">
-              <!-- Período -->
-              <tr>
-                <td align="center"
-                    style="color:#00175a; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                           font-size:20px; line-height:23px; padding:0;">
-                  <strong style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
-                    Del [FECHA INICIO] al [FECHA FIN]
-                  </strong>
-                </td>
-              </tr>
-              <!-- Descuento principal -->
-              <tr>
-                <td align="center"
-                    style="color:#00175a; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                           font-size:69px; line-height:72px; padding:30px 0 0;">
-                  <strong style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
-                    [X]% OFF
-                  </strong>
-                </td>
-              </tr>
-              <!-- Beneficio adicional -->
-              <tr>
-                <td align="center"
-                    style="color:#00175a; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                           font-size:25px; line-height:28px; padding:0;">
-                  <strong style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
-                    Beneficio adicional<span style="font-size:11px; line-height:8px; vertical-align:11px; font-weight:normal;">1</span>
-                  </strong>
-                </td>
-              </tr>
-              <!-- Descripción -->
-              <tr>
-                <td align="center"
-                    style="color:#00175a; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                           font-size:20px; line-height:23px; padding:4px 0 0;">
-                  para socios American Express.
-                </td>
-              </tr>
-              <!-- Logo del comercio -->
-              <tr>
-                <td align="center" valign="top" style="padding:19px 0 0;">
-                  <img src="[LOGO_COMERCIO]" alt="[Nombre Comercio]"
-                       style="border:0 none; display:block; height:auto; width:149px;" width="149" height="auto">
-                </td>
-              </tr>
-              <!-- Botón -->
-              <tr>
-                <td align="center" style="padding-top:31px;">
-                  <table role="none" cellpadding="0" cellspacing="0" border="0" width="150" height="44"
-                         style="width:150px; height:44px; border-radius:4px; background:#00175A;" class="button-primary-light">
-                    <tr><td align="center" valign="middle">
-                      <table role="none" cellpadding="0" cellspacing="0" border="0"
-                             style="border-radius:4px; border:2px solid #00175A; width:146px; height:42px">
-                        <tr><td align="center" valign="middle" height="44">
-                          <a href="[URL_CTA]" target="_blank"
-                             style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                                    color:#FFFFFF; display:inline-block; padding:12px 0;
-                                    text-decoration:none; width:146px; font-size:15px; line-height:22px;">
-                            <strong style="font-weight:normal; color:#FFFFFF;">Conoc&eacute; m&aacute;s</strong>
-                          </a>
-                        </td></tr>
-                      </table>
-                    </td></tr>
-                  </table>
-                </td>
-              </tr>
-              <!-- Legales -->
-              <tr>
-                <td align="center"
-                    style="padding:31px 0 0; font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;
-                           font-size:12px; line-height:14px; color:#000000;">
-                  <strong style="font-family:HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">
-                    [Texto de términos y condiciones resumido.]
-                  </strong>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-<!-- END: TM04-v4.2 Offer Code -->
-```
-
----
-
-## Estructura Típica de Email CORP
-
-```
-1. Preheader (PH01-v4.2)
-2. Brand Panel CORP (logo + tagline "No hagas negocios sin ella", sin greeting)
-3. Hero Banner (full width o con overlay)
-4. [Módulos según tipo de campaña:]
-   - IG/Social: imagen full width + texto descriptivo
-   - Travel: pares de destinos (IM03) + beneficios
-   - Special Offers: caja de oferta (TM04) + logos de comercios
-5. Separator
-6. Footer con legales
-```
-
----
-
-## Notas
-
-- Las campañas CORP generalmente no llevan saludo personalizado `{(FNAME)}` porque se envían a cuentas corporativas donde el titular puede ser una empresa
-- El copy usa "No hagas negocios sin ella" (vs "No vivas la vida sin ella" en Consumer)
-- Estilo visual más austero / ejecutivo que los segmentos consumer
-- Las Special Offers navideñas incluyen múltiples marcas en una sola pieza (grid de logos)
+- Header fijo presente (`PH01 + Consumer Default CORP`).
+- Footer fijo presente (`FM05 + FM02 + FM03 + FM04`) en ese orden.
+- Tracking pixel presente.
+- Superindices en contenido y legales completos en FM04.
+- Todos los CTA con `target="_blank"`.
+- Imagenes con `alt` y `height:auto`.
