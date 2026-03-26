@@ -86,9 +86,12 @@ def serve(host: str = "127.0.0.1", port: int = 8000) -> ThreadingHTTPServer:
 
 
 def main() -> None:
-    server = serve()
+    import os
+    host = os.environ.get("HOST", "127.0.0.1")
+    port = int(os.environ.get("PORT", "8000"))
+    server = serve(host=host, port=port)
     try:
-        print("Serving email composition API on http://127.0.0.1:8000")
+        print(f"Serving email composition API on http://{host}:{port}")
         server.serve_forever()
     except KeyboardInterrupt:
         pass
