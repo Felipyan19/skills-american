@@ -1,0 +1,123 @@
+from __future__ import annotations
+
+import json
+import threading
+import unittest
+from urllib.error import HTTPError
+from urllib.request import Request, urlopen
+
+from api.http_server import serve
+
+
+class HttpApiTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.server = serve(port=0)
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+        host, port = self.server.server_address
+        self.base_url = f"http://{host}:{port}"
+
+    def tearDown(self) -> None:
+        self.server.shutdown()
+        self.server.server_close()
+        self.thread.join(timeout=2)
+
+    def test_get_components_returns_catalog(self) -> None:
+        with urlopen(f"{self.base_url}/api/components?templateFamily=marigold-v4.2") as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        self.assertEqual(payload["templateFamily"], "marigold-v4.2")
+        ids = {item["id"] for item in payload["components"]}
+        self.assertIn("H01", ids)
+        self.assertIn("F02", ids)
+
+    def test_post_compose_email_returns_html_and_manifest(self) -> None:
+        body = {
+            "templateFamily": "marigold-v4.2",
+            "header": {"id": "H01", "props": {"logoUrl": "https://example.com/logo.png", "accountSuffix": "12345", "greetingName": "Name"}},
+            "body": [{"id": "B09", "props": {"headline": "Titulo", "offerCode": "ABC", "description": "Desc"}}],
+            "footer": {"id": "F01", "props": {"taglineDesktopUrl": "https://example.com/tag.jpg", "taglineMobileUrl": "https://example.com/tag-m.jpg", "legalHtml": "<p>Legal</p>"}},
+        }
+        request = Request(
+            f"{self.base_url}/api/compose-email",
+            data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urlopen(request) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        self.assertIn("<!DOCTYPE html>", payload["html"])
+        self.assertEqual(payload["manifest"]["requested"]["body"], ["B09"])
+
+    def test_post_compose_email_html_query_returns_raw_html(self) -> None:
+        body = {
+            "templateFamily": "marigold-v4.2",
+            "header": "H01",
+            "body": ["B09"],
+            "footer": "F01",
+        }
+        request = Request(
+            f"{self.base_url}/api/compose-email?html",
+            data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urlopen(request) as response:
+            payload = response.read().decode("utf-8")
+            content_type = response.headers.get_content_type()
+        self.assertEqual(content_type, "text/html")
+        self.assertIn("<!DOCTYPE html>", payload)
+
+    def test_post_compose_email_manifest_query_returns_only_manifest(self) -> None:
+        body = {
+            "templateFamily": "marigold-v4.2",
+            "header": "H01",
+            "body": ["B09"],
+            "footer": "F01",
+        }
+        request = Request(
+            f"{self.base_url}/api/compose-email?manifest",
+            data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urlopen(request) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        self.assertIn("requested", payload)
+        self.assertIn("expanded", payload)
+        self.assertNotIn("html", payload)
+
+    def test_post_compose_email_rejects_conflicting_output_queries(self) -> None:
+        body = {
+            "templateFamily": "marigold-v4.2",
+            "header": "H01",
+            "body": ["B09"],
+            "footer": "F01",
+        }
+        request = Request(
+            f"{self.base_url}/api/compose-email?html&manifest",
+            data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with self.assertRaises(HTTPError) as error:
+            urlopen(request)
+        exception = error.exception
+        payload = json.loads(exception.read().decode("utf-8"))
+        exception.close()
+        self.assertEqual(exception.code, 400)
+        self.assertEqual(payload["error"], "ValidationError")
+
+    def test_post_compose_email_rejects_malformed_json(self) -> None:
+        request = Request(
+            f"{self.base_url}/api/compose-email",
+            data=b"{",
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with self.assertRaises(HTTPError) as error:
+            urlopen(request)
+        exception = error.exception
+        payload = json.loads(exception.read().decode("utf-8"))
+        exception.close()
+        self.assertEqual(exception.code, 400)
+        self.assertEqual(payload["error"], "ValidationError")
