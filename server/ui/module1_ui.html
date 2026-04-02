@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Componentes HTML</title>
+  <style>
+    @media screen {
+      @font-face {
+        font-family: 'Guardian Egyptian';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://www.aexp-static.com/cdaas/one/statics/@americanexpress/dls-fonts/1.1.0/package/dist/fonts/guardianregular.woff2) format('woff2'),
+             url(https://www.aexp-static.com/cdaas/one/statics/@americanexpress/dls-fonts/1.1.0/package/dist/fonts/guardianregular.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'BentonSans400';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://www.aexp-static.com/cdaas/one/statics/@americanexpress/dls-fonts/1.1.0/package/dist/fonts/3be50273-0b2e-4aef-ae68-882eacd611f9-3.woff2) format('woff2'),
+             url(https://www.aexp-static.com/cdaas/one/statics/@americanexpress/dls-fonts/1.1.0/package/dist/fonts/3be50273-0b2e-4aef-ae68-882eacd611f9-3.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'BentonSans500';
+        font-style: normal;
+        font-weight: 500;
+        src: url(https://www.aexp-static.com/cdaas/one/statics/@americanexpress/dls-fonts/1.1.0/package/dist/fonts/0fababca-4914-46dd-9b0f-efbd51f67ae8-3.woff2) format('woff2'),
+             url(https://www.aexp-static.com/cdaas/one/statics/@americanexpress/dls-fonts/1.1.0/package/dist/fonts/0fababca-4914-46dd-9b0f-efbd51f67ae8-3.woff) format('woff');
+      }
+    }
+
+    :root {
+      --bg: #f4f4f4;
+      --surface: #ffffff;
+      --text: #3d3d3d;
+      --heading: #00175a;
+      --muted: #53565a;
+      --line: #e0e0e0;
+      --line-soft: #ededed;
+      --accent: #006fcf;
+      --success: #157f4f;
+      --warning: #9a6b12;
+      --danger: #a2464b;
+      --shadow: 0 12px 34px rgba(0, 23, 90, 0.05);
+      --radius-xl: 16px;
+      --radius-lg: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "BentonSans400", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 16px;
+      z-index: 10;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 999px;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .app {
+      width: min(1120px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .hero,
+    .table-shell {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 30px 32px 26px;
+      margin-bottom: 18px;
+      border-top: 4px solid var(--heading);
+      background:
+        linear-gradient(90deg, rgba(0, 111, 207, 0.02), rgba(0, 23, 90, 0.06) 100%),
+        #ffffff;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 500;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 10ch;
+      font-family: "Guardian Egyptian", Georgia, serif;
+      font-size: clamp(38px, 6vw, 56px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      font-weight: 400;
+      color: var(--heading);
+    }
+
+    .hero-copy {
+      margin: 18px 0 0;
+      max-width: 700px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .meta-pill strong {
+      color: var(--heading);
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 500;
+    }
+
+    .meta-pill span {
+      color: var(--muted);
+    }
+
+    .table-shell {
+      overflow: hidden;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      padding: 18px 22px 16px;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      background: #ffffff;
+    }
+
+    .search {
+      min-width: 0;
+    }
+
+    .search input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      padding: 13px 16px;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+
+    .search input:focus-visible,
+    .filter-btn:focus-visible,
+    .open-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--muted);
+      padding: 10px 14px;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 140ms ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: rgba(0, 111, 207, 0.24);
+      background: rgba(0, 111, 207, 0.08);
+      color: var(--heading);
+    }
+
+    .table-wrap {
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      background: #ffffff;
+    }
+
+    thead th {
+      padding: 14px 22px;
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      border-bottom: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    tbody td {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: middle;
+      font-size: 14px;
+    }
+
+    tbody tr {
+      transition: background 160ms ease;
+    }
+
+    tbody tr:hover {
+      background: rgba(0, 111, 207, 0.035);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 11px;
+      letter-spacing: 0.03em;
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 500;
+    }
+
+    .status.exact {
+      color: var(--success);
+      background: rgba(21, 127, 79, 0.08);
+      border-color: rgba(21, 127, 79, 0.14);
+    }
+
+    .status.structural {
+      color: var(--warning);
+      background: rgba(154, 107, 18, 0.08);
+      border-color: rgba(154, 107, 18, 0.14);
+    }
+
+    .status.approx {
+      color: var(--danger);
+      background: rgba(162, 70, 75, 0.08);
+      border-color: rgba(162, 70, 75, 0.14);
+    }
+
+    .name-cell {
+      display: grid;
+      gap: 4px;
+    }
+
+    .name-cell strong {
+      color: var(--heading);
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .subtle {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .mono {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      color: var(--heading);
+    }
+
+    .open-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 12px;
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      transition: 140ms ease;
+    }
+
+    .open-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0, 111, 207, 0.24);
+      background: rgba(0, 111, 207, 0.08);
+    }
+
+    .action-group {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .html-link {
+      cursor: pointer;
+      color: var(--heading);
+      background:
+        linear-gradient(135deg, rgba(0, 23, 90, 0.08), rgba(0, 111, 207, 0.12)),
+        #ffffff;
+    }
+
+    .modal[hidden] {
+      display: none;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 23, 90, 0.48);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-dialog {
+      position: relative;
+      width: min(1240px, 100%);
+      max-height: min(92vh, 980px);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(0, 111, 207, 0.08), transparent 32%),
+        linear-gradient(180deg, #ffffff, #f8fbff);
+      box-shadow: 0 28px 90px rgba(0, 23, 90, 0.32);
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 24px 24px 18px;
+      border-bottom: 1px solid rgba(0, 23, 90, 0.08);
+    }
+
+    .modal-meta {
+      min-width: 0;
+    }
+
+    .modal-meta h2 {
+      margin: 0;
+      font-family: "Guardian Egyptian", Georgia, serif;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: var(--heading);
+    }
+
+    .modal-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .modal-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .source-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 23, 90, 0.08);
+      background: #ffffff;
+      color: var(--heading);
+      font-size: 12px;
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .source-pill.generated {
+      color: var(--warning);
+      background: rgba(154, 107, 18, 0.08);
+      border-color: rgba(154, 107, 18, 0.16);
+    }
+
+    .source-pill.reference {
+      color: var(--success);
+      background: rgba(21, 127, 79, 0.08);
+      border-color: rgba(21, 127, 79, 0.16);
+    }
+
+    .path-pill {
+      max-width: min(680px, 100%);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+    }
+
+    .modal-close,
+    .copy-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--heading);
+      padding: 10px 14px;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 140ms ease;
+    }
+
+    .modal-close:hover,
+    .copy-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0, 111, 207, 0.24);
+      background: rgba(0, 111, 207, 0.08);
+    }
+
+    .modal-close:focus-visible,
+    .copy-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .modal-body {
+      display: grid;
+      gap: 14px;
+      padding: 18px 24px 24px;
+    }
+
+    .modal-status {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .modal-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.7fr) minmax(320px, 1.3fr);
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .panel {
+      min-height: 0;
+      border: 1px solid rgba(0, 23, 90, 0.08);
+      border-radius: 18px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .panel-head h3 {
+      margin: 0;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 500;
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 18px;
+      min-height: 420px;
+      max-height: min(62vh, 760px);
+      overflow: auto;
+      background: #fbfcfe;
+      color: var(--heading);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .preview-shell {
+      background: linear-gradient(180deg, #edf4fa, #ffffff);
+    }
+
+    .html-frame {
+      width: 100%;
+      height: min(62vh, 760px);
+      border: 0;
+      background: #ffffff;
+    }
+
+    .empty {
+      padding: 56px 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .app {
+        width: min(100% - 16px, 1120px);
+        padding-top: 16px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .filters {
+        justify-content: flex-start;
+      }
+
+      .modal {
+        padding: 12px;
+      }
+
+      .modal-head {
+        flex-direction: column;
+      }
+
+      .modal-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .code-block,
+      .html-frame {
+        min-height: 320px;
+        height: 320px;
+      }
+
+      .path-pill {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Ir al contenido</a>
+  <div class="app">
+    <header class="hero">
+      <p class="eyebrow">American Express</p>
+      <h1>Componentes HTML</h1>
+      <p class="hero-copy">
+        Explorá campañas, beneficios y comunicaciones armadas con el sistema HTML de American Express.
+        Esta vista resume la cobertura de cada pieza, la familia utilizada y la composición base
+        para marketing, contenido y producción.
+      </p>
+      <div class="hero-meta" id="stats" aria-label="Resumen"></div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section class="table-shell" aria-labelledby="catalog-title">
+        <div class="toolbar">
+          <div class="search">
+            <label class="visually-hidden" for="search">Buscar ejemplos</label>
+            <input id="search" type="search" placeholder="Buscar campaña, segmento o familia">
+          </div>
+          <div class="filters" id="filters" aria-label="Filtrar por estado"></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th id="catalog-title">Cobertura</th>
+                <th>Comunicación</th>
+                <th>Familia</th>
+                <th>Base HTML</th>
+                <th aria-label="Acciones">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="html-modal" role="dialog" aria-modal="true" aria-labelledby="html-modal-title" hidden>
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <section class="modal-dialog">
+      <div class="modal-head">
+        <div class="modal-meta">
+          <h2 id="html-modal-title">HTML del registro</h2>
+          <p class="modal-note" id="html-modal-note">Cargando contenido…</p>
+          <div class="modal-pills">
+            <span class="source-pill" id="html-modal-source">Preparando</span>
+            <span class="source-pill path-pill" id="html-modal-path">Sin ruta</span>
+          </div>
+        </div>
+        <button class="modal-close" id="html-modal-close" type="button">Cerrar</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-status" id="html-modal-status">Buscando HTML…</p>
+        <div class="modal-layout">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Código HTML</h3>
+              <button class="copy-btn" id="html-modal-copy" type="button">Copiar</button>
+            </div>
+            <pre class="code-block" id="html-modal-code">Cargando…</pre>
+          </section>
+          <section class="panel preview-shell">
+            <div class="panel-head">
+              <h3>Vista previa</h3>
+            </div>
+            <iframe class="html-frame" id="html-modal-frame" title="Vista previa del HTML" sandbox="allow-same-origin"></iframe>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const state = {
+      examples: [],
+      filter: "all",
+      query: "",
+    };
+    const htmlCache = new Map();
+    const modalState = {
+      activeHtml: "",
+      opener: null,
+    };
+
+    const statusMeta = {
+      alta: { label: "Exacta", className: "exact" },
+      estructural: { label: "Homologada", className: "structural" },
+      aproximada: { label: "Pendiente", className: "approx" },
+    };
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function statusFor(example) {
+      return statusMeta[example.fidelity] || { label: example.fidelity, className: "structural" };
+    }
+
+    function htmlSourceMeta(source) {
+      if (source === "reference") {
+        return {
+          label: "HTML original",
+          className: "reference",
+          note: "Mostrando el archivo de referencia asociado al registro.",
+        };
+      }
+      return {
+        label: "HTML generado",
+        className: "generated",
+        note: "No se encontró el archivo original. Se muestra el HTML ensamblado desde el payload del registro.",
+      };
+    }
+
+    function renderStats() {
+      const total = state.examples.length;
+      const exact = state.examples.filter((item) => item.fidelity === "alta").length;
+      const approx = state.examples.filter((item) => item.fidelity === "aproximada").length;
+      document.getElementById("stats").innerHTML = `
+        <span class="meta-pill"><strong>${total}</strong> <span>campañas</span></span>
+        <span class="meta-pill"><strong>${exact}</strong> <span>con cobertura exacta</span></span>
+        <span class="meta-pill"><strong>${approx}</strong> <span>con ajuste pendiente</span></span>
+      `;
+    }
+
+    function renderFilters() {
+      const filters = [
+        { key: "all", label: "Todas" },
+        { key: "alta", label: "Exactas" },
+        { key: "estructural", label: "Homologadas" },
+        { key: "aproximada", label: "Pendientes" },
+      ];
+      document.getElementById("filters").innerHTML = filters.map((filter) => `
+        <button class="filter-btn ${state.filter === filter.key ? "active" : ""}" data-filter="${filter.key}" type="button">
+          ${escapeHtml(filter.label)}
+        </button>
+      `).join("");
+      document.querySelectorAll(".filter-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.filter = button.dataset.filter;
+          renderFilters();
+          renderTable();
+        });
+      });
+    }
+
+    function matches(example) {
+      if (state.filter !== "all" && example.fidelity !== state.filter) {
+        return false;
+      }
+      if (!state.query) {
+        return true;
+      }
+      const haystack = [example.name, example.group, example.templateFamily, example.id].join(" ").toLowerCase();
+      return haystack.includes(state.query.toLowerCase());
+    }
+
+    function renderTable() {
+      const rows = state.examples.filter(matches);
+      const target = document.getElementById("table-body");
+
+      if (!rows.length) {
+        target.innerHTML = `
+          <tr>
+            <td colspan="5">
+              <div class="empty">No hay resultados para ese filtro.</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      target.innerHTML = rows.map((example) => {
+        const status = statusFor(example);
+        const bodyCount = Array.isArray(example.payload?.body) ? example.payload.body.length : 0;
+        const structure = `${example.payload?.header || "-"} · ${bodyCount} bloques · ${example.payload?.footer || "-"}`;
+        return `
+          <tr>
+            <td><span class="status ${status.className}">${escapeHtml(status.label)}</span></td>
+            <td>
+              <div class="name-cell">
+                <strong>${escapeHtml(example.name)}</strong>
+                <span class="subtle">${escapeHtml(example.group)}</span>
+              </div>
+            </td>
+            <td><span class="mono">${escapeHtml(example.templateFamily)}</span></td>
+            <td><span class="mono">${escapeHtml(structure)}</span></td>
+            <td>
+              <div class="action-group">
+                <button
+                  class="open-link html-link"
+                  type="button"
+                  data-html-id="${encodeURIComponent(example.id)}"
+                  aria-label="Mostrar HTML de ${escapeHtml(example.name)}"
+                >
+                  Visualizar
+                </button>
+                <a class="open-link" href="/example/${encodeURIComponent(example.id)}" aria-label="Abrir detalle de ${escapeHtml(example.name)}">Detalle</a>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      target.querySelectorAll("[data-html-id]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const example = state.examples.find((item) => item.id === button.dataset.htmlId);
+          if (example) {
+            openHtmlModal(example, button);
+          }
+        });
+      });
+    }
+
+    function setModalLoading(example) {
+      const source = document.getElementById("html-modal-source");
+      source.className = "source-pill";
+      source.textContent = "Buscando HTML";
+      document.getElementById("html-modal-title").textContent = example.name;
+      document.getElementById("html-modal-note").textContent = `${example.group} · ${example.templateFamily}`;
+      document.getElementById("html-modal-path").textContent = example.relativePath || "Sin ruta de referencia";
+      document.getElementById("html-modal-status").textContent = "Buscando el archivo de referencia o generando el HTML base.";
+      document.getElementById("html-modal-code").textContent = "Cargando HTML…";
+      document.getElementById("html-modal-frame").srcdoc = "";
+      document.getElementById("html-modal-copy").disabled = true;
+      modalState.activeHtml = "";
+    }
+
+    function renderModalHtml(payload) {
+      const sourceMeta = htmlSourceMeta(payload.source);
+      const source = document.getElementById("html-modal-source");
+      source.className = `source-pill ${sourceMeta.className}`;
+      source.textContent = sourceMeta.label;
+      document.getElementById("html-modal-title").textContent = payload.name;
+      document.getElementById("html-modal-note").textContent = `${payload.group} · ${payload.exampleId}`;
+      document.getElementById("html-modal-path").textContent = payload.relativePath || "Sin ruta de referencia";
+      document.getElementById("html-modal-status").textContent = sourceMeta.note;
+      document.getElementById("html-modal-code").textContent = payload.html;
+      document.getElementById("html-modal-frame").srcdoc = payload.html;
+      document.getElementById("html-modal-copy").disabled = false;
+      modalState.activeHtml = payload.html;
+    }
+
+    function renderModalError(example, message) {
+      document.getElementById("html-modal-title").textContent = example.name;
+      document.getElementById("html-modal-note").textContent = `${example.group} · ${example.templateFamily}`;
+      document.getElementById("html-modal-status").textContent = message;
+      document.getElementById("html-modal-code").textContent = message;
+      document.getElementById("html-modal-copy").disabled = true;
+      document.getElementById("html-modal-frame").srcdoc = `<html><body style="font-family: sans-serif; padding: 24px;">${escapeHtml(message)}</body></html>`;
+      modalState.activeHtml = "";
+    }
+
+    function closeHtmlModal() {
+      const modal = document.getElementById("html-modal");
+      modal.hidden = true;
+      document.body.classList.remove("modal-open");
+      if (modalState.opener && typeof modalState.opener.focus === "function") {
+        modalState.opener.focus();
+      }
+      modalState.opener = null;
+    }
+
+    async function openHtmlModal(example, opener) {
+      const modal = document.getElementById("html-modal");
+      modal.hidden = false;
+      document.body.classList.add("modal-open");
+      modalState.opener = opener;
+      setModalLoading(example);
+      document.getElementById("html-modal-close").focus();
+
+      const cacheKey = example.id;
+      if (htmlCache.has(cacheKey)) {
+        renderModalHtml(htmlCache.get(cacheKey));
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/module1/examples/${encodeURIComponent(example.id)}/html`);
+        if (!response.ok) {
+          throw new Error("No se pudo cargar el HTML del registro.");
+        }
+        const payload = await response.json();
+        htmlCache.set(cacheKey, payload);
+        renderModalHtml(payload);
+      } catch (error) {
+        renderModalError(example, error.message || "No se pudo cargar el HTML del registro.");
+      }
+    }
+
+    async function init() {
+      const response = await fetch("/api/module1/examples");
+      if (!response.ok) {
+        throw new Error("No se pudo cargar el catálogo.");
+      }
+      const payload = await response.json();
+      state.examples = payload.examples || [];
+
+      document.getElementById("search").addEventListener("input", (event) => {
+        state.query = event.target.value.trim();
+        renderTable();
+      });
+
+      renderStats();
+      renderFilters();
+      renderTable();
+    }
+
+    document.getElementById("html-modal-close").addEventListener("click", closeHtmlModal);
+    document.getElementById("html-modal").addEventListener("click", (event) => {
+      if (event.target.dataset.closeModal === "true") {
+        closeHtmlModal();
+      }
+    });
+    document.getElementById("html-modal-copy").addEventListener("click", async () => {
+      if (!modalState.activeHtml) {
+        return;
+      }
+      const button = document.getElementById("html-modal-copy");
+      const originalLabel = button.textContent;
+      try {
+        await navigator.clipboard.writeText(modalState.activeHtml);
+        button.textContent = "Copiado";
+        window.setTimeout(() => {
+          button.textContent = originalLabel;
+        }, 1400);
+      } catch (_error) {
+        button.textContent = "Sin permiso";
+        window.setTimeout(() => {
+          button.textContent = originalLabel;
+        }, 1600);
+      }
+    });
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !document.getElementById("html-modal").hidden) {
+        closeHtmlModal();
+      }
+    });
+
+    init().catch((error) => {
+      document.getElementById("table-body").innerHTML = `
+        <tr>
+          <td colspan="5">
+            <div class="empty">${escapeHtml(error.message)}</div>
+          </td>
+        </tr>
+      `;
+    });
+  </script>
+</body>
+</html>
