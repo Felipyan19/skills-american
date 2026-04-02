@@ -8,7 +8,7 @@ from types import MappingProxyType
 from typing import Any, Mapping
 
 
-DATA_DIR = Path(__file__).resolve().parent / "data"
+DATA_DIR = Path(__file__).resolve().parents[1] / "catalog"
 PLACEHOLDER_620X320 = "https://dummyimage.com/620x320/00175a/ffffff.png&text=AMEX+Hero"
 PLACEHOLDER_620X620 = "https://dummyimage.com/620x620/00175a/ffffff.png&text=AMEX+Campaign"
 PLACEHOLDER_305X200 = "https://dummyimage.com/305x200/f4f4f4/00175a.png&text=AMEX+Module"
@@ -1041,21 +1041,21 @@ FAMILIES = MappingProxyType(
     {
         "marigold-v4.2": FamilyDefinition(
             family_id="marigold-v4.2",
-            shell_path=DATA_DIR / "shells" / "marigold-v4.2.html",
+            shell_path=DATA_DIR / "templates" / "marigold-v4.2.html",
             shell_defaults={"subject": "AMEX", "outerBg": "#E0E0E0"},
             snippets=MARIGOLD_V42_SNIPPETS,
             components=MARIGOLD_V42_COMPONENTS,
         ),
         "marigold-v4.0": FamilyDefinition(
             family_id="marigold-v4.0",
-            shell_path=DATA_DIR / "shells" / "marigold-v4.0.html",
+            shell_path=DATA_DIR / "templates" / "marigold-v4.0.html",
             shell_defaults={"subject": "AMEX", "outerBg": "#D9D9D6"},
             snippets=MARIGOLD_V40_SNIPPETS,
             components=MARIGOLD_V40_COMPONENTS,
         ),
         "centurion-1.0": FamilyDefinition(
             family_id="centurion-1.0",
-            shell_path=DATA_DIR / "shells" / "centurion-1.0.html",
+            shell_path=DATA_DIR / "templates" / "centurion-1.0.html",
             shell_defaults={"subject": "Centurion", "outerBg": "#000000"},
             snippets=CENTURION_SNIPPETS,
             components=CENTURION_COMPONENTS,

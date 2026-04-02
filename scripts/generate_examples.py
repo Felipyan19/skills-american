@@ -8,8 +8,8 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE_DIR = ROOT / "1. Referencias por segmento"
-OUTPUT_JSON = ROOT / "api" / "module1_payloads.json"
-OUTPUT_MD = ROOT / "api" / "module1_payloads.md"
+OUTPUT_JSON = ROOT / "catalog" / "examples" / "module1.json"
+OUTPUT_MD = ROOT / "catalog" / "examples" / "module1.md"
 
 
 PATTERNS = [

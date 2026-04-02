@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from api.bootstrap import extract_between_markers
+from server.bootstrap import extract_between_markers
 
 
 class BootstrapTests(unittest.TestCase):

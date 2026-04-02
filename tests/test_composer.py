@@ -5,8 +5,8 @@ import re
 import unittest
 from pathlib import Path
 
-from api.composer import compose_email, list_components
-from api.errors import NotFoundError, ValidationError
+from server.composer import compose_email, list_components
+from server.errors import NotFoundError, ValidationError
 
 
 ROOT = Path(__file__).resolve().parents[1]
