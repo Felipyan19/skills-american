@@ -6,7 +6,7 @@ import unittest
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
-from api.http_server import serve
+from server.http_server import serve
 
 
 class HttpApiTests(unittest.TestCase):
@@ -29,6 +29,45 @@ class HttpApiTests(unittest.TestCase):
         ids = {item["id"] for item in payload["components"]}
         self.assertIn("H01", ids)
         self.assertIn("F02", ids)
+
+    def test_get_module1_examples_returns_catalog(self) -> None:
+        with urlopen(f"{self.base_url}/api/module1/examples") as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        self.assertEqual(payload["count"], 33)
+        self.assertEqual(payload["summary"]["exact"], 3)
+        self.assertEqual(payload["summary"]["approximate"], 9)
+        self.assertEqual(payload["examples"][0]["name"], "PP-LOC-GOLD-Febrero25")
+        self.assertEqual(payload["examples"][0]["id"], "pp-loc-gold-febrero25")
+
+    def test_get_module1_page_returns_html(self) -> None:
+        with urlopen(f"{self.base_url}/module1") as response:
+            payload = response.read().decode("utf-8")
+            content_type = response.headers.get_content_type()
+        self.assertEqual(content_type, "text/html")
+        self.assertIn("Componentes HTML", payload)
+        self.assertIn("Ir al contenido", payload)
+        self.assertIn("HTML del registro", payload)
+
+    def test_get_single_example_returns_example(self) -> None:
+        with urlopen(f"{self.base_url}/api/module1/examples/pp-loc-gold-febrero25") as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        self.assertEqual(payload["example"]["id"], "pp-loc-gold-febrero25")
+        self.assertEqual(payload["example"]["name"], "PP-LOC-GOLD-Febrero25")
+
+    def test_get_single_example_html_returns_rendered_html(self) -> None:
+        with urlopen(f"{self.base_url}/api/module1/examples/pp-loc-gold-febrero25/html") as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        self.assertEqual(payload["exampleId"], "pp-loc-gold-febrero25")
+        self.assertIn(payload["source"], {"generated", "reference"})
+        self.assertIn("<!DOCTYPE html>", payload["html"])
+
+    def test_get_example_page_returns_html(self) -> None:
+        with urlopen(f"{self.base_url}/example/pp-loc-gold-febrero25") as response:
+            payload = response.read().decode("utf-8")
+            content_type = response.headers.get_content_type()
+        self.assertEqual(content_type, "text/html")
+        self.assertIn("American Express", payload)
+        self.assertIn("Ver payload", payload)
 
     def test_post_compose_email_returns_html_and_manifest(self) -> None:
         body = {

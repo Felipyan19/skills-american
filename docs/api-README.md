@@ -49,6 +49,19 @@ http://127.0.0.1:8000
 
 ## Endpoints
 
+### `GET /` o `GET /module1`
+Abre una vista simple para revisar los ejemplos de `modulo 1`, ver el estado de cada caso y consultar la secuencia de componentes usada en cada referencia.
+
+La vista consume:
+
+- `GET /api/module1/examples`
+
+Ese endpoint devuelve el catálogo completo con:
+
+- `count`
+- `summary` por estado de mapeo
+- `examples` con el payload, la secuencia de sourceIds y las notas del caso
+
 ### `GET /api/components?templateFamily=...`
 Devuelve el catálogo público de componentes para una familia.
 

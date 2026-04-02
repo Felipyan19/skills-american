@@ -3,12 +3,22 @@
 from __future__ import annotations
 
 import json
+import re
+import unicodedata
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from functools import lru_cache
 from urllib.parse import parse_qs, urlparse
 
 from .composer import compose_email, list_components
 from .errors import ComposerError
+
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+MODULE1_PAYLOADS_PATH = Path(__file__).resolve().parents[1] / "catalog" / "examples" / "module1.json"
+MODULE1_UI_PATH = Path(__file__).resolve().parent / "ui" / "module1_ui.html"
+EXAMPLE_UI_PATH = Path(__file__).resolve().parent / "ui" / "example_ui.html"
 
 _OPENAPI_SPEC = {
     "openapi": "3.0.3",
@@ -249,6 +259,110 @@ _SWAGGER_UI_HTML = """<!DOCTYPE html>
 </html>"""
 
 
+@lru_cache(maxsize=1)
+def _load_module1_examples() -> list[dict]:
+    with MODULE1_PAYLOADS_PATH.open(encoding="utf-8") as handle:
+        raw_examples = json.load(handle)
+
+    seen: dict[str, int] = {}
+    enriched: list[dict] = []
+    for item in raw_examples:
+        base_slug = _slugify(item.get("name", "example"))
+        count = seen.get(base_slug, 0) + 1
+        seen[base_slug] = count
+        example_id = base_slug if count == 1 else f"{base_slug}-{count}"
+        enriched.append({**item, "id": example_id})
+    return enriched
+
+
+def _slugify(value: str) -> str:
+    normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", normalized.lower()).strip("-")
+    return slug or "example"
+
+
+@lru_cache(maxsize=1)
+def _load_module1_ui_html() -> str:
+    return MODULE1_UI_PATH.read_text(encoding="utf-8")
+
+
+_MODULE1_UI_HTML = _load_module1_ui_html()
+
+
+@lru_cache(maxsize=1)
+def _load_example_ui_html() -> str:
+    return EXAMPLE_UI_PATH.read_text(encoding="utf-8")
+
+
+_EXAMPLE_UI_HTML = _load_example_ui_html()
+
+
+def _module1_examples_response() -> dict:
+    examples = _load_module1_examples()
+    summary = {
+        "total": len(examples),
+        "exact": sum(1 for item in examples if item.get("fidelity") == "alta"),
+        "structural": sum(1 for item in examples if item.get("fidelity") == "estructural"),
+        "approximate": sum(1 for item in examples if item.get("fidelity") == "aproximada"),
+    }
+    return {"count": len(examples), "summary": summary, "examples": examples}
+
+
+def _find_module1_example(example_id: str) -> dict | None:
+    for example in _load_module1_examples():
+        if example.get("id") == example_id:
+            return example
+    return None
+
+
+def _module1_example_response(example_id: str) -> dict | None:
+    example = _find_module1_example(example_id)
+    if example is None:
+        return None
+    return {"example": example}
+
+
+def _module1_reference_html(example: dict) -> str | None:
+    relative_path = example.get("relativePath")
+    if not isinstance(relative_path, str) or not relative_path:
+        return None
+
+    root = ROOT_DIR.resolve()
+    candidate = (ROOT_DIR / relative_path).resolve()
+    if candidate != root and root not in candidate.parents:
+        return None
+    if not candidate.is_file():
+        return None
+    return candidate.read_text(encoding="utf-8", errors="ignore")
+
+
+def _module1_example_html_response(example_id: str) -> dict | None:
+    example = _find_module1_example(example_id)
+    if example is None:
+        return None
+
+    reference_html = _module1_reference_html(example)
+    if reference_html is not None:
+        return {
+            "exampleId": example["id"],
+            "name": example["name"],
+            "group": example["group"],
+            "relativePath": example.get("relativePath", ""),
+            "source": "reference",
+            "html": reference_html,
+        }
+
+    result = compose_email(example["payload"])
+    return {
+        "exampleId": example["id"],
+        "name": example["name"],
+        "group": example["group"],
+        "relativePath": example.get("relativePath", ""),
+        "source": "generated",
+        "html": result["html"],
+    }
+
+
 class EmailComposerHandler(BaseHTTPRequestHandler):
     server_version = "EmailComposerHTTP/1.0"
 
@@ -282,11 +396,47 @@ class EmailComposerHandler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:  # noqa: N802
         parsed = urlparse(self.path)
+        if parsed.path in ("/", "/module1", "/module1/"):
+            self._send_html(HTTPStatus.OK, _MODULE1_UI_HTML)
+            return
+        if parsed.path.startswith("/example/"):
+            example_id = parsed.path.removeprefix("/example/").strip("/")
+            if not example_id or _module1_example_response(example_id) is None:
+                self._send_json(HTTPStatus.NOT_FOUND, {"error": "NotFound", "message": "Example not found."})
+                return
+            self._send_html(HTTPStatus.OK, _EXAMPLE_UI_HTML)
+            return
         if parsed.path in ("/docs", "/docs/"):
             self._send_html(HTTPStatus.OK, _SWAGGER_UI_HTML)
             return
         if parsed.path == "/openapi.json":
             self._send_json(HTTPStatus.OK, _OPENAPI_SPEC)
+            return
+        if parsed.path.startswith("/api/module1/examples/") and parsed.path.endswith("/html"):
+            example_id = parsed.path.removesuffix("/html").removeprefix("/api/module1/examples/").strip("/")
+            if not example_id:
+                self._send_json(HTTPStatus.NOT_FOUND, {"error": "NotFound", "message": "Example not found."})
+                return
+            try:
+                payload = _module1_example_html_response(example_id)
+            except ComposerError as exc:
+                self._send_json(exc.status_code, exc.to_dict())
+                return
+            if payload is None:
+                self._send_json(HTTPStatus.NOT_FOUND, {"error": "NotFound", "message": "Example not found."})
+                return
+            self._send_json(HTTPStatus.OK, payload)
+            return
+        if parsed.path.startswith("/api/module1/examples/"):
+            example_id = parsed.path.removeprefix("/api/module1/examples/").strip("/")
+            payload = _module1_example_response(example_id)
+            if payload is None:
+                self._send_json(HTTPStatus.NOT_FOUND, {"error": "NotFound", "message": "Example not found."})
+                return
+            self._send_json(HTTPStatus.OK, payload)
+            return
+        if parsed.path == "/api/module1/examples":
+            self._send_json(HTTPStatus.OK, _module1_examples_response())
             return
         if parsed.path != "/api/components":
             self._send_json(HTTPStatus.NOT_FOUND, {"error": "NotFound", "message": "Endpoint not found."})
@@ -325,14 +475,14 @@ class EmailComposerHandler(BaseHTTPRequestHandler):
         return
 
 
-def serve(host: str = "127.0.0.1", port: int = 8000) -> ThreadingHTTPServer:
+def serve(host: str = "127.0.0.1", port: int = 5050) -> ThreadingHTTPServer:
     return ThreadingHTTPServer((host, port), EmailComposerHandler)
 
 
 def main() -> None:
     import os
     host = os.environ.get("HOST", "127.0.0.1")
-    port = int(os.environ.get("PORT", "8000"))
+    port = int(os.environ.get("PORT", "5050"))
     server = serve(host=host, port=port)
     try:
         print(f"Serving email composition API on http://{host}:{port}")
