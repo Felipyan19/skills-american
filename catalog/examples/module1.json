@@ -38,7 +38,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/AAPLUS/PP-LOC-GOLD-Febrero25/PP-LOC-GOLD-Febrero25.html",
     "name": "PP-LOC-GOLD-Febrero25",
-    "group": "AAPLUS"
+    "group": "AAPLUS",
+    "campaignType": "loc-gold"
   },
   {
     "templateFamily": "marigold-v4.0",
@@ -79,7 +80,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/AAPLUS/PP-LOC-PLAT-Febrero25/PP-LOC-PLAT-Febrero25.html",
     "name": "PP-LOC-PLAT-Febrero25",
-    "group": "AAPLUS"
+    "group": "AAPLUS",
+    "campaignType": "loc-plat"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -110,7 +112,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/CORP y MERCHANT Comercio/CORP-IG-Sep25/CORP-IG-Sep25.html",
     "name": "CORP-IG-Sep25",
-    "group": "CORP y MERCHANT Comercio"
+    "group": "CORP y MERCHANT Comercio",
+    "campaignType": "ig"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -154,7 +157,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/CORP y MERCHANT Comercio/CORP-Special-Offers-Navidad-Dic25/CORP-Special-Offers-Navidad-Dic25.html",
     "name": "CORP-Special-Offers-Navidad-Dic25",
-    "group": "CORP y MERCHANT Comercio"
+    "group": "CORP y MERCHANT Comercio",
+    "campaignType": "special-offers"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -197,7 +201,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/CORP y MERCHANT Comercio/CORP-Travel-Octubre25/CORP-Travel-Octubre25.html",
     "name": "CORP-Travel-Octubre25",
-    "group": "CORP y MERCHANT Comercio"
+    "group": "CORP y MERCHANT Comercio",
+    "campaignType": "travel"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -232,7 +237,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/ICS/PP-Diderot-Nov25-ICS/PP-Diderot-Nov25-ICS.html",
     "name": "PP-Diderot-Nov25-ICS",
-    "group": "ICS"
+    "group": "ICS",
+    "campaignType": "diderot"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -267,7 +273,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/ICS/PP-F1-Miami-Preventa-ICS-oct25/PP-F1-Miami-Preventa-ICS-oct25.html",
     "name": "PP-F1-Miami-Preventa-ICS-oct25",
-    "group": "ICS"
+    "group": "ICS",
+    "campaignType": "f1-miami-preventa"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -319,7 +326,8 @@
     ],
     "relativePath": "1. Referencias por segmento/MERCHANT - Socio/MERCHANT-Newsletter-Dic25/MERCHANT-Newsletter-Dic25.html",
     "name": "MERCHANT-Newsletter-Dic25",
-    "group": "MERCHANT - Socio"
+    "group": "MERCHANT - Socio",
+    "campaignType": "newsletter"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -359,7 +367,8 @@
     ],
     "relativePath": "1. Referencias por segmento/MERCHANT - Socio/MERCHANT-Shot-deporte-DIC25/MERCHANT-Shot-deporte-DIC25.html",
     "name": "MERCHANT-Shot-deporte-DIC25",
-    "group": "MERCHANT - Socio"
+    "group": "MERCHANT - Socio",
+    "campaignType": "shot-deporte"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -398,7 +407,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/MERCHANT - Socio/MERCHANT-SHOT-Navidad-Dic25/MERCHANT-SHOT-Navidad-Dic25.html",
     "name": "MERCHANT-SHOT-Navidad-Dic25",
-    "group": "MERCHANT - Socio"
+    "group": "MERCHANT - Socio",
+    "campaignType": "shot-navidad"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -441,7 +451,8 @@
     ],
     "relativePath": "1. Referencias por segmento/MERCHANT - Socio/MERCHANT-Shot-Travel-Agst25/MERCHANT-Shot-Travel-Agst25.html",
     "name": "MERCHANT-Shot-Travel-Agst25",
-    "group": "MERCHANT - Socio"
+    "group": "MERCHANT - Socio",
+    "campaignType": "shot-travel"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -483,7 +494,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/MERCHANT - Socio/MERCHANT-Special-Offers-Dic25/MERCHANT-Special-Offers-Dic25.html",
     "name": "MERCHANT-Special-Offers-Dic25",
-    "group": "MERCHANT - Socio"
+    "group": "MERCHANT - Socio",
+    "campaignType": "special-offers"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -521,7 +533,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/MR/MR-Especial-bebidas-DIC25/MR-Especial-bebidas-DIC25.html",
     "name": "MR-Especial-bebidas-DIC25",
-    "group": "MR"
+    "group": "MR",
+    "campaignType": "especial-bebidas"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -557,7 +570,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/MR/MR-Especial-Starlink-ENERO26/MR-Especial-Starlink-ENERO25.html",
     "name": "MR-Especial-Starlink-ENERO25",
-    "group": "MR"
+    "group": "MR",
+    "campaignType": "especial-starlink"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -606,7 +620,8 @@
     ],
     "relativePath": "1. Referencias por segmento/MR/MR-MFF-La-Gueya-Nov25/MR-MFF-La-Gueya-Nov25.html",
     "name": "MR-MFF-La-Gueya-Nov25",
-    "group": "MR"
+    "group": "MR",
+    "campaignType": "mff-la-gueya"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -644,7 +659,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/MR/MR-Tecnologia-Dic25/MR-Tecnologia-Dic25.html",
     "name": "MR-Tecnologia-Dic25",
-    "group": "MR"
+    "group": "MR",
+    "campaignType": "tecnologia"
   },
   {
     "templateFamily": "centurion-1.0",
@@ -696,7 +712,8 @@
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/MR-Bonus-Smiles-Dic25-CENT/MR-Bonus-Smiles-Dic25-CENT.html",
     "name": "MR-Bonus-Smiles-Dic25-CENT",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "bonus-smiles"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -742,7 +759,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/MR-Bonus-Smiles-Dic25-PLAT/MR-Bonus-Smiles-Dic25-PLAT/MR-Bonus-Smiles-Dic25-PLAT.html",
     "name": "MR-Bonus-Smiles-Dic25-PLAT",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "bonus-smiles"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -774,7 +792,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PLAT-Spend-Farmacity-Oct25/PLAT-Spend-Farmacity-Oct25.html",
     "name": "PLAT-Spend-Farmacity-Oct25",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "spend-farmacity"
   },
   {
     "templateFamily": "centurion-1.0",
@@ -810,7 +829,8 @@
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Cata-Piedra-Pasillo-OCT25/PP-Cata-Piedra-Pasillo-OCT25.html",
     "name": "PP-Cata-Piedra-Pasillo-OCT25",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "cata-piedra-pasillo"
   },
   {
     "templateFamily": "centurion-1.0",
@@ -862,7 +882,8 @@
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Dining-Ultramarino-Nov25-CENT/PP-Dining-Ultramarino-Nov25-CENT.html",
     "name": "PP-Dining-Ultramarino-Nov25-CENT",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "dining-ultramarino"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -901,7 +922,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Dining-Ultramarino-Nov25-PLAT/PP-Dining-Ultramarino-Nov25-PLAT.html",
     "name": "PP-Dining-Ultramarino-Nov25-PLAT",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "dining-ultramarino"
   },
   {
     "templateFamily": "centurion-1.0",
@@ -937,7 +959,8 @@
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Min-Agostini-Oct25-CENT/PP-Min-Agostini-Oct25-CENT.html",
     "name": "PP-Min-Agostini-Oct25-CENT",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "min-agostini"
   },
   {
     "templateFamily": "centurion-1.0",
@@ -981,7 +1004,8 @@
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Spend-TBBM-Iphone17_CENT_dic25/PP-Spend-TBBM-Iphone17_CENT_dic25.html",
     "name": "PP-Spend-TBBM-Iphone17_CENT_dic25",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "spend-tbbm-iphone17"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -1022,7 +1046,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Spend-TBBM-Iphone17_PLAT_dic25/PP-Spend-TBBM-Iphone17_PLAT_dic25.html",
     "name": "PP-Spend-TBBM-Iphone17_PLAT_dic25",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "spend-tbbm-iphone17"
   },
   {
     "templateFamily": "centurion-1.0",
@@ -1060,7 +1085,8 @@
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Teatro-Colon-2026-Dic25-CENT/PP-Teatro-Colon-2026-Dic25-CENT.html",
     "name": "PP-Teatro-Colon-2026-Dic25-CENT",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "teatro-colon"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -1094,7 +1120,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Teatro-Colon-2026-Dic25-PLAT/PP-Teatro-Colon-2026-Dic25-PLAT.html",
     "name": "PP-Teatro-Colon-2026-Dic25-PLAT",
-    "group": "PP (Cent y Plat)"
+    "group": "PP (Cent y Plat)",
+    "campaignType": "teatro-colon"
   },
   {
     "templateFamily": "centurion-1.0",
@@ -1140,7 +1167,8 @@
     ],
     "relativePath": "1. Referencias por segmento/TRAVEL (Cent y Plat)/TRAVEL-Dia-De-La-Madre-Oct25-CENT/TRAVEL-Dia-De-La-Madre-Oct25-CENT.html",
     "name": "TRAVEL-Dia-De-La-Madre-Oct25-CENT",
-    "group": "TRAVEL (Cent y Plat)"
+    "group": "TRAVEL (Cent y Plat)",
+    "campaignType": "dia-de-la-madre"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -1182,7 +1210,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/TRAVEL (Cent y Plat)/TRAVEL-Dia-De-La-Madre-Oct25-PLAT/TRAVEL-Dia-De-La-Madre-Oct25-PLAT.html",
     "name": "TRAVEL-Dia-De-La-Madre-Oct25-PLAT",
-    "group": "TRAVEL (Cent y Plat)"
+    "group": "TRAVEL (Cent y Plat)",
+    "campaignType": "dia-de-la-madre"
   },
   {
     "templateFamily": "centurion-1.0",
@@ -1225,7 +1254,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/TRAVEL (Cent y Plat)/TRAVEL-Mexico-Sept25-CENT/TRAVEL-Mexico-Sept25-CENT.html",
     "name": "TRAVEL-Mexico-Sept25-CENT",
-    "group": "TRAVEL (Cent y Plat)"
+    "group": "TRAVEL (Cent y Plat)",
+    "campaignType": "mexico"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -1265,7 +1295,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/TRAVEL (Cent y Plat)/TRAVEL-Mexico-Sept25-PLAT/TRAVEL-Mexico-Sept25-PLAT.html",
     "name": "TRAVEL-Mexico-Sept25-PLAT",
-    "group": "TRAVEL (Cent y Plat)"
+    "group": "TRAVEL (Cent y Plat)",
+    "campaignType": "mexico"
   },
   {
     "templateFamily": "centurion-1.0",
@@ -1304,7 +1335,8 @@
     "notes": [],
     "relativePath": "1. Referencias por segmento/TRAVEL (Cent y Plat)/TRAVEL-Miami-Nov25-CENT/TRAVEL-Miami-Nov25-CENT.html",
     "name": "TRAVEL-Miami-Nov25-CENT",
-    "group": "TRAVEL (Cent y Plat)"
+    "group": "TRAVEL (Cent y Plat)",
+    "campaignType": "miami"
   },
   {
     "templateFamily": "marigold-v4.2",
@@ -1358,6 +1390,7 @@
     ],
     "relativePath": "1. Referencias por segmento/TRAVEL (Cent y Plat)/TRAVEL-Miami-Nov25_PLAT/TRAVEL-Miami-Nov25_PLAT.html",
     "name": "TRAVEL-Miami-Nov25_PLAT",
-    "group": "TRAVEL (Cent y Plat)"
+    "group": "TRAVEL (Cent y Plat)",
+    "campaignType": "miami"
   }
 ]

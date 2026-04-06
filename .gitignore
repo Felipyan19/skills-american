@@ -3,6 +3,7 @@
 .tmp-n8n-mcp/
 1. Referencias por segmento/
 2. Modulos maquetados/
+catalog/examples/
 
 # Python
 __pycache__/

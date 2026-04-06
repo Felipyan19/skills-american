@@ -12,7 +12,7 @@ from functools import lru_cache
 from urllib.parse import parse_qs, urlparse
 
 from .composer import compose_email, list_components
-from .errors import ComposerError
+from .errors import ComposerError, NotFoundError, ValidationError
 
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -297,8 +297,12 @@ def _load_example_ui_html() -> str:
 _EXAMPLE_UI_HTML = _load_example_ui_html()
 
 
-def _module1_examples_response() -> dict:
+def _module1_examples_response(group: str = "", campaign_type: str = "") -> dict:
     examples = _load_module1_examples()
+    if group:
+        examples = [e for e in examples if e.get("group", "").lower() == group.lower()]
+    if campaign_type:
+        examples = [e for e in examples if e.get("campaignType", "").lower() == campaign_type.lower()]
     summary = {
         "total": len(examples),
         "exact": sum(1 for item in examples if item.get("fidelity") == "alta"),
@@ -313,6 +317,40 @@ def _find_module1_example(example_id: str) -> dict | None:
         if example.get("id") == example_id:
             return example
     return None
+
+
+def _resolve_compose_payload(raw: dict) -> dict:
+    """If raw contains group/campaignType, look up the example and return its payload.
+    Otherwise return raw unchanged (classic explicit-components flow)."""
+    group = raw.get("group", "")
+    campaign_type = raw.get("campaignType", "")
+    if not group and not campaign_type:
+        return raw
+
+    examples = _load_module1_examples()
+    if group:
+        examples = [e for e in examples if e.get("group", "").lower() == group.lower()]
+    if campaign_type:
+        examples = [e for e in examples if e.get("campaignType", "").lower() == campaign_type.lower()]
+
+    template_family = raw.get("templateFamily", "")
+    if template_family:
+        examples = [e for e in examples if e.get("templateFamily", "").lower() == template_family.lower()]
+
+    if not examples:
+        raise NotFoundError("No example matches the given group/campaignType.")
+    if len(examples) > 1:
+        families = sorted({e["templateFamily"] for e in examples})
+        raise ValidationError(
+            f"Found {len(examples)} examples for that group/campaignType. "
+            f"Specify 'templateFamily' to disambiguate: {families}."
+        )
+
+    payload = dict(examples[0]["payload"])
+    # Allow caller to override globals
+    if "globals" in raw:
+        payload["globals"] = raw["globals"]
+    return payload
 
 
 def _module1_example_response(example_id: str) -> dict | None:
@@ -436,7 +474,10 @@ class EmailComposerHandler(BaseHTTPRequestHandler):
             self._send_json(HTTPStatus.OK, payload)
             return
         if parsed.path == "/api/module1/examples":
-            self._send_json(HTTPStatus.OK, _module1_examples_response())
+            qs = parse_qs(parsed.query)
+            group = qs.get("group", [""])[0]
+            campaign_type = qs.get("campaignType", [""])[0]
+            self._send_json(HTTPStatus.OK, _module1_examples_response(group, campaign_type))
             return
         if parsed.path != "/api/components":
             self._send_json(HTTPStatus.NOT_FOUND, {"error": "NotFound", "message": "Endpoint not found."})
@@ -457,6 +498,7 @@ class EmailComposerHandler(BaseHTTPRequestHandler):
         try:
             response_mode = self._post_response_mode(parsed.query)
             payload = json.loads(self.rfile.read(content_length).decode("utf-8"))
+            payload = _resolve_compose_payload(payload)
             result = compose_email(payload)
             if response_mode == "html":
                 self._send_html(HTTPStatus.OK, result["html"])
