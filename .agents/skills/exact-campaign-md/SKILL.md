@@ -29,6 +29,15 @@ The expected outcome is a reusable MD with short examples, editable examples, an
 
 ## Required MD Sections
 
+For an exact campaign that is not dynamic yet and only needs a basic routing contract, use a minimal doc with:
+
+- `Status API: `exacto`. Payload base disponible; no documenta variantes por `props`.`
+- `Payload base`
+- `Payload por grupo y tipo`
+- `Mapa de componentes`
+
+Do not include dynamic markers such as `Edicion version corta`, `Edicion corta desde tipo de campana y grupo`, or `Campos de variantes` unless those props are actually implemented in snippets and `server/registry.py`.
+
 The campaign doc should include a `Payloads de uso` section with these examples, in this order:
 
 Before `Payloads de uso`, include a short status line when variants are supported:

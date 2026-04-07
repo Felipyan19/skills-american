@@ -279,14 +279,20 @@ def _load_module1_examples() -> list[dict]:
 
 
 @lru_cache(maxsize=1)
-def _load_campaign_docs_index() -> dict[tuple[str, str], str]:
+def _load_campaign_docs_index() -> dict[tuple[str, str, str], str]:
     if not CAMPAIGN_DOCS_INDEX_PATH.is_file():
         return {}
 
     index_content = CAMPAIGN_DOCS_INDEX_PATH.read_text(encoding="utf-8")
-    mapping: dict[tuple[str, str], str] = {}
+    mapping: dict[tuple[str, str, str], str] = {}
+    in_router_section = False
     for raw_line in index_content.splitlines():
         line = raw_line.strip()
+        if line.startswith("## "):
+            in_router_section = line == "## Router para agentes"
+            continue
+        if not in_router_section:
+            continue
         if not line.startswith("|"):
             continue
         if "Campana" in line and "campaignType" in line:
@@ -297,13 +303,23 @@ def _load_campaign_docs_index() -> dict[tuple[str, str], str]:
         parts = [part.strip() for part in line.strip("|").split("|")]
         if len(parts) < 5:
             continue
+        campaign_name = parts[0].strip("`").strip()
         group = parts[1].strip("`").strip()
         campaign_type = parts[2].strip("`").strip()
         doc = parts[4].strip("`").strip()
-        if not group or not campaign_type or not doc:
+        if not campaign_name or not group or not campaign_type or not doc:
             continue
-        mapping[(group.casefold(), campaign_type.casefold())] = doc
+        if not doc.endswith(".md"):
+            continue
+        mapping[(campaign_name.casefold(), group.casefold(), campaign_type.casefold())] = doc
     return mapping
+
+
+def _campaign_doc_for_example(example: dict) -> str:
+    name = str(example.get("name", "")).casefold()
+    group = str(example.get("group", "")).casefold()
+    campaign_type = str(example.get("campaignType", "")).casefold()
+    return _load_campaign_docs_index().get((name, group, campaign_type), "")
 
 
 @lru_cache(maxsize=32)
@@ -322,9 +338,7 @@ def _campaign_doc_supports_variants(doc_name: str) -> bool:
 
 
 def _dashboard_status_for_example(example: dict) -> str:
-    group = str(example.get("group", "")).casefold()
-    campaign_type = str(example.get("campaignType", "")).casefold()
-    doc_name = _load_campaign_docs_index().get((group, campaign_type), "")
+    doc_name = _campaign_doc_for_example(example)
     has_dynamic_doc = bool(doc_name) and _campaign_doc_supports_variants(doc_name)
 
     if has_dynamic_doc:
@@ -337,9 +351,7 @@ def _dashboard_status_for_example(example: dict) -> str:
 def _with_dashboard_fields(example: dict) -> dict:
     enriched = dict(example)
     dashboard_status = _dashboard_status_for_example(example)
-    group = str(example.get("group", "")).casefold()
-    campaign_type = str(example.get("campaignType", "")).casefold()
-    doc_name = _load_campaign_docs_index().get((group, campaign_type))
+    doc_name = _campaign_doc_for_example(example)
     enriched["dashboardStatus"] = dashboard_status
     enriched["campaignDoc"] = doc_name or ""
     return enriched

@@ -87,9 +87,9 @@ class HttpApiTests(unittest.TestCase):
             payload = json.loads(response.read().decode("utf-8"))
         self.assertEqual(payload["exampleId"], "pp-loc-gold-febrero25")
         self.assertIn(payload["dashboardStatus"], {"dinamico", "exacto", "pendiente"})
-        self.assertEqual(payload["markdownSource"], "generated")
-        self.assertEqual(payload["markdownDoc"], "")
-        self.assertIn("### PP-LOC-GOLD-Febrero25", payload["markdown"])
+        self.assertEqual(payload["markdownSource"], "campaign-doc")
+        self.assertEqual(payload["markdownDoc"], "PP-LOC-GOLD-Febrero25.md")
+        self.assertIn("# PP-LOC-GOLD-Febrero25", payload["markdown"])
         self.assertIn("```json", payload["markdown"])
 
     def test_get_dynamic_campaign_marks_dashboard_status(self) -> None:
