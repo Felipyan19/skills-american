@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -122,6 +123,12 @@ SKIP_IDS = {
     "CFM03",
 }
 
+FIDELITY_LABELS = {
+    "alta": "Exacta",
+    "estructural": "Homologada",
+    "aproximada": "Pendiente",
+}
+
 
 def extract_source_ids(path: Path) -> list[str]:
     text = path.read_text(encoding="utf-8", errors="ignore")
@@ -133,6 +140,12 @@ def extract_source_ids(path: Path) -> list[str]:
                 ids.append(fixed or match.group(1))
                 break
     return ids
+
+
+def slugify(value: str) -> str:
+    normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    normalized = re.sub(r"[^a-zA-Z0-9]+", "-", normalized.lower()).strip("-")
+    return normalized or "example"
 
 
 def detect_family(source_ids: list[str]) -> str:
@@ -244,11 +257,68 @@ def build_entry(relative_path: str, source_ids: list[str]) -> dict[str, Any]:
     return map_generic_payload(relative_path, source_ids)
 
 
+def build_catalog_metadata(entries: list[dict[str, Any]]) -> None:
+    seen: dict[str, int] = {}
+    for entry in entries:
+        base_slug = slugify(entry.get("name", "example"))
+        count = seen.get(base_slug, 0) + 1
+        seen[base_slug] = count
+        entry_id = base_slug if count == 1 else f"{base_slug}-{count}"
+        entry["id"] = entry_id
+        entry["frontPath"] = f"/example/{entry_id}"
+        entry["detailApiPath"] = f"/api/module1/examples/{entry_id}"
+        entry["htmlApiPath"] = f"/api/module1/examples/{entry_id}/html"
+        entry["coverageLabel"] = FIDELITY_LABELS.get(entry["fidelity"], entry["fidelity"])
+        entry["agentSummary"] = (
+            f"{entry['name']} | grupo={entry['group']} | familia={entry['templateFamily']} | "
+            f"fidelidad={entry['fidelity']} | sourceIds={', '.join(entry['referenceSourceIds']) or 'sin-sourceIds'}"
+        )
+
+
+def load_entries_from_reference_html() -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    for path in sorted(REFERENCE_DIR.rglob("*.html")):
+        relative_path = str(path.relative_to(ROOT)).replace("\\", "/")
+        source_ids = extract_source_ids(path)
+        mapped = build_entry(relative_path, source_ids)
+        mapped["relativePath"] = relative_path
+        mapped["name"] = path.stem
+        mapped["group"] = path.relative_to(REFERENCE_DIR).parts[0]
+        entries.append(mapped)
+    return entries
+
+
+def load_existing_entries() -> list[dict[str, Any]]:
+    if not OUTPUT_JSON.exists():
+        return []
+    entries = json.loads(OUTPUT_JSON.read_text(encoding="utf-8-sig"))
+    return [entry for entry in entries if isinstance(entry, dict)]
+
+
 def render_markdown(entries: list[dict[str, Any]]) -> str:
     lines = [
-        "# Payloads para modulo 1",
+        "# Catalogo operativo de payloads para modulo 1",
         "",
-        "Leyenda:",
+        "Este archivo lo genera `scripts/generate_examples.py` y debe mantenerse alineado con el front `/module1`.",
+        "La idea es que una persona o un agente puedan mirar este catalogo, abrir la referencia visual en el front y decidir que payload de `compose-email` se parece mas al PDF entrante.",
+        "",
+        "## Reglas estrictas para el agente",
+        "",
+        "1. Usar exclusivamente la informacion publicada en este markdown para decidir el payload.",
+        "2. No inventar campañas, componentes, headers, bodies ni footers que no aparezcan aqui.",
+        "3. No usar memoria previa, conocimiento externo ni ejemplos fuera de este archivo.",
+        "4. Si un caso no coincide de forma exacta, elegir el ejemplo mas cercano de este mismo catalogo y reutilizar su payload.",
+        "5. Responder siempre con un payload valido de `compose-email` usando solo IDs presentes en este documento.",
+        "",
+        "## Como usar este catalogo",
+        "",
+        "1. Extrae del PDF todas las pistas posibles: titulo, rubro, fechas, marcas, estructura visual y textos repetidos.",
+        "2. Busca el ejemplo mas cercano por nombre, segmento, `sourceIds`, notas y ruta de referencia.",
+        "3. Si el match es fuerte, reutiliza el `payload` publicado aqui.",
+        "4. Si no hay match exacto, prioriza ejemplos con la misma `templateFamily` y secuencia estructural parecida.",
+        "5. Usa `frontPath` y `htmlApiPath` para contrastar visualmente el HTML de referencia contra el resultado generado.",
+        "",
+        "## Leyenda",
         "- `alta`: usa un set de componentes especifico del caso dentro del catalogo actual.",
         "- `estructural`: reproduce la familia y el orden general con componentes publicos genericos.",
         "- `aproximada`: ademas de lo anterior, hubo sustituciones o faltan sourceIds publicos.",
@@ -262,14 +332,28 @@ def render_markdown(entries: list[dict[str, Any]]) -> str:
             current_group = group
         lines.append(f"### {entry['name']}")
         lines.append("")
+        lines.append(f"- ID estable: `{entry['id']}`")
+        lines.append(f"- Estado en front: `{entry['coverageLabel']}`")
         lines.append(f"- Archivo: `{entry['relativePath']}`")
+        lines.append(f"- Vista front: `{entry['frontPath']}`")
+        lines.append(f"- API detalle: `{entry['detailApiPath']}`")
+        lines.append(f"- API HTML: `{entry['htmlApiPath']}`")
         lines.append(f"- Familia: `{entry['templateFamily']}`")
         lines.append(f"- Fidelidad: `{entry['fidelity']}`")
+        lines.append(f"- SourceIds de referencia: `{', '.join(entry['referenceSourceIds']) or 'sin-sourceIds'}`")
+        lines.append(f"- Resumen para agente: `{entry['agentSummary']}`")
         if entry["unsupportedSourceIds"]:
             lines.append(f"- SourceIds sin componente publico: `{', '.join(entry['unsupportedSourceIds'])}`")
+        if entry["substitutions"]:
+            substitutions = ", ".join(
+                f"{item['sourceId']} -> {item['componentId']}" for item in entry["substitutions"]
+            )
+            lines.append(f"- Sustituciones aplicadas: `{substitutions}`")
         if entry["notes"]:
             for note in entry["notes"]:
                 lines.append(f"- Nota: {note}")
+        lines.append("")
+        lines.append("Payload requerido para `compose-email`:")
         lines.append("")
         lines.append("```json")
         lines.append(json.dumps(entry["payload"], indent=2, ensure_ascii=False))
@@ -279,16 +363,15 @@ def render_markdown(entries: list[dict[str, Any]]) -> str:
 
 
 def main() -> None:
-    entries: list[dict[str, Any]] = []
-    for path in sorted(REFERENCE_DIR.rglob("*.html")):
-        relative_path = str(path.relative_to(ROOT)).replace("\\", "/")
-        source_ids = extract_source_ids(path)
-        mapped = build_entry(relative_path, source_ids)
-        mapped["relativePath"] = relative_path
-        mapped["name"] = path.stem
-        mapped["group"] = path.relative_to(REFERENCE_DIR).parts[0]
-        entries.append(mapped)
+    entries = load_entries_from_reference_html() if REFERENCE_DIR.exists() else []
+    if not entries:
+        entries = load_existing_entries()
+    if not entries:
+        raise SystemExit(
+            "No se encontraron HTMLs de referencia ni un catalogo previo en catalog/examples/module1.json."
+        )
 
+    build_catalog_metadata(entries)
     OUTPUT_JSON.write_text(json.dumps(entries, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     OUTPUT_MD.write_text(render_markdown(entries), encoding="utf-8")
     print(f"Generated {OUTPUT_JSON}")

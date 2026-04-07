@@ -36,6 +36,8 @@ El status se calcula por campana en `server/http_server.py`:
 4. Si no tiene variantes pero `fidelity` en `module1.json` es `alta`, queda como `exacto`.
 5. Si no es `alta`, queda como `pendiente`.
 
+`pendiente` no significa "sin salida". Significa que no hay contrato exacto dedicado o que el caso sigue resolviendose con payloads estructurales/aproximados. Para esos casos, el fallback operativo vive en `docs/campanas/generic.md`.
+
 Marcadores que convierten un MD en dinamico:
 
 - `Edicion version corta`
@@ -97,10 +99,11 @@ Debe incluir:
 2. Leer `docs/campanas/README.md`.
 3. Elegir una fila del router por evidencia del PDF.
 4. Si la fila tiene MD real, leer `docs/campanas/<Doc>`.
-5. Si la fila dice `sin doc`, no inventar un contrato exacto: usar docs generales o marcar falta de documentacion.
-6. Para payloads de `/api/compose-email`, usar `id`, nunca `componentId`.
-7. No incluir `role` ni `snippet` dentro de `header`, `body` o `footer`.
-8. No usar props no documentadas o no implementadas.
+5. Si la fila dice `sin doc`, si la campana sigue `pendiente`, o si no hay una fila fuerte, leer `.agents/skills/generic-campaign-fallback/SKILL.md` y `docs/campanas/generic.md`.
+6. Solo despues del fallback global usar docs generales de segmento/modulo para reforzar la decision.
+7. Para payloads de `/api/compose-email`, usar `id`, nunca `componentId`.
+8. No incluir `role` ni `snippet` dentro de `header`, `body` o `footer`.
+9. No usar props no documentadas o no implementadas.
 
 ## Comandos utiles de verificacion
 
