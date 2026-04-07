@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY server/ ./server/
 COPY catalog/ ./catalog/
+COPY docs/ ./docs/
 
 ENV PYTHONUNBUFFERED=1
 
