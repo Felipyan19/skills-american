@@ -389,19 +389,19 @@
     ],
     "payload": {
       "templateFamily": "marigold-v4.2",
-      "header": "H01",
+      "header": "H05",
       "body": [
-        "B05",
-        "B09",
-        "B08",
-        "B09",
-        "B09",
-        "B02",
-        "B09"
+        "B33",
+        "B34",
+        "B35",
+        "B36",
+        "B37",
+        "B38",
+        "B39"
       ],
-      "footer": "F01"
+      "footer": "F06"
     },
-    "fidelity": "estructural",
+    "fidelity": "alta",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [],
@@ -475,20 +475,20 @@
     ],
     "payload": {
       "templateFamily": "marigold-v4.2",
-      "header": "H01",
+      "header": "H06",
       "body": [
-        "B04",
-        "B02",
-        "B02",
-        "B07",
-        "B07",
-        "B07",
-        "B09",
-        "B09"
+        "B40",
+        "B41",
+        "B42",
+        "B43",
+        "B44",
+        "B45",
+        "B46",
+        "B47"
       ],
-      "footer": "F01"
+      "footer": "F07"
     },
-    "fidelity": "estructural",
+    "fidelity": "alta",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [],

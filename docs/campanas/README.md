@@ -11,16 +11,20 @@ Este archivo es el punto de entrada fijo para agentes externos. Primero leer est
 | MERCHANT-Shot-Travel-Agst25 | `MERCHANT - Socio` | `shot-travel` | travel, viaje, agosto, Aerolineas, Despegar, Al Mundo, hoteles, spa, `1908-MERCHANT-Shot-Travel-Agst25` | `MERCHANT-Shot-Travel-Agst25.md` |
 | MERCHANT-Newsletter-Dic25 | `MERCHANT - Socio` | `newsletter` | newsletter, diciembre, compras, gastronomia, hoteles, Shopping Days, PedidoYa Plus, NH, `271125_MERCHANT-Newsletter-Dic25` | `MERCHANT-Newsletter-Dic25.md` |
 | MERCHANT-Shot-deporte-DIC25 | `MERCHANT - Socio` | `shot-deporte` | deporte, diciembre, entrenar, Megatlon, Fiter, Decathlon, Lasaigues, padel, `101225-MERCHANT-Shot-deporte-DIC25` | `MERCHANT-Shot-deporte-DIC25.md` |
+| MERCHANT-SHOT-Navidad-Dic25 | `MERCHANT - Socio` | `shot-navidad` | navidad, regalos, indumentaria, perfumeria, diciembre, `MERCHANT-SHOT-Navidad-Dic25` | `MERCHANT-SHOT-Navidad-Dic25.md` |
+| MERCHANT-Special-Offers-Dic25 | `MERCHANT - Socio` | `special-offers` | special offers, diciembre, wine, winestore, Ninja, Samsung, Garmin, `MERCHANT-Special-Offers-Dic25` | `MERCHANT-Special-Offers-Dic25.md` |
 
 Si dos filas parecen posibles o la evidencia es debil, no inventar. Leer el `.md` de cada candidata y elegir la que tenga payload y snippets compatibles con el input.
 
 ## Campanas documentadas
 
-| Campana | Fidelity | Doc |
-|---|---|---|
-| MERCHANT-Shot-Travel-Agst25 | `alta` | `MERCHANT-Shot-Travel-Agst25.md` |
-| MERCHANT-Newsletter-Dic25 | `alta` | `MERCHANT-Newsletter-Dic25.md` |
-| MERCHANT-Shot-deporte-DIC25 | `alta` | `MERCHANT-Shot-deporte-DIC25.md` |
+| Campana | Fidelity | Status | Doc |
+|---|---|---|---|
+| MERCHANT-Shot-Travel-Agst25 | `alta` | `exacto` | `MERCHANT-Shot-Travel-Agst25.md` |
+| MERCHANT-Newsletter-Dic25 | `alta` | `exacto` | `MERCHANT-Newsletter-Dic25.md` |
+| MERCHANT-Shot-deporte-DIC25 | `alta` | `exacto` | `MERCHANT-Shot-deporte-DIC25.md` |
+| MERCHANT-SHOT-Navidad-Dic25 | `alta` | `exacto` | `MERCHANT-SHOT-Navidad-Dic25.md` |
+| MERCHANT-Special-Offers-Dic25 | `alta` | `exacto` | `MERCHANT-Special-Offers-Dic25.md` |
 
 ## Reglas generales
 
