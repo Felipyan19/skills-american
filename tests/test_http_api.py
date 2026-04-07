@@ -220,6 +220,53 @@ class HttpApiTests(unittest.TestCase):
         self.assertIn("LEGAL TRAVEL GROUP", payload["html"])
         self.assertEqual(payload["manifest"]["requested"]["body"], ["B12", "B13", "B14", "B15", "B17", "B16"])
 
+    def test_post_compose_email_merges_farmacity_component_variants(self) -> None:
+        body = {
+            "templateFamily": "marigold-v4.2",
+            "group": "PP (Cent y Plat)",
+            "campaignType": "spend-farmacity",
+            "header": {
+                "id": "H07",
+                "props": {
+                    "greetingText": "Hola Farmacity group",
+                    "loginLabel": "Ingresar",
+                },
+            },
+            "body": [
+                {
+                    "id": "B49",
+                    "props": {
+                        "benefitLine": "en compras online seleccionadas",
+                        "ctaUrl": "https://example.com/farmacity-group",
+                        "ctaLabel": "Comprar",
+                    },
+                }
+            ],
+            "footer": {
+                "id": "F08",
+                "props": {
+                    "taglineDesktopUrl": "https://example.com/farmacity-group-footer.jpg",
+                    "legalHtml": "LEGAL FARMACITY GROUP",
+                },
+            },
+        }
+        request = Request(
+            f"{self.base_url}/api/compose-email",
+            data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urlopen(request) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        self.assertIn("Hola Farmacity group", payload["html"])
+        self.assertIn(">Ingresar</a>", payload["html"])
+        self.assertIn("en compras online seleccionadas", payload["html"])
+        self.assertIn("https://example.com/farmacity-group", payload["html"])
+        self.assertIn(">Comprar</a>", payload["html"])
+        self.assertIn("https://example.com/farmacity-group-footer.jpg", payload["html"])
+        self.assertIn("LEGAL FARMACITY GROUP", payload["html"])
+        self.assertEqual(payload["manifest"]["requested"]["body"], ["B48", "B49"])
+
     def test_post_compose_email_html_query_returns_raw_html(self) -> None:
         body = {
             "templateFamily": "marigold-v4.2",

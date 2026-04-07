@@ -8,13 +8,13 @@
             <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
               <tr>
                 <td width="60" style="width: 60px;" class="bp-logo">
-                  <a href="http://www.americanexpress.com.ar" target="_blank">
-                    <img src="https://i.email.americanexpress.com/wpm/1288/Images/1909-PLAT-Spend-Farmacity-Oct25_01.jpg" alt="American Express" width="60" style="width:60px;height:auto;color:#3D3D3D;"  class="bp-logo">
+                  <a href="{{logoHref}}" target="_blank">
+                    <img src="{{logoUrl}}" alt="{{logoAlt}}" width="60" style="width:60px;height:auto;color:#3D3D3D;"  class="bp-logo">
                   </a>
                 </td>
                 <td width="150" style="padding-left: 10px" class="mobile-off">
-                  <a href="http://www.americanexpress.com.ar" target="_blank">
-                    <img src="https://i.email.americanexpress.com/wpm/1288/Images/1909-PLAT-Spend-Farmacity-Oct25_02.jpg" alt="No vivas la vida sin ella" width="150" style="width:150px;height:auto;color:#3D3D3D;">
+                  <a href="{{taglineHref}}" target="_blank">
+                    <img src="{{taglineUrl}}" alt="{{taglineAlt}}" width="150" style="width:150px;height:auto;color:#3D3D3D;">
                   </a>
                 </td>  
                 
@@ -23,13 +23,13 @@
           </td>
           <td align="right" valign="top">
             <p  class="bp-text" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;color: #3D3D3D; font-size: 15px; line-height: 22px;">
-              Tu cuenta termina en: <br class="mobile-on" style="display: none" />
-              {(LAST_5)}  <br>
-              <span class="mobile-off" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;"> Miembro desde: {(MEMBER_SINCE)} </span>
+              {{accountLabel}} <br class="mobile-on" style="display: none" />
+              {{accountSuffix}}  <br>
+              <span class="mobile-off" style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;"> {{memberSinceLabel}} {{memberSince}} </span>
             </p>
           </td>
           <td align="right" valign="top" width="80" style="padding-left: 12px;" class="bp02-card">
-            <img src="https://i.email.americanexpress.com/wpm/1288/Images/1909-PLAT-Spend-Farmacity-Oct25_03.png" alt="American Express Card" width="80" style="height: 50px; width: 80px; color: #3D3D3D;" class="bp02-card">
+            <img src="{{cardImageUrl}}" alt="{{cardImageAlt}}" width="80" style="height: 50px; width: 80px; color: #3D3D3D;" class="bp02-card">
           </td>
         </tr>
       </table>
@@ -40,10 +40,10 @@
       <table role="none" cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
           <td style="padding-right: 20px;">
-            <p style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;color: #3D3D3D; font-size: 15px; line-height: 22px;" class="bp-text"> Hola {(FULLNAME)} </p>
+            <p style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;color: #3D3D3D; font-size: 15px; line-height: 22px;" class="bp-text"> {{greetingText}} </p>
           </td>
           <td align="right">
-            <a href="https://www.americanexpress.com/es-ar/account/login?email_consumer" class="button-secondary-light bp-login-button" target="_blank" aria-label="American Express account, opens a new tab" style="border: 2px solid #006FCF; mso-border-alt: 2px solid #006FCF; border-radius: 3px; color: #006FCF; display: inline-block; font-size: 15px; line-height: 100%; padding: 13px 16px 13px; text-decoration: none; text-align: center;font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;white-space: nowrap;">Mi cuenta</a>
+            <a href="{{loginUrl}}" class="button-secondary-light bp-login-button" target="_blank" aria-label="{{loginAriaLabel}}" style="border: 2px solid #006FCF; mso-border-alt: 2px solid #006FCF; border-radius: 3px; color: #006FCF; display: inline-block; font-size: 15px; line-height: 100%; padding: 13px 16px 13px; text-decoration: none; text-align: center;font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;white-space: nowrap;">{{loginLabel}}</a>
           </td>
         </tr>
       </table>

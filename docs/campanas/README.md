@@ -13,6 +13,7 @@ Este archivo es el punto de entrada fijo para agentes externos. Primero leer est
 | MERCHANT-Shot-deporte-DIC25 | `MERCHANT - Socio` | `shot-deporte` | deporte, diciembre, entrenar, Megatlon, Fiter, Decathlon, Lasaigues, padel, `101225-MERCHANT-Shot-deporte-DIC25` | `MERCHANT-Shot-deporte-DIC25.md` |
 | MERCHANT-SHOT-Navidad-Dic25 | `MERCHANT - Socio` | `shot-navidad` | navidad, regalos, indumentaria, perfumeria, diciembre, `MERCHANT-SHOT-Navidad-Dic25` | `MERCHANT-SHOT-Navidad-Dic25.md` |
 | MERCHANT-Special-Offers-Dic25 | `MERCHANT - Socio` | `special-offers` | special offers, diciembre, wine, winestore, Ninja, Samsung, Garmin, `MERCHANT-Special-Offers-Dic25` | `MERCHANT-Special-Offers-Dic25.md` |
+| PLAT-Spend-Farmacity-Oct25 | `PP (Cent y Plat)` | `spend-farmacity` | plat, farmacity, get the look, simplicity, the food market, octubre, `1909-PLAT-Spend-Farmacity-Oct25` | `PLAT-Spend-Farmacity-Oct25.md` |
 
 Si dos filas parecen posibles o la evidencia es debil, no inventar. Leer el `.md` de cada candidata y elegir la que tenga payload y snippets compatibles con el input.
 
@@ -25,6 +26,7 @@ Si dos filas parecen posibles o la evidencia es debil, no inventar. Leer el `.md
 | MERCHANT-Shot-deporte-DIC25 | `alta` | `exacto` | `MERCHANT-Shot-deporte-DIC25.md` |
 | MERCHANT-SHOT-Navidad-Dic25 | `alta` | `exacto` | `MERCHANT-SHOT-Navidad-Dic25.md` |
 | MERCHANT-Special-Offers-Dic25 | `alta` | `exacto` | `MERCHANT-Special-Offers-Dic25.md` |
+| PLAT-Spend-Farmacity-Oct25 | `alta` | `dinamico` | `PLAT-Spend-Farmacity-Oct25.md` |
 
 ## Reglas generales
 

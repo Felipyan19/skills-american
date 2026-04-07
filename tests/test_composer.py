@@ -526,6 +526,63 @@ class ComposerTests(unittest.TestCase):
         self.assertIn("LEGAL TRAVEL CUSTOM", result["html"])
         self.assertNotIn("{{", result["html"])
 
+    def test_plat_spend_farmacity_accepts_component_variants(self) -> None:
+        payload = {
+            "templateFamily": "marigold-v4.2",
+            "header": {
+                "id": "H07",
+                "props": {
+                    "greetingText": "Hola Farmacity Custom",
+                    "loginLabel": "Entrar",
+                    "logoUrl": "https://example.com/farmacity-header-logo.jpg",
+                },
+            },
+            "body": [
+                {
+                    "id": "B48",
+                    "props": {
+                        "heroImageUrl": "https://example.com/farmacity-hero.jpg",
+                        "headlineHtml": "Un plus custom",
+                    },
+                },
+                {
+                    "id": "B49",
+                    "props": {
+                        "dateLabel": "TODOS LOS LUNES DE NOVIEMBRE",
+                        "discountImageUrl": "https://example.com/farmacity-descuento.jpg",
+                        "farmacityUrl": "https://example.com/farmacity",
+                        "ctaLabel": "Ver promo",
+                        "disclaimerHtml": "Disclaimer custom Farmacity.",
+                    },
+                },
+            ],
+            "footer": {
+                "id": "F08",
+                "props": {
+                    "taglineDesktopUrl": "https://example.com/farmacity-footer-desktop.jpg",
+                    "instagramUrl": "https://example.com/instagram",
+                    "privacyLabel": "Privacidad custom",
+                    "legalHtml": "LEGAL FARMACITY CUSTOM",
+                },
+            },
+        }
+        result = compose_email(payload)
+        self.assertIn("Hola Farmacity Custom", result["html"])
+        self.assertIn(">Entrar</a>", result["html"])
+        self.assertIn("https://example.com/farmacity-header-logo.jpg", result["html"])
+        self.assertIn("https://example.com/farmacity-hero.jpg", result["html"])
+        self.assertIn("Un plus custom", result["html"])
+        self.assertIn("TODOS LOS LUNES DE NOVIEMBRE", result["html"])
+        self.assertIn("https://example.com/farmacity-descuento.jpg", result["html"])
+        self.assertIn("https://example.com/farmacity", result["html"])
+        self.assertIn(">Ver promo</a>", result["html"])
+        self.assertIn("Disclaimer custom Farmacity.", result["html"])
+        self.assertIn("https://example.com/farmacity-footer-desktop.jpg", result["html"])
+        self.assertIn("https://example.com/instagram", result["html"])
+        self.assertIn("Privacidad custom", result["html"])
+        self.assertIn("LEGAL FARMACITY CUSTOM", result["html"])
+        self.assertNotIn("{{", result["html"])
+
     def test_footer_uses_defaults_when_props_are_missing(self) -> None:
         payload = {
             "templateFamily": "marigold-v4.2",
