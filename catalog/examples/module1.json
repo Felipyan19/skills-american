@@ -517,17 +517,17 @@
     ],
     "payload": {
       "templateFamily": "marigold-v4.2",
-      "header": "H01",
+      "header": "H10",
       "body": [
-        "B03",
-        "B07",
-        "B07",
-        "B07",
-        "B09"
+        "B56",
+        "B57",
+        "B58",
+        "B59",
+        "B60"
       ],
-      "footer": "F02"
+      "footer": "F11"
     },
-    "fidelity": "estructural",
+    "fidelity": "alta",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [],
@@ -555,16 +555,16 @@
     ],
     "payload": {
       "templateFamily": "marigold-v4.2",
-      "header": "H01",
+      "header": "H09",
       "body": [
-        "B05",
-        "B09",
-        "B02",
-        "B09"
+        "B52",
+        "B53",
+        "B54",
+        "B55"
       ],
-      "footer": "F02"
+      "footer": "F10"
     },
-    "fidelity": "estructural",
+    "fidelity": "alta",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [],
@@ -643,17 +643,17 @@
     ],
     "payload": {
       "templateFamily": "marigold-v4.2",
-      "header": "H01",
+      "header": "H11",
       "body": [
-        "B03",
-        "B07",
-        "B07",
-        "B07",
-        "B09"
+        "B61",
+        "B62",
+        "B63",
+        "B64",
+        "B65"
       ],
-      "footer": "F02"
+      "footer": "F12"
     },
-    "fidelity": "estructural",
+    "fidelity": "alta",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [],
@@ -779,14 +779,14 @@
     ],
     "payload": {
       "templateFamily": "marigold-v4.2",
-      "header": "H01",
+      "header": "H07",
       "body": [
-        "B05",
-        "B09"
+        "B48",
+        "B49"
       ],
-      "footer": "F02"
+      "footer": "F08"
     },
-    "fidelity": "estructural",
+    "fidelity": "alta",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [],
@@ -1107,14 +1107,14 @@
     ],
     "payload": {
       "templateFamily": "marigold-v4.2",
-      "header": "H01",
+      "header": "H08",
       "body": [
-        "B03",
-        "B09"
+        "B50",
+        "B51"
       ],
-      "footer": "F02"
+      "footer": "F09"
     },
-    "fidelity": "estructural",
+    "fidelity": "alta",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [],

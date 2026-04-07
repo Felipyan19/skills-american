@@ -363,6 +363,80 @@ class ComposerTests(unittest.TestCase):
         ordered = [item["sourceId"] for item in result["manifest"]["expanded"] if item["kind"] == "snippet"]
         self.assertEqual(ordered[2:5], ["TM01-v4.2", "TM01-v4.2", "TM04-v4.2"])
 
+    def test_merchant_shot_deporte_accepts_component_variants(self) -> None:
+        payload = {
+            "templateFamily": "marigold-v4.2",
+            "header": {
+                "id": "H04",
+                "props": {
+                    "logoUrl": "https://example.com/header-logo.jpg",
+                    "taglineUrl": "https://example.com/header-tagline.jpg",
+                    "greetingText": "Hola Tester",
+                    "loginLabel": "Entrar",
+                },
+            },
+            "body": [
+                {
+                    "id": "B28",
+                    "props": {
+                        "heroImageUrl": "https://example.com/deporte-hero.jpg",
+                        "headlineHtml": "<strong>Nuevo headline</strong><br>para deporte",
+                    },
+                },
+                "B29",
+                {
+                    "id": "B30",
+                    "props": {
+                        "dateLabel": "Del 2 al 9 de enero",
+                        "primaryLogoUrl": "https://example.com/club-a.jpg",
+                        "ctaUrl": "https://example.com/clubes",
+                    },
+                },
+                {
+                    "id": "B31",
+                    "props": {
+                        "leftBenefitLine": "en compras online",
+                        "leftLogoUrl": "https://example.com/decathlon-alt.jpg",
+                        "rightOfferImageUrl": "https://example.com/padel-offer.png",
+                        "rightCtaLabel": "Ver beneficio",
+                    },
+                },
+                {"id": "B32", "props": {"disclaimerHtml": "DISCLAIMER FINAL CUSTOM"}},
+            ],
+            "footer": {
+                "id": "F05",
+                "props": {
+                    "taglineDesktopUrl": "https://example.com/footer-tagline-desktop.jpg",
+                    "taglineMobileUrl": "https://example.com/footer-tagline-mobile.jpg",
+                    "instagramImg": "https://example.com/instagram.png",
+                    "privacyLabel": "Privacidad custom",
+                    "legalHtml": "<strong>LEGAL CUSTOM FOOTER</strong>",
+                },
+            },
+            "globals": {"includeSeparators": False},
+        }
+        result = compose_email(payload)
+        self.assertIn("https://example.com/header-logo.jpg", result["html"])
+        self.assertIn("https://example.com/header-tagline.jpg", result["html"])
+        self.assertIn("Hola Tester", result["html"])
+        self.assertIn(">Entrar</a>", result["html"])
+        self.assertIn("https://example.com/deporte-hero.jpg", result["html"])
+        self.assertIn("<strong>Nuevo headline</strong><br>para deporte", result["html"])
+        self.assertIn("Del 2 al 9 de enero", result["html"])
+        self.assertIn("https://example.com/club-a.jpg", result["html"])
+        self.assertIn("https://example.com/clubes", result["html"])
+        self.assertIn("en compras online", result["html"])
+        self.assertIn("https://example.com/decathlon-alt.jpg", result["html"])
+        self.assertIn("https://example.com/padel-offer.png", result["html"])
+        self.assertIn("Ver beneficio", result["html"])
+        self.assertIn("DISCLAIMER FINAL CUSTOM", result["html"])
+        self.assertIn("https://example.com/footer-tagline-desktop.jpg", result["html"])
+        self.assertIn("https://example.com/footer-tagline-mobile.jpg", result["html"])
+        self.assertIn("https://example.com/instagram.png", result["html"])
+        self.assertIn("Privacidad custom", result["html"])
+        self.assertIn("<strong>LEGAL CUSTOM FOOTER</strong>", result["html"])
+        self.assertNotIn("{{", result["html"])
+
     def test_footer_uses_defaults_when_props_are_missing(self) -> None:
         payload = {
             "templateFamily": "marigold-v4.2",

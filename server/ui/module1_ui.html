@@ -630,7 +630,7 @@
         <div class="toolbar">
           <div class="search">
             <label class="visually-hidden" for="search">Buscar ejemplos</label>
-            <input id="search" type="search" placeholder="Buscar campaña, segmento o familia">
+            <input id="search" type="search" placeholder="Buscar campaña, grupo, tipo o familia">
           </div>
           <div class="filters" id="filters" aria-label="Filtrar por estado"></div>
         </div>
@@ -640,6 +640,8 @@
               <tr>
                 <th id="catalog-title">Cobertura</th>
                 <th>Comunicación</th>
+                <th>Grupo</th>
+                <th>Tipo de campaña</th>
                 <th>Familia</th>
                 <th>Base HTML</th>
                 <th aria-label="Acciones">Acciones</th>
@@ -772,7 +774,7 @@
       if (!state.query) {
         return true;
       }
-      const haystack = [example.name, example.group, example.templateFamily, example.id].join(" ").toLowerCase();
+      const haystack = [example.name, example.group, example.campaignType, example.templateFamily, example.id].join(" ").toLowerCase();
       return haystack.includes(state.query.toLowerCase());
     }
 
@@ -783,7 +785,7 @@
       if (!rows.length) {
         target.innerHTML = `
           <tr>
-            <td colspan="5">
+            <td colspan="6">
               <div class="empty">No hay resultados para ese filtro.</div>
             </td>
           </tr>
@@ -801,9 +803,10 @@
             <td>
               <div class="name-cell">
                 <strong>${escapeHtml(example.name)}</strong>
-                <span class="subtle">${escapeHtml(example.group)}</span>
               </div>
             </td>
+            <td><span class="mono">${escapeHtml(example.group || "-")}</span></td>
+            <td><span class="mono">${escapeHtml(example.campaignType || "-")}</span></td>
             <td><span class="mono">${escapeHtml(example.templateFamily)}</span></td>
             <td><span class="mono">${escapeHtml(structure)}</span></td>
             <td>
@@ -961,7 +964,7 @@
     init().catch((error) => {
       document.getElementById("table-body").innerHTML = `
         <tr>
-          <td colspan="5">
+            <td colspan="6">
             <div class="empty">${escapeHtml(error.message)}</div>
           </td>
         </tr>

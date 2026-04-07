@@ -114,6 +114,7 @@ MARIGOLD_V42_SNIPPETS = MappingProxyType(
         "tm04_merchant_shot_deporte_dic25_closing": _snippet("marigold-v4.2", "tm04_merchant_shot_deporte_dic25_closing", "tm04-merchant-shot-deporte-dic25-closing.html", "TM04-v4.2"),
         "fm05_merchant_shot_deporte_dic25": _snippet("marigold-v4.2", "fm05_merchant_shot_deporte_dic25", "fm05-merchant-shot-deporte-dic25.html", "FM05-v4.2"),
         "fm02_merchant_shot_deporte_dic25": _snippet("marigold-v4.2", "fm02_merchant_shot_deporte_dic25", "fm02-merchant-shot-deporte-dic25.html", "FM02"),
+        "fm03_merchant_shot_deporte_dic25": _snippet("marigold-v4.2", "fm03_merchant_shot_deporte_dic25", "fm03-merchant-shot-deporte-dic25.html", "FM03-v4.2"),
         "fm04_merchant_shot_deporte_dic25": _snippet("marigold-v4.2", "fm04_merchant_shot_deporte_dic25", "fm04-merchant-shot-deporte-dic25.html", "FM04-v4.2"),
         # MERCHANT-SHOT-Navidad-Dic25
         "brand_panel_merchant_shot_navidad_dic25": _snippet("marigold-v4.2", "brand_panel_merchant_shot_navidad_dic25", "brand-panel-merchant-shot-navidad-dic25.html", "Consumer Default-v4.2"),
@@ -142,6 +143,48 @@ MARIGOLD_V42_SNIPPETS = MappingProxyType(
         "fm05_merchant_special_offers_dic25_tagline": _snippet("marigold-v4.2", "fm05_merchant_special_offers_dic25_tagline", "fm05-merchant-special-offers-dic25-tagline.html", "FM05-v4.2"),
         "fm02_merchant_special_offers_dic25": _snippet("marigold-v4.2", "fm02_merchant_special_offers_dic25", "fm02-merchant-special-offers-dic25.html", "FM02"),
         "fm04_merchant_special_offers_dic25": _snippet("marigold-v4.2", "fm04_merchant_special_offers_dic25", "fm04-merchant-special-offers-dic25.html", "FM04-v4.2"),
+        # PLAT-Spend-Farmacity-Oct25
+        "brand_panel_plat_spend_farmacity_oct25": _snippet("marigold-v4.2", "brand_panel_plat_spend_farmacity_oct25", "brand-panel-plat-spend-farmacity-oct25.html", "Consumer Default-v4.2"),
+        "hb18_plat_spend_farmacity_oct25": _snippet("marigold-v4.2", "hb18_plat_spend_farmacity_oct25", "hb18-plat-spend-farmacity-oct25.html", "HB18-v4.2"),
+        "tm04_plat_spend_farmacity_oct25": _snippet("marigold-v4.2", "tm04_plat_spend_farmacity_oct25", "tm04-plat-spend-farmacity-oct25.html", "TM04-v4.2"),
+        "fm05_plat_spend_farmacity_oct25": _snippet("marigold-v4.2", "fm05_plat_spend_farmacity_oct25", "fm05-plat-spend-farmacity-oct25.html", "FM05-v4.2"),
+        "fm02_plat_spend_farmacity_oct25": _snippet("marigold-v4.2", "fm02_plat_spend_farmacity_oct25", "fm02-plat-spend-farmacity-oct25.html", "FM02"),
+        "fm04_plat_spend_farmacity_oct25": _snippet("marigold-v4.2", "fm04_plat_spend_farmacity_oct25", "fm04-plat-spend-farmacity-oct25.html", "FM04-v4.2"),
+        # PP-Teatro-Colon-2026-Dic25-PLAT
+        "brand_panel_pp_teatro_colon_plat": _snippet("marigold-v4.2", "brand_panel_pp_teatro_colon_plat", "brand-panel-pp-teatro-colon-plat.html", "Consumer Default-v4.2"),
+        "hb15_pp_teatro_colon_plat": _snippet("marigold-v4.2", "hb15_pp_teatro_colon_plat", "hb15-pp-teatro-colon-plat.html", "HB15-v4.2"),
+        "tm04_pp_teatro_colon_plat": _snippet("marigold-v4.2", "tm04_pp_teatro_colon_plat", "tm04-pp-teatro-colon-plat.html", "TM04-v4.2"),
+        "fm02_pp_teatro_colon_plat": _snippet("marigold-v4.2", "fm02_pp_teatro_colon_plat", "fm02-pp-teatro-colon-plat.html", "FM02"),
+        "fm04_pp_teatro_colon_plat": _snippet("marigold-v4.2", "fm04_pp_teatro_colon_plat", "fm04-pp-teatro-colon-plat.html", "FM04-v4.2"),
+        # MR-Especial-Starlink-ENERO25
+        "brand_panel_mr_starlink_ene25": _snippet("marigold-v4.2", "brand_panel_mr_starlink_ene25", "brand-panel-mr-starlink-ene25.html", "Consumer Default-v4.2"),
+        "hb18_mr_starlink_ene25": _snippet("marigold-v4.2", "hb18_mr_starlink_ene25", "hb18-mr-starlink-ene25.html", "HB18-v4.2"),
+        "tm04_mr_starlink_ene25_intro": _snippet("marigold-v4.2", "tm04_mr_starlink_ene25_intro", "tm04-mr-starlink-ene25-intro.html", "TM04-v4.2"),
+        "hb08_mr_starlink_ene25": _snippet("marigold-v4.2", "hb08_mr_starlink_ene25", "hb08-mr-starlink-ene25.html", "HB08-v4.2"),
+        "tm04_mr_starlink_ene25_closing": _snippet("marigold-v4.2", "tm04_mr_starlink_ene25_closing", "tm04-mr-starlink-ene25-closing.html", "TM04-v4.2"),
+        "fm05_mr_starlink_ene25": _snippet("marigold-v4.2", "fm05_mr_starlink_ene25", "fm05-mr-starlink-ene25.html", "FM05-v4.2"),
+        "fm02_mr_starlink_ene25": _snippet("marigold-v4.2", "fm02_mr_starlink_ene25", "fm02-mr-starlink-ene25.html", "FM02"),
+        "fm04_mr_starlink_ene25": _snippet("marigold-v4.2", "fm04_mr_starlink_ene25", "fm04-mr-starlink-ene25.html", "FM04-v4.2"),
+        # MR-Especial-bebidas-DIC25
+        "brand_panel_mr_bebidas_dic25": _snippet("marigold-v4.2", "brand_panel_mr_bebidas_dic25", "brand-panel-mr-bebidas-dic25.html", "Consumer Default-v4.2"),
+        "hb15_mr_bebidas_dic25": _snippet("marigold-v4.2", "hb15_mr_bebidas_dic25", "hb15-mr-bebidas-dic25.html", "HB15-v4.2"),
+        "im03_mr_bebidas_dic25_a": _snippet("marigold-v4.2", "im03_mr_bebidas_dic25_a", "im03-mr-bebidas-dic25-a.html", "IM03-v4.2"),
+        "im03_mr_bebidas_dic25_b": _snippet("marigold-v4.2", "im03_mr_bebidas_dic25_b", "im03-mr-bebidas-dic25-b.html", "IM03-v4.2"),
+        "im03_mr_bebidas_dic25_c": _snippet("marigold-v4.2", "im03_mr_bebidas_dic25_c", "im03-mr-bebidas-dic25-c.html", "IM03-v4.2"),
+        "tm04_mr_bebidas_dic25": _snippet("marigold-v4.2", "tm04_mr_bebidas_dic25", "tm04-mr-bebidas-dic25.html", "TM04-v4.2"),
+        "fm05_mr_bebidas_dic25": _snippet("marigold-v4.2", "fm05_mr_bebidas_dic25", "fm05-mr-bebidas-dic25.html", "FM05-v4.2"),
+        "fm02_mr_bebidas_dic25": _snippet("marigold-v4.2", "fm02_mr_bebidas_dic25", "fm02-mr-bebidas-dic25.html", "FM02"),
+        "fm04_mr_bebidas_dic25": _snippet("marigold-v4.2", "fm04_mr_bebidas_dic25", "fm04-mr-bebidas-dic25.html", "FM04-v4.2"),
+        # MR-Tecnologia-Dic25
+        "brand_panel_mr_tecnologia_dic25": _snippet("marigold-v4.2", "brand_panel_mr_tecnologia_dic25", "brand-panel-mr-tecnologia-dic25.html", "Consumer Default-v4.2"),
+        "hb15_mr_tecnologia_dic25": _snippet("marigold-v4.2", "hb15_mr_tecnologia_dic25", "hb15-mr-tecnologia-dic25.html", "HB15-v4.2"),
+        "im03_mr_tecnologia_dic25_a": _snippet("marigold-v4.2", "im03_mr_tecnologia_dic25_a", "im03-mr-tecnologia-dic25-a.html", "IM03-v4.2"),
+        "im03_mr_tecnologia_dic25_b": _snippet("marigold-v4.2", "im03_mr_tecnologia_dic25_b", "im03-mr-tecnologia-dic25-b.html", "IM03-v4.2"),
+        "im03_mr_tecnologia_dic25_c": _snippet("marigold-v4.2", "im03_mr_tecnologia_dic25_c", "im03-mr-tecnologia-dic25-c.html", "IM03-v4.2"),
+        "tm04_mr_tecnologia_dic25": _snippet("marigold-v4.2", "tm04_mr_tecnologia_dic25", "tm04-mr-tecnologia-dic25.html", "TM04-v4.2"),
+        "fm05_mr_tecnologia_dic25": _snippet("marigold-v4.2", "fm05_mr_tecnologia_dic25", "fm05-mr-tecnologia-dic25.html", "FM05-v4.2"),
+        "fm02_mr_tecnologia_dic25": _snippet("marigold-v4.2", "fm02_mr_tecnologia_dic25", "fm02-mr-tecnologia-dic25.html", "FM02"),
+        "fm04_mr_tecnologia_dic25": _snippet("marigold-v4.2", "fm04_mr_tecnologia_dic25", "fm04-mr-tecnologia-dic25.html", "FM04-v4.2"),
     }
 )
 
@@ -212,6 +255,20 @@ MARIGOLD_V42_COMPONENTS = MappingProxyType(
             defaults={
                 "preheaderLabel": "PUBLICIDAD",
                 "viewOnlineUrl": "https://x.email.americanexpress.com/ats/msg.aspx?sg1={(URLSignature1)}",
+                "logoHref": "http://www.americanexpress.com.ar",
+                "logoUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_01.jpg",
+                "logoAlt": "American Express, opens a new tab",
+                "taglineHref": "http://www.americanexpress.com.ar",
+                "taglineUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_02.jpg",
+                "taglineAlt": "No vivas la vida sin ella(TM)",
+                "accountLabel": "Tu cuenta termina en:",
+                "accountSuffix": "{(LAST_5)}",
+                "memberSinceLabel": "Miembro desde:",
+                "memberSince": "{(MEMBER_SINCE)}",
+                "greetingText": "Hola {(FULLNAME)}",
+                "loginUrl": "https://www.americanexpress.com/es-ar/account/login?email_consumer",
+                "loginAriaLabel": "American Express account, opens a new tab",
+                "loginLabel": "Mi cuenta",
             },
         ),
         "B01": ComponentDefinition(
@@ -633,7 +690,10 @@ MARIGOLD_V42_COMPONENTS = MappingProxyType(
             snippet_keys=("hb18_merchant_shot_deporte_dic25",),
             repeatable=False,
             compatible_families=("marigold-v4.2",),
-            defaults={},
+            defaults={
+                "heroImageUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_04b.jpg",
+                "headlineHtml": "<strong style=\"font-family: 'BentonSans400', HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;font-size:29px;\">La energ&iacute;a</strong> <br>\n                        que te mueve",
+            },
         ),
         "B29": ComponentDefinition(
             api_id="B29",
@@ -643,7 +703,9 @@ MARIGOLD_V42_COMPONENTS = MappingProxyType(
             snippet_keys=("tm04_merchant_shot_deporte_dic25_intro",),
             repeatable=False,
             compatible_families=("marigold-v4.2",),
-            defaults={},
+            defaults={
+                "introHtml": "Lo que necesit&aacute;s para entrenar mejor, <br class=\"mobile-off\"> ahora con <strong style=\"color: #006fcf;font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;\">beneficios</strong> pensados para vos.",
+            },
         ),
         "B30": ComponentDefinition(
             api_id="B30",
@@ -653,7 +715,23 @@ MARIGOLD_V42_COMPONENTS = MappingProxyType(
             snippet_keys=("tm04_merchant_shot_deporte_dic25_clubs",),
             repeatable=False,
             compatible_families=("marigold-v4.2",),
-            defaults={},
+            defaults={
+                "dateLabel": "Del 15 al 20 de diciembre",
+                "discountImageUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_05.png",
+                "discountImageAlt": "10% OFF sin tope y en el acto",
+                "plusImageUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_06.png",
+                "plusImageAlt": "+",
+                "installmentsImageUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_07.png",
+                "installmentsImageAlt": "3, 6, 9 Y 12 CUOTAS SIN INTER&Eacute;S(1)",
+                "benefitLine": "en nuevos planes o renovaciones",
+                "primaryLogoUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_08.jpg",
+                "primaryLogoAlt": "MEGATLON",
+                "secondaryLogoUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_09.jpg",
+                "secondaryLogoAlt": "Fiter | Fitness para vos",
+                "ctaUrl": "https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/salud-y-belleza/megatlon-y-fiter?utm_source=news&utm_medium=email&utm_campaign=megatlon-fiter",
+                "ctaLabel": "M&aacute;s info",
+                "disclaimerHtml": "V&Aacute;LIDO PARA COMPRAS PRESENCIALES EN SUCURSALES SELECCIONADAS.",
+            },
         ),
         "B31": ComponentDefinition(
             api_id="B31",
@@ -663,7 +741,25 @@ MARIGOLD_V42_COMPONENTS = MappingProxyType(
             snippet_keys=("hb08_merchant_shot_deporte_dic25",),
             repeatable=False,
             compatible_families=("marigold-v4.2",),
-            defaults={},
+            defaults={
+                "leftDateLabel": "Del 15 al 21 de diciembre",
+                "leftOfferImageUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_10.png",
+                "leftOfferImageAlt": "Hasta 6 CUOTAS SIN INTER&Eacute;S(2)",
+                "leftBenefitLine": "en compras presenciales",
+                "leftLogoUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_11.jpg",
+                "leftLogoAlt": "DECATHLON",
+                "leftCtaUrl": "https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/salud-y-belleza/decathlon?utm_source=news&utm_medium=email&utm_campaign=decathlon",
+                "leftCtaLabel": "M&aacute;s info",
+                "rightDateLabel": "Del 1 al 31 de diciembre",
+                "rightOfferImageUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_12.png",
+                "rightOfferImageAlt": "15% OFF(3)",
+                "rightBenefitLine": "en el pago del abono mensual",
+                "rightLogoUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_13.jpg",
+                "rightLogoAlt": "LASAIGUES PADEL",
+                "rightCtaUrl": "https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/salud-y-belleza/lasaigue?utm_source=news&utm_medium=email&utm_campaign=lasaigues",
+                "rightCtaLabel": "M&aacute;s info",
+                "rightDisclaimerHtml": "TOPE DE REINTEGRO DE $15.000 <br> POR CUENTA, POR MES. STOCK LIMITADO.",
+            },
         ),
         "B32": ComponentDefinition(
             api_id="B32",
@@ -673,7 +769,9 @@ MARIGOLD_V42_COMPONENTS = MappingProxyType(
             snippet_keys=("tm04_merchant_shot_deporte_dic25_closing",),
             repeatable=False,
             compatible_families=("marigold-v4.2",),
-            defaults={},
+            defaults={
+                "disclaimerHtml": "BENEFICIOS NO V&Aacute;LIDOS PARA PAGOS REALIZADOS <br class=\"mobile-on\" style=\"display: none;\"> A TRAV&Eacute;S DE PLATAFORMAS DE PAGO Y/O AGREGADORES.",
+            },
         ),
         # MERCHANT-SHOT-Navidad-Dic25 components
         "B33": ComponentDefinition(
@@ -884,11 +982,55 @@ MARIGOLD_V42_COMPONENTS = MappingProxyType(
             slot="footer",
             compose_type="composite",
             source_ids=("FM05-v4.2", "FM02", "FM03-v4.2", "FM04-v4.2"),
-            snippet_keys=("fm05_merchant_shot_deporte_dic25", "fm02_merchant_shot_deporte_dic25", "fm03", "fm04_merchant_shot_deporte_dic25"),
+            snippet_keys=("fm05_merchant_shot_deporte_dic25", "fm02_merchant_shot_deporte_dic25", "fm03_merchant_shot_deporte_dic25", "fm04_merchant_shot_deporte_dic25"),
             required_props=(),
             repeatable=False,
             compatible_families=("marigold-v4.2",),
-            defaults={},
+            defaults={
+                "taglineDesktopUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_14.jpg",
+                "taglineMobileUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_15.jpg",
+                "taglineAlt": "No vivas la vida sin ella(TM)",
+                "instagramUrl": "https://www.instagram.com/americanexpressarg/",
+                "instagramImg": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_16.png",
+                "instagramAlt": "S&iacute;guenos en Instagram",
+                "facebookUrl": "https://www.facebook.com/americanexpressargentina",
+                "facebookImg": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_17.png",
+                "facebookAlt": "S&iacute;guenos en Facebook",
+                "youtubeUrl": "https://www.youtube.com/user/AmericanExpressArg",
+                "youtubeImg": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_18.png",
+                "youtubeAlt": "S&iacute;guenos en Youtube",
+                "privacyUrl": "https://www.americanexpress.com/argentina/legal/privacy_statement.shtml",
+                "privacyLabel": "Privacidad",
+                "contactUrl": "https://www.americanexpress.com/ar/content/ayuda/contactenos.html",
+                "contactLabel": "Contacto",
+                "updateEmailUrl": "https://www.americanexpress.com/es-ar/account/login?DestPage=https%3A%2F%2Fglobal.americanexpress.com%2Fmyca%2Fintl%2Facctmaintain%2Fcanlac%2FchangeDetails.do%3Frequest_type%3D%26Face%3Des_AR%26sorted_index%3D0",
+                "updateEmailLabel": "Actualizar email",
+                "unsubscribeUrl": "https://global.americanexpress.com/privacy/argentina/#/ipp",
+                "unsubscribeLabel": "Desuscribirse",
+                "cftImageUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_19.png",
+                "cftImageAlt": "1)2) C.F.T.:0,00%",
+                "legalHtml": """
+        <strong style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">1) TASA NOMINAL ANUAL (T.N.A): 0,00%. TASA EFECTIVA ANUAL (T.E.A): 0,00%. COSTO FINANCIERO TOTAL EXPRESADO EN TASA EFECTIVA ANUAL (C.F.T.): 0,00%. PARA M&Aacute;S INFORMACI&Oacute;N O LIMITACIONES APLICABLES, CONSULTE EN</strong> <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/salud-y-belleza/megatlon-y-fiter" target="_blank" style="border:none;outline:0;text-decoration:none;color:#00175a;"><strong style="border:none;outline:0;text-decoration:none;color:#00175a;font-weight: bold;word-wrap: break-word;word-break: break-all;font-family:  HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">www.americanexpress.com/es-ar/beneficios/promociones/beneficio/salud-y-belleza/megatlon-y-fiter.</strong></a> <br><br>
+
+
+        <strong style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">2) TASA NOMINAL ANUAL (T.N.A): 0,00%. TASA EFECTIVA ANUAL (T.E.A): 0,00%. COSTO FINANCIERO TOTAL EXPRESADO EN TASA EFECTIVA ANUAL (C.F.T.): 0,00%. PARA M&Aacute;S INFORMACI&Oacute;N O LIMITACIONES APLICABLES, CONSULTE EN</strong> <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/salud-y-belleza/decathlon" target="_blank" style="border:none;outline:0;text-decoration:none;color:#00175a;"><strong style="border:none;outline:0;text-decoration:none;color:#00175a;font-weight: bold;word-wrap: break-word;word-break: break-all;font-family:  HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/salud-y-belleza/decathlon.</strong></a> <br><br>
+
+        <strong style="font-family: HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">3) PARA M&Aacute;S INFORMACI&Oacute;N O LIMITACIONES APLICABLES, CONSULTE EN:</strong> <a href="https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/salud-y-belleza/lasaigues" target="_blank" style="border:none;outline:0;text-decoration:none;color:#00175a;"><strong style="border:none;outline:0;text-decoration:none;color:#00175a;font-weight: bold;word-wrap: break-word;word-break: break-all;font-family:  HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;">https://www.americanexpress.com/es-ar/beneficios/promociones/beneficio/salud-y-belleza/lasaigues.</strong></a>
+
+
+          <br><br>
+
+            Los datos personales son almacenados en una base de datos, cuyo responsable es American Express Argentina S.A. con domicilio legal en Arenales 707, entrepiso, CP C1061AAA, C.A.B.A. Usted podr&aacute; -en cualquier momento- solicitar el retiro o bloqueo de su nombre, total o parcial, de nuestra base de datos y podr&aacute; solicitar informaci&oacute;n acerca del nombre del responsable o usuario de la base de datos que provey&oacute; su informaci&oacute;n. Ley 25.326 art.27. - inc. 3. &ldquo;El titular podr&aacute; en cualquier momento solicitar el retiro o bloqueo de su nombre de los bancos de datos a los que se refiere el presente art&iacute;culo&rdquo;. Decreto 1558/01 - art. 27. - 3er. P&aacute;rrafo. &ldquo;En toda comunicaci&oacute;n con fines de publicidad que se realice por correo, tel&eacute;fono, correo electr&oacute;nico, internet u otro medio a distancia a conocer, se deber&aacute; indicar, en forma expresa y destacada, la posibilidad del titular del dato de solicitar el retiro o bloqueo, total o parcial, de su nombre de la base de datos. A pedido del interesado, se deber&aacute; informar el nombre del responsable o usuario del banco de datos que provey&oacute; la informaci&oacute;n&rdquo;.
+
+            <br/><br/>
+
+            Instrucciones para cancelar la suscripci&oacute;n: este correo electr&oacute;nico publicitario est&aacute; destinado a residentes de Argentina y fue enviado a <strong style="color:#000000;font-weight:normal;word-wrap: break-word;word-break: break-all;">{(EMAIL)}</strong>. Si ha sido recibido en una direcci&oacute;n diferente, significa que fue reenviado. Si no desea recibir nuevos mensajes publicitarios en el futuro, por favor responda este e-mail con la palabra &ldquo;borrar&rdquo; en el asunto (subject), o visite las <a href="https://global.americanexpress.com/privacy/argentina/#/ipp" target="_blank" style="color: #00175A; text-decoration: none;">preferencias de correo electr&oacute;nico</a> en el sitio web de American Express. Servicio al cliente: por favor no responda (reply) este e-mail y dirija todas sus consultas a <a href="https://www.americanexpress.com/ar/content/ayuda/contactenos.html" target="_blank" style="color: #00175A; text-decoration: none;">Servicio al Cliente</a>. Declaraci&oacute;n sobre privacidad: para saber c&oacute;mo obtenemos, aseguramos y utilizamos su informaci&oacute;n personal cumpliendo con la ley 25.326, visite la declaraci&oacute;n sobre privacidad de American Express ingresando en: <a href="http://www.americanexpress.com/argentina/legal/privacy_statement.shtml" target="_blank" style="color: #00175A; text-decoration: none;">www.americanexpress.com.ar/privacidad</a>.
+
+
+           <!-- <br><br> &copy; 2025 American Express Company.-->
+            <br><br> &reg; 2025 AMERICAN EXPRESS ARGENTINA S.A.
+""",
+            },
         ),
         "H05": ComponentDefinition(
             api_id="H05",
@@ -939,6 +1081,161 @@ MARIGOLD_V42_COMPONENTS = MappingProxyType(
             repeatable=False,
             compatible_families=("marigold-v4.2",),
             defaults={},
+        ),
+        # --- PLAT-Spend-Farmacity-Oct25 ---
+        "H07": ComponentDefinition(
+            api_id="H07", slot="header", compose_type="composite",
+            source_ids=("PH01-v4.2", "Consumer Default-v4.2"),
+            snippet_keys=("ph01", "brand_panel_plat_spend_farmacity_oct25"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B48": ComponentDefinition(
+            api_id="B48", slot="body", compose_type="single",
+            source_ids=("HB18-v4.2",), snippet_keys=("hb18_plat_spend_farmacity_oct25",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B49": ComponentDefinition(
+            api_id="B49", slot="body", compose_type="single",
+            source_ids=("TM04-v4.2",), snippet_keys=("tm04_plat_spend_farmacity_oct25",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "F08": ComponentDefinition(
+            api_id="F08", slot="footer", compose_type="composite",
+            source_ids=("FM05-v4.2", "FM01-v4.2", "TM06-v4.2", "FM02", "FM03-v4.2", "FM04-v4.2"),
+            snippet_keys=("fm05_plat_spend_farmacity_oct25", "fm01", "tm06", "fm02_plat_spend_farmacity_oct25", "fm03", "fm04_plat_spend_farmacity_oct25"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        # --- PP-Teatro-Colon-2026-Dic25-PLAT ---
+        "H08": ComponentDefinition(
+            api_id="H08", slot="header", compose_type="composite",
+            source_ids=("PH01-v4.2", "Consumer Default-v4.2"),
+            snippet_keys=("ph01", "brand_panel_pp_teatro_colon_plat"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B50": ComponentDefinition(
+            api_id="B50", slot="body", compose_type="single",
+            source_ids=("HB15-v4.2",), snippet_keys=("hb15_pp_teatro_colon_plat",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B51": ComponentDefinition(
+            api_id="B51", slot="body", compose_type="single",
+            source_ids=("TM04-v4.2",), snippet_keys=("tm04_pp_teatro_colon_plat",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "F09": ComponentDefinition(
+            api_id="F09", slot="footer", compose_type="composite",
+            source_ids=("FM05-v4.2", "FM01-v4.2", "TM06-v4.2", "FM02", "FM03-v4.2", "FM04-v4.2"),
+            snippet_keys=("fm05", "fm01", "tm06", "fm02_pp_teatro_colon_plat", "fm03", "fm04_pp_teatro_colon_plat"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        # --- MR-Especial-Starlink-ENERO25 ---
+        "H09": ComponentDefinition(
+            api_id="H09", slot="header", compose_type="composite",
+            source_ids=("PH01-v4.2", "Consumer Default-v4.2"),
+            snippet_keys=("ph01", "brand_panel_mr_starlink_ene25"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B52": ComponentDefinition(
+            api_id="B52", slot="body", compose_type="single",
+            source_ids=("HB18-v4.2",), snippet_keys=("hb18_mr_starlink_ene25",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B53": ComponentDefinition(
+            api_id="B53", slot="body", compose_type="single",
+            source_ids=("TM04-v4.2",), snippet_keys=("tm04_mr_starlink_ene25_intro",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B54": ComponentDefinition(
+            api_id="B54", slot="body", compose_type="single",
+            source_ids=("HB08-v4.2",), snippet_keys=("hb08_mr_starlink_ene25",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B55": ComponentDefinition(
+            api_id="B55", slot="body", compose_type="single",
+            source_ids=("TM04-v4.2",), snippet_keys=("tm04_mr_starlink_ene25_closing",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "F10": ComponentDefinition(
+            api_id="F10", slot="footer", compose_type="composite",
+            source_ids=("FM05-v4.2", "FM01-v4.2", "TM06-v4.2", "FM02", "FM03-v4.2", "FM04-v4.2"),
+            snippet_keys=("fm05_mr_starlink_ene25", "fm01", "tm06", "fm02_mr_starlink_ene25", "fm03", "fm04_mr_starlink_ene25"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        # --- MR-Especial-bebidas-DIC25 ---
+        "H10": ComponentDefinition(
+            api_id="H10", slot="header", compose_type="composite",
+            source_ids=("PH01-v4.2", "Consumer Default-v4.2"),
+            snippet_keys=("ph01", "brand_panel_mr_bebidas_dic25"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B56": ComponentDefinition(
+            api_id="B56", slot="body", compose_type="single",
+            source_ids=("HB15-v4.2",), snippet_keys=("hb15_mr_bebidas_dic25",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B57": ComponentDefinition(
+            api_id="B57", slot="body", compose_type="single",
+            source_ids=("IM03-v4.2",), snippet_keys=("im03_mr_bebidas_dic25_a",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B58": ComponentDefinition(
+            api_id="B58", slot="body", compose_type="single",
+            source_ids=("IM03-v4.2",), snippet_keys=("im03_mr_bebidas_dic25_b",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B59": ComponentDefinition(
+            api_id="B59", slot="body", compose_type="single",
+            source_ids=("IM03-v4.2",), snippet_keys=("im03_mr_bebidas_dic25_c",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B60": ComponentDefinition(
+            api_id="B60", slot="body", compose_type="single",
+            source_ids=("TM04-v4.2",), snippet_keys=("tm04_mr_bebidas_dic25",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "F11": ComponentDefinition(
+            api_id="F11", slot="footer", compose_type="composite",
+            source_ids=("FM05-v4.2", "FM01-v4.2", "TM06-v4.2", "FM02", "FM03-v4.2", "FM04-v4.2"),
+            snippet_keys=("fm05_mr_bebidas_dic25", "fm01", "tm06", "fm02_mr_bebidas_dic25", "fm03", "fm04_mr_bebidas_dic25"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        # --- MR-Tecnologia-Dic25 ---
+        "H11": ComponentDefinition(
+            api_id="H11", slot="header", compose_type="composite",
+            source_ids=("PH01-v4.2", "Consumer Default-v4.2"),
+            snippet_keys=("ph01", "brand_panel_mr_tecnologia_dic25"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B61": ComponentDefinition(
+            api_id="B61", slot="body", compose_type="single",
+            source_ids=("HB15-v4.2",), snippet_keys=("hb15_mr_tecnologia_dic25",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B62": ComponentDefinition(
+            api_id="B62", slot="body", compose_type="single",
+            source_ids=("IM03-v4.2",), snippet_keys=("im03_mr_tecnologia_dic25_a",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B63": ComponentDefinition(
+            api_id="B63", slot="body", compose_type="single",
+            source_ids=("IM03-v4.2",), snippet_keys=("im03_mr_tecnologia_dic25_b",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B64": ComponentDefinition(
+            api_id="B64", slot="body", compose_type="single",
+            source_ids=("IM03-v4.2",), snippet_keys=("im03_mr_tecnologia_dic25_c",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "B65": ComponentDefinition(
+            api_id="B65", slot="body", compose_type="single",
+            source_ids=("TM04-v4.2",), snippet_keys=("tm04_mr_tecnologia_dic25",),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
+        ),
+        "F12": ComponentDefinition(
+            api_id="F12", slot="footer", compose_type="composite",
+            source_ids=("FM05-v4.2", "FM01-v4.2", "TM06-v4.2", "FM02", "FM03-v4.2", "FM04-v4.2"),
+            snippet_keys=("fm05_mr_tecnologia_dic25", "fm01", "tm06", "fm02_mr_tecnologia_dic25", "fm03", "fm04_mr_tecnologia_dic25"),
+            repeatable=False, compatible_families=("marigold-v4.2",), defaults={},
         ),
         "F02": ComponentDefinition(
             api_id="F02",

@@ -660,7 +660,7 @@ Payload base:
 }
 ```
 
-> Todos los componentes son **estáticos hardcodeados** para este email. No requieren props adicionales.
+> Los componentes usan defaults exactos del HTML de referencia. Los body components `B28` a `B32` tambien aceptan variantes por `props`; ver `docs/campanas/MERCHANT-Shot-deporte-DIC25.md`.
 
 | Componente | Módulo | Contenido |
 |---|---|---|

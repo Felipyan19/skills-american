@@ -34,7 +34,7 @@ class HttpApiTests(unittest.TestCase):
         with urlopen(f"{self.base_url}/api/module1/examples") as response:
             payload = json.loads(response.read().decode("utf-8"))
         self.assertEqual(payload["count"], 33)
-        self.assertEqual(payload["summary"]["exact"], 3)
+        self.assertEqual(payload["summary"]["exact"], 10)
         self.assertEqual(payload["summary"]["approximate"], 9)
         self.assertEqual(payload["examples"][0]["name"], "PP-LOC-GOLD-Febrero25")
         self.assertEqual(payload["examples"][0]["id"], "pp-loc-gold-febrero25")
@@ -67,7 +67,15 @@ class HttpApiTests(unittest.TestCase):
             content_type = response.headers.get_content_type()
         self.assertEqual(content_type, "text/html")
         self.assertIn("American Express", payload)
-        self.assertIn("Ver payload", payload)
+        self.assertIn("Markdown del componente", payload)
+        self.assertNotIn("Ver payload", payload)
+
+    def test_get_single_example_markdown_returns_markdown(self) -> None:
+        with urlopen(f"{self.base_url}/api/module1/examples/pp-loc-gold-febrero25/markdown") as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        self.assertEqual(payload["exampleId"], "pp-loc-gold-febrero25")
+        self.assertIn("### PP-LOC-GOLD-Febrero25", payload["markdown"])
+        self.assertIn("```json", payload["markdown"])
 
     def test_post_compose_email_returns_html_and_manifest(self) -> None:
         body = {
@@ -86,6 +94,51 @@ class HttpApiTests(unittest.TestCase):
             payload = json.loads(response.read().decode("utf-8"))
         self.assertIn("<!DOCTYPE html>", payload["html"])
         self.assertEqual(payload["manifest"]["requested"]["body"], ["B09"])
+
+    def test_post_compose_email_merges_module1_component_variants(self) -> None:
+        body = {
+            "templateFamily": "marigold-v4.2",
+            "group": "MERCHANT - Socio",
+            "campaignType": "shot-deporte",
+            "header": {
+                "id": "H04",
+                "props": {
+                    "greetingText": "Hola desde group",
+                    "loginLabel": "Acceder",
+                },
+            },
+            "body": [
+                {
+                    "id": "B28",
+                    "props": {
+                        "headlineHtml": "Headline desde group",
+                        "heroImageUrl": "https://example.com/group-hero.jpg",
+                    },
+                }
+            ],
+            "footer": {
+                "id": "F05",
+                "props": {
+                    "taglineDesktopUrl": "https://example.com/group-footer.jpg",
+                    "legalHtml": "LEGAL GROUP CUSTOM",
+                },
+            },
+        }
+        request = Request(
+            f"{self.base_url}/api/compose-email",
+            data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urlopen(request) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        self.assertIn("Hola desde group", payload["html"])
+        self.assertIn(">Acceder</a>", payload["html"])
+        self.assertIn("Headline desde group", payload["html"])
+        self.assertIn("https://example.com/group-hero.jpg", payload["html"])
+        self.assertIn("https://example.com/group-footer.jpg", payload["html"])
+        self.assertIn("LEGAL GROUP CUSTOM", payload["html"])
+        self.assertEqual(payload["manifest"]["requested"]["body"], ["B28", "B29", "B30", "B31", "B32"])
 
     def test_post_compose_email_html_query_returns_raw_html(self) -> None:
         body = {

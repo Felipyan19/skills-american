@@ -9,6 +9,7 @@ from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from functools import lru_cache
+from typing import Any
 from urllib.parse import parse_qs, urlparse
 
 from .composer import compose_email, list_components
@@ -319,9 +320,84 @@ def _find_module1_example(example_id: str) -> dict | None:
     return None
 
 
+def _component_request_id(item: Any) -> str:
+    if isinstance(item, str):
+        return item
+    if isinstance(item, dict) and isinstance(item.get("id"), str):
+        return item["id"]
+    return ""
+
+
+def _merge_component_request(base: Any, override: Any) -> Any:
+    if override is None:
+        return base
+    if isinstance(override, str):
+        return override
+    if not isinstance(override, dict):
+        return override
+
+    if isinstance(base, dict):
+        merged = dict(base)
+    else:
+        merged = {"id": _component_request_id(base)}
+
+    override_id = _component_request_id(override)
+    if override_id and merged.get("id") and override_id != merged["id"]:
+        return override
+    if override_id:
+        merged["id"] = override_id
+
+    base_props = merged.get("props", {})
+    override_props = override.get("props", {})
+    if isinstance(base_props, dict) and isinstance(override_props, dict):
+        merged["props"] = {**base_props, **override_props}
+    elif "props" in override:
+        merged["props"] = override_props
+
+    for key, value in override.items():
+        if key not in {"id", "props"}:
+            merged[key] = value
+    return merged
+
+
+def _merge_body_requests(base_body: Any, override_body: Any) -> Any:
+    if override_body is None:
+        return base_body
+    if not isinstance(base_body, list) or not isinstance(override_body, list):
+        return override_body
+
+    merged = list(base_body)
+    used_indexes: set[int] = set()
+    use_position_fallback = len(override_body) == len(base_body)
+    for index, override_item in enumerate(override_body):
+        override_id = _component_request_id(override_item)
+        target_index = None
+        if override_id:
+            for candidate_index, candidate_item in enumerate(merged):
+                if candidate_index in used_indexes:
+                    continue
+                if _component_request_id(candidate_item) == override_id:
+                    target_index = candidate_index
+                    break
+        if target_index is None and use_position_fallback and index < len(merged):
+            target_index = index
+
+        if target_index is None:
+            merged.append(override_item)
+            continue
+
+        merged[target_index] = _merge_component_request(merged[target_index], override_item)
+        used_indexes.add(target_index)
+    return merged
+
+
 def _resolve_compose_payload(raw: dict) -> dict:
     """If raw contains group/campaignType, look up the example and return its payload.
-    Otherwise return raw unchanged (classic explicit-components flow)."""
+    Otherwise return raw unchanged (classic explicit-components flow).
+
+    Component fields in raw act as overrides over the selected example, so callers
+    can address exact campaigns with group/campaignType and still pass props.
+    """
     group = raw.get("group", "")
     campaign_type = raw.get("campaignType", "")
     if not group and not campaign_type:
@@ -347,9 +423,14 @@ def _resolve_compose_payload(raw: dict) -> dict:
         )
 
     payload = dict(examples[0]["payload"])
-    # Allow caller to override globals
     if "globals" in raw:
         payload["globals"] = raw["globals"]
+    if "header" in raw:
+        payload["header"] = _merge_component_request(payload.get("header"), raw["header"])
+    if "body" in raw:
+        payload["body"] = _merge_body_requests(payload.get("body"), raw["body"])
+    if "footer" in raw:
+        payload["footer"] = _merge_component_request(payload.get("footer"), raw["footer"])
     return payload
 
 
@@ -358,6 +439,46 @@ def _module1_example_response(example_id: str) -> dict | None:
     if example is None:
         return None
     return {"example": example}
+
+
+def _module1_example_markdown(example: dict) -> str:
+    lines = [
+        f"### {example['name']}",
+        "",
+        f"- Archivo: `{example.get('relativePath', '')}`",
+        f"- Familia: `{example.get('templateFamily', '')}`",
+        f"- Fidelidad: `{example.get('fidelity', '')}`",
+    ]
+    reference_source_ids = example.get("referenceSourceIds") or []
+    if reference_source_ids:
+        lines.append(f"- SourceIds de referencia: `{', '.join(reference_source_ids)}`")
+    substitutions = example.get("substitutions") or []
+    for substitution in substitutions:
+        lines.append(f"- Sustitucion: {substitution}")
+    unsupported_source_ids = example.get("unsupportedSourceIds") or []
+    if unsupported_source_ids:
+        lines.append(f"- SourceIds sin componente publico: `{', '.join(unsupported_source_ids)}`")
+    for note in example.get("notes") or []:
+        lines.append(f"- Nota: {note}")
+    lines.extend([
+        "",
+        "```json",
+        json.dumps(example.get("payload", {}), indent=2, ensure_ascii=False),
+        "```",
+    ])
+    return "\n".join(lines).strip() + "\n"
+
+
+def _module1_example_markdown_response(example_id: str) -> dict | None:
+    example = _find_module1_example(example_id)
+    if example is None:
+        return None
+    return {
+        "exampleId": example["id"],
+        "name": example["name"],
+        "group": example["group"],
+        "markdown": _module1_example_markdown(example),
+    }
 
 
 def _module1_reference_html(example: dict) -> str | None:
@@ -460,6 +581,17 @@ class EmailComposerHandler(BaseHTTPRequestHandler):
             except ComposerError as exc:
                 self._send_json(exc.status_code, exc.to_dict())
                 return
+            if payload is None:
+                self._send_json(HTTPStatus.NOT_FOUND, {"error": "NotFound", "message": "Example not found."})
+                return
+            self._send_json(HTTPStatus.OK, payload)
+            return
+        if parsed.path.startswith("/api/module1/examples/") and parsed.path.endswith("/markdown"):
+            example_id = parsed.path.removesuffix("/markdown").removeprefix("/api/module1/examples/").strip("/")
+            if not example_id:
+                self._send_json(HTTPStatus.NOT_FOUND, {"error": "NotFound", "message": "Example not found."})
+                return
+            payload = _module1_example_markdown_response(example_id)
             if payload is None:
                 self._send_json(HTTPStatus.NOT_FOUND, {"error": "NotFound", "message": "Example not found."})
                 return

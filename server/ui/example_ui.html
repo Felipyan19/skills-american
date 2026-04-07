@@ -50,6 +50,8 @@
 
     * { box-sizing: border-box; }
 
+    [hidden] { display: none !important; }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -91,15 +93,13 @@
       font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
-    .back:focus-visible,
-    summary:focus-visible {
+    .back:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
 
     .hero,
-    .section-block,
-    details {
+    .section-block {
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
       background: var(--surface);
@@ -199,75 +199,6 @@
       font-weight: 500;
     }
 
-    .section-note {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .structure-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .metric {
-      border: 1px solid var(--line-soft);
-      border-radius: var(--radius-lg);
-      padding: 14px;
-      background: #ffffff;
-    }
-
-    .metric .label {
-      display: block;
-      margin-bottom: 10px;
-      color: var(--muted);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }
-
-    .metric .value {
-      font-family: "IBM Plex Mono", monospace;
-      color: var(--heading);
-      font-size: 12px;
-      line-height: 1.6;
-      word-break: break-word;
-    }
-
-    .token-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .token {
-      border: 1px solid var(--line-soft);
-      border-radius: 999px;
-      padding: 8px 12px;
-      background: #ffffff;
-      font-family: "IBM Plex Mono", monospace;
-      color: var(--heading);
-      font-size: 12px;
-    }
-
-    details {
-      overflow: hidden;
-    }
-
-    summary {
-      list-style: none;
-      padding: 16px 18px;
-      cursor: pointer;
-      font-size: 13px;
-      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-weight: 500;
-    }
-
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
     pre {
       margin: 0;
       padding: 0 18px 18px;
@@ -276,6 +207,70 @@
       font-family: "IBM Plex Mono", monospace;
       font-size: 12px;
       line-height: 1.6;
+    }
+
+    .markdown-content {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      background: #fbfcfe;
+      padding: 18px;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .markdown-content h3 {
+      margin: 0 0 16px;
+      color: var(--heading);
+      font-family: "Guardian Egyptian", Georgia, serif;
+      font-size: 26px;
+      line-height: 1.15;
+      font-weight: 400;
+    }
+
+    .markdown-content ul {
+      margin: 0 0 18px;
+      padding-left: 20px;
+    }
+
+    .markdown-content li {
+      margin: 7px 0;
+    }
+
+    .markdown-content p {
+      margin: 0 0 14px;
+    }
+
+    .markdown-content code {
+      border: 1px solid #d8e3f4;
+      border-radius: 6px;
+      background: #f2f7ff;
+      color: var(--heading);
+      padding: 2px 6px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+    }
+
+    .markdown-code {
+      margin: 16px 0 0;
+      padding: 16px;
+      border: 1px solid #d8e3f4;
+      border-radius: var(--radius-lg);
+      background: #0f172a;
+      color: #e6edf8;
+      overflow: auto;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .markdown-code code {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
     }
 
     .empty {
@@ -344,88 +339,13 @@
       background: #fff;
     }
 
-    /* ── Component strips ───────────────────────────────── */
-    .comp-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .comp-strip {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: var(--surface);
-    }
-
-    .comp-strip-head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      background: #fafafa;
-      border-bottom: 1px solid var(--line-soft);
-    }
-
-    .comp-badge {
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-size: 10px;
-      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .comp-badge.header { background: #e6f0ff; color: #004a9f; }
-    .comp-badge.body   { background: #e8f8ef; color: #0d5c38; }
-    .comp-badge.footer { background: #fdf0e0; color: #7a4f00; }
-
-    .comp-id {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--heading);
-      font-weight: 600;
-    }
-
-    .comp-iframe-wrap {
-      background: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      padding: 16px;
-    }
-
-    .comp-iframe-wrap iframe {
-      border: none;
-      border-radius: 4px;
-      width: 640px;
-      max-width: 100%;
-      height: 200px;
-      background: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    }
-
-    .comp-loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 80px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
     @media (max-width: 760px) {
       .app {
         width: min(100% - 16px, 900px);
         padding-top: 16px;
       }
 
-      .structure-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .preview-iframe-wrap iframe,
-      .comp-iframe-wrap iframe {
+      .preview-iframe-wrap iframe {
         width: 100%;
       }
     }
@@ -465,13 +385,6 @@
       return statusMeta[example.fidelity] || { label: example.fidelity, className: "structural" };
     }
 
-    function renderTokens(items, emptyLabel) {
-      if (!items || !items.length) {
-        return `<div class="empty">${escapeHtml(emptyLabel)}</div>`;
-      }
-      return `<div class="token-list">${items.map((item) => `<span class="token">${escapeHtml(item)}</span>`).join("")}</div>`;
-    }
-
     function currentId() {
       const parts = window.location.pathname.split("/").filter(Boolean);
       return parts[1] || "";
@@ -479,10 +392,6 @@
 
     function render(example, id) {
       const status = statusFor(example);
-      const body = Array.isArray(example.payload?.body) ? example.payload.body : [];
-      const notes = example.notes || [];
-      const substitutions = example.substitutions || [];
-      const unsupported = example.unsupportedSourceIds || [];
 
       document.title = `${example.name} · Componentes HTML`;
 
@@ -504,87 +413,102 @@
       document.getElementById("content").hidden = false;
       document.getElementById("content").innerHTML = `
         <section class="section-block">
-          <div class="section-head">
-            <h2>Arquitectura base</h2>
-            <span class="section-note">${escapeHtml(example.relativePath)}</span>
-          </div>
-          <div class="structure-grid">
-            <div class="metric">
-              <span class="label">Encabezado</span>
-              <div class="value">${escapeHtml(example.payload?.header || "-")}</div>
-            </div>
-            <div class="metric">
-              <span class="label">Cuerpo</span>
-              <div class="value">${escapeHtml(String(body.length))} bloques</div>
-            </div>
-            <div class="metric">
-              <span class="label">Cierre</span>
-              <div class="value">${escapeHtml(example.payload?.footer || "-")}</div>
-            </div>
-          </div>
+          <div class="section-head"><h2>Markdown del componente</h2></div>
+          <div class="markdown-content" id="markdown-content">Cargando Markdown...</div>
         </section>
-
-        <section class="section-block">
-          <div class="section-head"><h2>Secuencia del cuerpo</h2></div>
-          ${renderTokens(body, "Sin bloques en el cuerpo")}
-        </section>
-
-        <section class="section-block">
-          <div class="section-head"><h2>Matriz de referencia</h2></div>
-          ${renderTokens(example.referenceSourceIds, "Sin secuencia de referencia")}
-        </section>
-
-        ${notes.length ? `
-          <section class="section-block">
-            <div class="section-head"><h2>Observaciones de implementación</h2></div>
-            ${renderTokens(notes, "")}
-          </section>
-        ` : ""}
-
-        ${substitutions.length ? `
-          <section class="section-block">
-            <div class="section-head"><h2>Sustituciones aplicadas</h2></div>
-            ${renderTokens(substitutions, "")}
-          </section>
-        ` : ""}
-
-        ${unsupported.length ? `
-          <section class="section-block">
-            <div class="section-head"><h2>Componentes pendientes</h2></div>
-            ${renderTokens(unsupported, "")}
-          </section>
-        ` : ""}
-
-        <details>
-          <summary>Ver payload</summary>
-          <pre>${escapeHtml(JSON.stringify(example.payload, null, 2))}</pre>
-        </details>
       `;
 
-      loadVisualPreview(id, example);
+      loadVisualPreview(id);
+      loadMarkdown(id);
+    }
+
+    async function loadMarkdown(id) {
+      const node = document.getElementById("markdown-content");
+      if (!node) return;
+
+      try {
+        const response = await fetch(`/api/module1/examples/${encodeURIComponent(id)}/markdown`);
+        if (!response.ok) throw new Error("No se pudo cargar el Markdown.");
+        const payload = await response.json();
+        node.innerHTML = renderMarkdown(payload.markdown || "Sin Markdown disponible.");
+      } catch (error) {
+        node.textContent = error.message;
+      }
+    }
+
+    function renderInlineMarkdown(value) {
+      return escapeHtml(value).replace(/`([^`]+)`/g, "<code>$1</code>");
+    }
+
+    function renderMarkdown(markdown) {
+      const lines = String(markdown).split(/\r?\n/);
+      const html = [];
+      const codeLines = [];
+      let inCode = false;
+      let inList = false;
+
+      function closeList() {
+        if (inList) {
+          html.push("</ul>");
+          inList = false;
+        }
+      }
+
+      function closeCode() {
+        html.push(`<pre class="markdown-code"><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+        codeLines.length = 0;
+        inCode = false;
+      }
+
+      for (const line of lines) {
+        const fence = line.match(/^```(\w+)?\s*$/);
+        if (fence) {
+          if (inCode) {
+            closeCode();
+          } else {
+            closeList();
+            inCode = true;
+          }
+          continue;
+        }
+
+        if (inCode) {
+          codeLines.push(line);
+          continue;
+        }
+
+        if (!line.trim()) {
+          closeList();
+          continue;
+        }
+
+        const heading = line.match(/^###\s+(.+)$/);
+        if (heading) {
+          closeList();
+          html.push(`<h3>${renderInlineMarkdown(heading[1])}</h3>`);
+          continue;
+        }
+
+        const listItem = line.match(/^-\s+(.+)$/);
+        if (listItem) {
+          if (!inList) {
+            html.push("<ul>");
+            inList = true;
+          }
+          html.push(`<li>${renderInlineMarkdown(listItem[1])}</li>`);
+          continue;
+        }
+
+        closeList();
+        html.push(`<p>${renderInlineMarkdown(line)}</p>`);
+      }
+
+      closeList();
+      if (inCode) closeCode();
+      return html.join("");
     }
 
     /* ── Visual preview ──────────────────────────────────── */
-
-    function buildComposePayload(example, overrideBody) {
-      return {
-        templateFamily: example.templateFamily,
-        header: example.payload.header,
-        body: overrideBody !== undefined ? overrideBody : (example.payload.body || []),
-        footer: example.payload.footer,
-        globals: example.payload.globals,
-      };
-    }
-
-    async function fetchComposedHtml(payload) {
-      const res = await fetch("/api/compose-email?html", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) return null;
-      return res.text();
-    }
 
     function setIframeHtml(iframe, html) {
       iframe.srcdoc = html;
@@ -597,7 +521,7 @@
       }, { once: true });
     }
 
-    async function loadVisualPreview(id, example) {
+    async function loadVisualPreview(id) {
       const content = document.getElementById("content");
 
       /* ── Full email preview ── */
@@ -606,9 +530,9 @@
       previewBlock.innerHTML = `
         <div class="preview-header">
           <h2>Vista previa del email</h2>
-          <button class="preview-toggle" id="toggle-preview">Ocultar</button>
+          <button class="preview-toggle" id="toggle-preview" aria-expanded="false" aria-controls="preview-wrap">Ver email</button>
         </div>
-        <div class="preview-iframe-wrap" id="preview-wrap">
+        <div class="preview-iframe-wrap" id="preview-wrap" hidden>
           <iframe id="preview-iframe" title="Vista previa del email completo" loading="lazy"></iframe>
         </div>
       `;
@@ -616,8 +540,9 @@
 
       document.getElementById("toggle-preview").addEventListener("click", function () {
         const wrap = document.getElementById("preview-wrap");
-        const hidden = wrap.style.display === "none";
-        wrap.style.display = hidden ? "" : "none";
+        const hidden = wrap.hidden;
+        wrap.hidden = !hidden;
+        this.setAttribute("aria-expanded", String(hidden));
         this.textContent = hidden ? "Ocultar" : "Ver email";
       });
 
@@ -629,60 +554,6 @@
           setIframeHtml(document.getElementById("preview-iframe"), data.html);
         }
       }
-
-      /* ── Per-component strips ── */
-      const payload = example.payload || {};
-      const header = payload.header;
-      const footer = payload.footer;
-      const bodyBlocks = Array.isArray(payload.body) ? payload.body : [];
-
-      if (!example.templateFamily || !header || !footer) return;
-
-      const compSection = document.createElement("section");
-      compSection.className = "section-block";
-      compSection.innerHTML = `
-        <div class="section-head"><h2>Componentes individuales</h2></div>
-        <div class="comp-list" id="comp-list"></div>
-      `;
-      /* Insert right after the preview block */
-      previewBlock.insertAdjacentElement("afterend", compSection);
-
-      const list = document.getElementById("comp-list");
-
-      async function addStrip(slotLabel, slotClass, compId, composePayload) {
-        const strip = document.createElement("div");
-        strip.className = "comp-strip";
-        strip.innerHTML = `
-          <div class="comp-strip-head">
-            <span class="comp-badge ${slotClass}">${escapeHtml(slotLabel)}</span>
-            <span class="comp-id">${escapeHtml(typeof compId === "object" ? compId.id : compId)}</span>
-          </div>
-          <div class="comp-iframe-wrap">
-            <div class="comp-loading">Renderizando...</div>
-          </div>
-        `;
-        list.appendChild(strip);
-
-        const wrap = strip.querySelector(".comp-iframe-wrap");
-        const html = await fetchComposedHtml(composePayload);
-        if (!html) {
-          wrap.innerHTML = `<div class="comp-loading">No se pudo renderizar.</div>`;
-          return;
-        }
-        wrap.innerHTML = `<iframe title="Componente ${escapeHtml(typeof compId === "object" ? compId.id : compId)}" loading="lazy"></iframe>`;
-        setIframeHtml(wrap.querySelector("iframe"), html);
-      }
-
-      const headerPayload = buildComposePayload(example, []);
-      await addStrip("Header", "header", header, headerPayload);
-
-      for (const block of bodyBlocks) {
-        const bodyPayload = buildComposePayload(example, [block]);
-        await addStrip("Body", "body", block, bodyPayload);
-      }
-
-      const footerPayload = buildComposePayload(example, []);
-      await addStrip("Footer", "footer", footer, footerPayload);
     }
 
     async function init() {

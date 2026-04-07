@@ -28,7 +28,7 @@ Si dos filas parecen posibles o la evidencia es debil, no inventar. Leer el `.md
 
 ## Reglas generales
 
-- Estas campanas no son templates genericos con `props`: la mayor parte del contenido vive hardcodeado en snippets HTML dedicados.
+- Estas campanas no son templates genericos: la mayor parte del contenido vive en snippets HTML dedicados. Cuando un `.md` liste `Variantes por props`, esos campos pueden sobrescribirse desde `/api/compose-email`.
 - Para editar una pieza exacta, modificar el snippet especifico de la campana, no el componente generico con el mismo `sourceId`.
 - Mantener `globals.includeSeparators: false`; estas piezas ya traen su espaciado interno.
 - Si cambia el orden, se agrega o se quita un bloque, actualizar tambien el payload del ejemplo correspondiente en `catalog/examples/module1.json` y el override en `scripts/generate_examples.py`.
