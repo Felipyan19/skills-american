@@ -88,6 +88,8 @@ Do not add QA/process notes, test plans, checklists, or agent-facing validation 
 
 ## Rules For Defaults And Variants
 
+- The `/api/compose-email` component contract is strict: use `id`, never `componentId`.
+- Do not include documentation-only fields such as `role` or `snippet` in the final compose payload. Use those only in tables or analysis, not in JSON examples sent to the API.
 - Preserve all exact default values in `server/registry.py` so the short payload remains unchanged.
 - Preserve personalization tokens such as `{(FULLNAME)}`, `{(EMAIL)}`, `{(LAST_5)}`, `{(MEMBER_SINCE)}`, `{(URLSignature1)}`, and similar Marigold placeholders.
 - Preserve `globals.includeSeparators: false` when the exact campaign requires no separators.

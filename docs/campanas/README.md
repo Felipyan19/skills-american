@@ -6,6 +6,8 @@ Estos archivos documentan campanas especificas que `/api/compose-email` puede ar
 
 Este archivo es el punto de entrada fijo para agentes externos. Primero leer este indice, elegir una fila por evidencia y despues leer el `Doc` correspondiente.
 
+Antes de reconstruir o editar payloads, leer tambien `.agents/skills/exact-campaign-md/SKILL.md`. Si la campana no esta marcada como `dinamico` y se necesitan variantes por `props`, leer `.agents/skills/exact-campaign-api/SKILL.md` para confirmar que requiere trabajo de snippets/registry antes de prometer edicion dinamica.
+
 | Campana | group | campaignType | Señales fuertes | Doc |
 |---|---|---|---|---|
 | MERCHANT-Shot-Travel-Agst25 | `MERCHANT - Socio` | `shot-travel` | travel, viaje, agosto, Aerolineas, Despegar, Al Mundo, hoteles, spa, `1908-MERCHANT-Shot-Travel-Agst25` | `MERCHANT-Shot-Travel-Agst25.md` |
@@ -30,6 +32,8 @@ Si dos filas parecen posibles o la evidencia es debil, no inventar. Leer el `.md
 
 ## Reglas generales
 
+- El contrato de `/api/compose-email` usa `id`, no `componentId`. Un componente editable debe tener la forma `{ "id": "B28", "props": { ... } }`.
+- No incluir `role` ni `snippet` dentro del payload final de `/api/compose-email`; esos datos son documentacion para decidir estructura, no campos del API.
 - Estas campanas no son templates genericos: la mayor parte del contenido vive en snippets HTML dedicados. Cuando un `.md` liste `Variantes por props`, esos campos pueden sobrescribirse desde `/api/compose-email`.
 - Para editar una pieza exacta, modificar el snippet especifico de la campana, no el componente generico con el mismo `sourceId`.
 - Mantener `globals.includeSeparators: false`; estas piezas ya traen su espaciado interno.

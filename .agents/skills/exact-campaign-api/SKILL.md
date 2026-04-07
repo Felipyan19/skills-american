@@ -21,6 +21,13 @@ Use `exact-campaign-md` separately when the requested work is only to write or n
 5. `server/http_server.py` for `/api/compose-email` and `group` plus `campaignType` resolution.
 6. Referenced files in `catalog/snippets/<templateFamily>/`.
 
+## Compose Payload Contract
+
+- Use `id` for component objects. Never use `componentId`.
+- Do not send documentation-only fields such as `role` or `snippet` to `/api/compose-email`.
+- Valid component forms are strings such as `"B28"` or objects such as `{ "id": "B28", "props": { ... } }`.
+- Only props implemented in `server/registry.py` defaults and snippet placeholders can affect rendered HTML.
+
 ## Implementation Workflow
 
 1. Confirm the base payload renders before editing:
