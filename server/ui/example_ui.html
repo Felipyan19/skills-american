@@ -331,6 +331,54 @@
       word-break: normal;
     }
 
+    .markdown-code-shell {
+      margin: 16px 0 0;
+      border: 1px solid #d8e3f4;
+      border-radius: var(--radius-lg);
+      background: #0f172a;
+      overflow: hidden;
+    }
+
+    .markdown-code-shell .markdown-code {
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+    }
+
+    .markdown-code-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(216, 227, 244, 0.22);
+      color: #aebdda;
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .markdown-copy-btn {
+      border: 1px solid rgba(216, 227, 244, 0.36);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      cursor: pointer;
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      padding: 6px 12px;
+    }
+
+    .markdown-copy-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .markdown-copy-btn:focus-visible {
+      outline: 3px solid rgba(0, 111, 207, 0.35);
+      outline-offset: 2px;
+    }
+
     .markdown-code code {
       border: 0;
       border-radius: 0;
@@ -503,9 +551,48 @@
         if (!response.ok) throw new Error("No se pudo cargar el Markdown.");
         const payload = await response.json();
         node.innerHTML = renderMarkdown(payload.markdown || "Sin Markdown disponible.");
+        bindMarkdownCopyButtons(node);
       } catch (error) {
         node.textContent = error.message;
       }
+    }
+
+    async function copyText(value) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(value);
+        return;
+      }
+
+      const textarea = document.createElement("textarea");
+      textarea.value = value;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+    }
+
+    function bindMarkdownCopyButtons(root) {
+      root.querySelectorAll("[data-copy-code]").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const shell = button.closest(".markdown-code-shell");
+          const code = shell ? shell.querySelector("code") : null;
+          if (!code) return;
+
+          const original = button.textContent;
+          try {
+            await copyText(code.innerText);
+            button.textContent = "Copiado";
+          } catch (_error) {
+            button.textContent = "No se pudo copiar";
+          }
+          window.setTimeout(() => {
+            button.textContent = original;
+          }, 1600);
+        });
+      });
     }
 
     function renderInlineMarkdown(value) {
@@ -527,10 +614,15 @@
         }
       }
 
-      function normalizeCodeBlock(rawCode, language) {
+      function isJsonCodeBlock(rawCode, language) {
         const normalizedLanguage = (language || "").trim().toLowerCase();
         const source = rawCode.trim();
-        if (normalizedLanguage === "json" || (!normalizedLanguage && (source.startsWith("{") || source.startsWith("[")))) {
+        return normalizedLanguage === "json" || (!normalizedLanguage && (source.startsWith("{") || source.startsWith("[")));
+      }
+
+      function normalizeCodeBlock(rawCode, language) {
+        const source = rawCode.trim();
+        if (isJsonCodeBlock(rawCode, language)) {
           try {
             const parsed = JSON.parse(source);
             return JSON.stringify(parsed, null, 2);
@@ -544,7 +636,20 @@
       function closeCode() {
         const raw = codeLines.join("\n");
         const normalized = normalizeCodeBlock(raw, codeLanguage);
-        html.push(`<pre class="markdown-code"><code>${escapeHtml(normalized)}</code></pre>`);
+        const isJson = isJsonCodeBlock(raw, codeLanguage);
+        if (isJson) {
+          html.push(`
+            <div class="markdown-code-shell">
+              <div class="markdown-code-toolbar">
+                <span>JSON</span>
+                <button class="markdown-copy-btn" type="button" data-copy-code>Copiar JSON</button>
+              </div>
+              <pre class="markdown-code"><code>${escapeHtml(normalized)}</code></pre>
+            </div>
+          `);
+        } else {
+          html.push(`<pre class="markdown-code"><code>${escapeHtml(normalized)}</code></pre>`);
+        }
         codeLines.length = 0;
         codeLanguage = "";
         inCode = false;
