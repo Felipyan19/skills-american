@@ -284,22 +284,3 @@ Campos soportados por componente:
 | `B31` | `leftDateLabel`, `leftOfferImageUrl`, `leftOfferImageAlt`, `leftBenefitLine`, `leftLogoUrl`, `leftLogoAlt`, `leftCtaUrl`, `leftCtaLabel`, `rightDateLabel`, `rightOfferImageUrl`, `rightOfferImageAlt`, `rightBenefitLine`, `rightLogoUrl`, `rightLogoAlt`, `rightCtaUrl`, `rightCtaLabel`, `rightDisclaimerHtml` |
 | `B32` | `disclaimerHtml` |
 | `F05` | `taglineDesktopUrl`, `taglineMobileUrl`, `taglineAlt`, `instagramUrl`, `instagramImg`, `instagramAlt`, `facebookUrl`, `facebookImg`, `facebookAlt`, `youtubeUrl`, `youtubeImg`, `youtubeAlt`, `privacyUrl`, `privacyLabel`, `contactUrl`, `contactLabel`, `updateEmailUrl`, `updateEmailLabel`, `unsubscribeUrl`, `unsubscribeLabel`, `cftImageUrl`, `cftImageAlt`, `legalHtml` |
-
-Plan de prueba 1 a 1:
-
-1. Probar el payload base y guardar el HTML generado como baseline visual.
-2. Enviar `H04` como `{ "id": "H04", "props": {...} }`; confirmar logo, greeting y boton.
-3. Enviar solo `B28` con `headlineHtml` y `heroImageUrl`; confirmar que cambia hero y que `manifest.requested.body` sigue en `B28 -> B29 -> B30 -> B31 -> B32`.
-4. Enviar solo `B29` con `introHtml`; confirmar que no cambia el resto del cuerpo.
-5. Enviar solo `B30` con un CTA o logo nuevo; revisar que legal/disclaimer siga coherente.
-6. Enviar solo `B31` con cambios de lado izquierdo y derecho; revisar que los links y logos correspondan.
-7. Enviar solo `B32` con `disclaimerHtml`; revisar que cierre y legales no contradigan los claims.
-8. Enviar `F05` como `{ "id": "F05", "props": {...} }`; confirmar taglines, redes, nav y legales.
-9. Si cambia un descuento, cuota, fecha o tope, actualizar tambien `F05` en la misma pasada.
-
-## Checklist antes de cerrar
-
-- Verificar CTAs de Megatlon/Fiter, Decathlon y Lasaigues.
-- Verificar que los indicadores legales `(1)` a `(3)` correspondan con el footer.
-- Probar `POST /api/compose-email?html` con el payload de arriba.
-- Revisar el `manifest.expanded` para confirmar que la secuencia mantenga los snippets dedicados.

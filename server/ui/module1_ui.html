@@ -286,19 +286,19 @@
       font-weight: 500;
     }
 
+    .status.dynamic {
+      color: var(--accent);
+      background: rgba(0, 111, 207, 0.12);
+      border-color: rgba(0, 111, 207, 0.24);
+    }
+
     .status.exact {
       color: var(--success);
       background: rgba(21, 127, 79, 0.08);
       border-color: rgba(21, 127, 79, 0.14);
     }
 
-    .status.structural {
-      color: var(--warning);
-      background: rgba(154, 107, 18, 0.08);
-      border-color: rgba(154, 107, 18, 0.14);
-    }
-
-    .status.approx {
+    .status.pending {
       color: var(--danger);
       background: rgba(162, 70, 75, 0.08);
       border-color: rgba(162, 70, 75, 0.14);
@@ -702,9 +702,9 @@
     };
 
     const statusMeta = {
-      alta: { label: "Exacta", className: "exact" },
-      estructural: { label: "Homologada", className: "structural" },
-      aproximada: { label: "Pendiente", className: "approx" },
+      dinamico: { label: "Dinámico", className: "dynamic" },
+      exacto: { label: "Exacto", className: "exact" },
+      pendiente: { label: "Pendiente", className: "pending" },
     };
 
     function escapeHtml(value) {
@@ -717,7 +717,8 @@
     }
 
     function statusFor(example) {
-      return statusMeta[example.fidelity] || { label: example.fidelity, className: "structural" };
+      const key = example.dashboardStatus || "pendiente";
+      return statusMeta[key] || { label: key, className: "pending" };
     }
 
     function htmlSourceMeta(source) {
@@ -737,21 +738,23 @@
 
     function renderStats() {
       const total = state.examples.length;
-      const exact = state.examples.filter((item) => item.fidelity === "alta").length;
-      const approx = state.examples.filter((item) => item.fidelity === "aproximada").length;
+      const dynamic = state.examples.filter((item) => item.dashboardStatus === "dinamico").length;
+      const exact = state.examples.filter((item) => item.dashboardStatus === "exacto").length;
+      const pending = state.examples.filter((item) => item.dashboardStatus === "pendiente").length;
       document.getElementById("stats").innerHTML = `
         <span class="meta-pill"><strong>${total}</strong> <span>campañas</span></span>
-        <span class="meta-pill"><strong>${exact}</strong> <span>con cobertura exacta</span></span>
-        <span class="meta-pill"><strong>${approx}</strong> <span>con ajuste pendiente</span></span>
+        <span class="meta-pill"><strong>${dynamic}</strong> <span>dinámicas</span></span>
+        <span class="meta-pill"><strong>${exact}</strong> <span>exactas</span></span>
+        <span class="meta-pill"><strong>${pending}</strong> <span>pendientes</span></span>
       `;
     }
 
     function renderFilters() {
       const filters = [
         { key: "all", label: "Todas" },
-        { key: "alta", label: "Exactas" },
-        { key: "estructural", label: "Homologadas" },
-        { key: "aproximada", label: "Pendientes" },
+        { key: "dinamico", label: "Dinámicas" },
+        { key: "exacto", label: "Exactas" },
+        { key: "pendiente", label: "Pendientes" },
       ];
       document.getElementById("filters").innerHTML = filters.map((filter) => `
         <button class="filter-btn ${state.filter === filter.key ? "active" : ""}" data-filter="${filter.key}" type="button">
@@ -768,7 +771,7 @@
     }
 
     function matches(example) {
-      if (state.filter !== "all" && example.fidelity !== state.filter) {
+      if (state.filter !== "all" && example.dashboardStatus !== state.filter) {
         return false;
       }
       if (!state.query) {

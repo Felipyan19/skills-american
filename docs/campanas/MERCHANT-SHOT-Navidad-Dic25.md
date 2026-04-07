@@ -40,9 +40,3 @@ Tambien se puede componer desde modulo 1 usando `group: "MERCHANT - Socio"` y `c
 | `B38` | Modulo 50/50 comercios | `catalog/snippets/marigold-v4.2/hb08-merchant-shot-navidad-dic25.html` |
 | `B39` | Cierre Shot Navidad | `catalog/snippets/marigold-v4.2/tm04-merchant-shot-navidad-dic25-closing.html` |
 | `F06` | Footer + legales | `catalog/snippets/marigold-v4.2/fm05-merchant-shot-navidad-dic25.html`, `catalog/snippets/marigold-v4.2/fm02-merchant-shot-navidad-dic25.html`, `catalog/snippets/marigold-v4.2/fm03-merchant-shot-navidad-dic25.html`, `catalog/snippets/marigold-v4.2/fm04-merchant-shot-navidad-dic25.html` |
-
-## Checklist antes de cerrar
-
-- Verificar coherencia entre claims del cuerpo y referencias legales en footer.
-- Probar `POST /api/compose-email?html` con el payload de arriba.
-- Revisar `manifest.expanded` para confirmar la secuencia exacta de `sourceId`.

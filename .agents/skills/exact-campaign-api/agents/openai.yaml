@@ -1,0 +1,3 @@
+interface:
+  display_name: "Exact Campaign API"
+  short_description: "Make exact campaign docs work in the email API with dynamic props variants."

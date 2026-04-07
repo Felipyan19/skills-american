@@ -437,6 +437,95 @@ class ComposerTests(unittest.TestCase):
         self.assertIn("<strong>LEGAL CUSTOM FOOTER</strong>", result["html"])
         self.assertNotIn("{{", result["html"])
 
+    def test_merchant_shot_travel_accepts_component_variants(self) -> None:
+        payload = {
+            "templateFamily": "marigold-v4.2",
+            "header": {
+                "id": "H02",
+                "props": {
+                    "logoUrl": "https://example.com/travel-header-logo.jpg",
+                    "greetingText": "Hola Travel",
+                    "loginLabel": "Ingresar",
+                },
+            },
+            "body": [
+                {
+                    "id": "B12",
+                    "props": {
+                        "heroImageUrl": "https://example.com/travel-hero.jpg",
+                        "headlineHtml": "Eleg&iacute; otro destino",
+                    },
+                },
+                {
+                    "id": "B13",
+                    "props": {
+                        "primaryLogoUrl": "https://example.com/aerolineas-alt.png",
+                        "primaryBenefitLine": "en vuelos regionales",
+                        "secondaryCtaLabel": "Ver agencias",
+                    },
+                },
+                {
+                    "id": "B14",
+                    "props": {
+                        "offerImageUrl": "https://example.com/compras-offer.png",
+                        "benefitHtml": "20% OFF custom",
+                        "ctaLabel": "Comprar",
+                    },
+                },
+                {
+                    "id": "B15",
+                    "props": {
+                        "primaryLogoUrl": "https://example.com/spa-a.png",
+                        "offerImageAlt": "15% OFF custom spa",
+                        "ctaUrl": "https://example.com/spa",
+                    },
+                },
+                {
+                    "id": "B17",
+                    "props": {
+                        "headingHtml": "Hoteles custom",
+                        "step3LogoUrl": "https://example.com/hotel-logo.png",
+                        "disclaimerHtml": "Disclaimer hoteles custom",
+                    },
+                },
+                {"id": "B16", "props": {"closingHtml": "Cierre travel custom"}},
+            ],
+            "footer": {
+                "id": "F03",
+                "props": {
+                    "taglineDesktopUrl": "https://example.com/travel-footer.jpg",
+                    "instagramUrl": "https://example.com/instagram",
+                    "privacyLabel": "Privacidad Travel",
+                    "legalHtml": "LEGAL TRAVEL CUSTOM",
+                },
+            },
+            "globals": {"includeSeparators": False},
+        }
+        result = compose_email(payload)
+        self.assertIn("https://example.com/travel-header-logo.jpg", result["html"])
+        self.assertIn("Hola Travel", result["html"])
+        self.assertIn(">Ingresar</a>", result["html"])
+        self.assertIn("https://example.com/travel-hero.jpg", result["html"])
+        self.assertIn("Eleg&iacute; otro destino", result["html"])
+        self.assertIn("https://example.com/aerolineas-alt.png", result["html"])
+        self.assertIn("en vuelos regionales", result["html"])
+        self.assertIn("Ver agencias", result["html"])
+        self.assertIn("https://example.com/compras-offer.png", result["html"])
+        self.assertIn("20% OFF custom", result["html"])
+        self.assertIn(">Comprar</strong>", result["html"])
+        self.assertIn("https://example.com/spa-a.png", result["html"])
+        self.assertIn("15% OFF custom spa", result["html"])
+        self.assertIn("https://example.com/spa", result["html"])
+        self.assertIn("Hoteles custom", result["html"])
+        self.assertIn("https://example.com/hotel-logo.png", result["html"])
+        self.assertIn("Disclaimer hoteles custom", result["html"])
+        self.assertIn("Cierre travel custom", result["html"])
+        self.assertIn("https://example.com/travel-footer.jpg", result["html"])
+        self.assertIn("https://example.com/instagram", result["html"])
+        self.assertIn("Privacidad Travel", result["html"])
+        self.assertIn("LEGAL TRAVEL CUSTOM", result["html"])
+        self.assertNotIn("{{", result["html"])
+
     def test_footer_uses_defaults_when_props_are_missing(self) -> None:
         payload = {
             "templateFamily": "marigold-v4.2",

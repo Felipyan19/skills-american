@@ -168,17 +168,19 @@
       font-weight: 500;
     }
 
+    .status.dynamic { color: var(--accent); }
     .status.exact { color: var(--success); }
-    .status.structural { color: var(--warning); }
-    .status.approx { color: var(--danger); }
+    .status.pending { color: var(--danger); }
 
     .layout {
       display: grid;
       gap: 14px;
+      min-width: 0;
     }
 
     .section-block {
       padding: 18px 20px;
+      min-width: 0;
     }
 
     .section-head {
@@ -217,15 +219,34 @@
       color: var(--text);
       font-size: 14px;
       line-height: 1.65;
+      min-width: 0;
+      overflow-x: hidden;
     }
 
+    .markdown-content h1,
+    .markdown-content h2,
     .markdown-content h3 {
       margin: 0 0 16px;
       color: var(--heading);
       font-family: "Guardian Egyptian", Georgia, serif;
-      font-size: 26px;
-      line-height: 1.15;
       font-weight: 400;
+    }
+
+    .markdown-content h1 {
+      font-size: 30px;
+      line-height: 1.12;
+    }
+
+    .markdown-content h2 {
+      font-size: 24px;
+      line-height: 1.14;
+      margin-top: 22px;
+    }
+
+    .markdown-content h3 {
+      font-size: 20px;
+      line-height: 1.16;
+      margin-top: 18px;
     }
 
     .markdown-content ul {
@@ -241,6 +262,44 @@
       margin: 0 0 14px;
     }
 
+    .markdown-table-wrap {
+      width: 100%;
+      margin: 0 0 16px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .markdown-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .markdown-table th,
+    .markdown-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line-soft);
+      text-align: left;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .markdown-table th {
+      color: var(--heading);
+      background: #f8fbff;
+      font-family: "BentonSans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 500;
+    }
+
+    .markdown-table tr:last-child td {
+      border-bottom: 0;
+    }
+
     .markdown-content code {
       border: 1px solid #d8e3f4;
       border-radius: 6px;
@@ -249,6 +308,9 @@
       padding: 2px 6px;
       font-family: "IBM Plex Mono", monospace;
       font-size: 12px;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .markdown-code {
@@ -258,10 +320,15 @@
       border-radius: var(--radius-lg);
       background: #0f172a;
       color: #e6edf8;
-      overflow: auto;
+      overflow: hidden;
       font-family: "IBM Plex Mono", monospace;
       font-size: 12px;
       line-height: 1.65;
+      max-width: 100%;
+      min-width: 0;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .markdown-code code {
@@ -271,6 +338,10 @@
       color: inherit;
       padding: 0;
       font-size: inherit;
+      display: block;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .empty {
@@ -367,9 +438,9 @@
 
   <script>
     const statusMeta = {
-      alta: { label: "Exacta", className: "exact" },
-      estructural: { label: "Homologada", className: "structural" },
-      aproximada: { label: "Pendiente", className: "approx" },
+      dinamico: { label: "Dinámico", className: "dynamic" },
+      exacto: { label: "Exacto", className: "exact" },
+      pendiente: { label: "Pendiente", className: "pending" },
     };
 
     function escapeHtml(value) {
@@ -382,7 +453,8 @@
     }
 
     function statusFor(example) {
-      return statusMeta[example.fidelity] || { label: example.fidelity, className: "structural" };
+      const key = example.dashboardStatus || "pendiente";
+      return statusMeta[key] || { label: key, className: "pending" };
     }
 
     function currentId() {
@@ -445,6 +517,7 @@
       const html = [];
       const codeLines = [];
       let inCode = false;
+      let codeLanguage = "";
       let inList = false;
 
       function closeList() {
@@ -454,13 +527,52 @@
         }
       }
 
+      function normalizeCodeBlock(rawCode, language) {
+        const normalizedLanguage = (language || "").trim().toLowerCase();
+        const source = rawCode.trim();
+        if (normalizedLanguage === "json" || (!normalizedLanguage && (source.startsWith("{") || source.startsWith("[")))) {
+          try {
+            const parsed = JSON.parse(source);
+            return JSON.stringify(parsed, null, 2);
+          } catch (_error) {
+            return rawCode;
+          }
+        }
+        return rawCode;
+      }
+
       function closeCode() {
-        html.push(`<pre class="markdown-code"><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+        const raw = codeLines.join("\n");
+        const normalized = normalizeCodeBlock(raw, codeLanguage);
+        html.push(`<pre class="markdown-code"><code>${escapeHtml(normalized)}</code></pre>`);
         codeLines.length = 0;
+        codeLanguage = "";
         inCode = false;
       }
 
-      for (const line of lines) {
+      function parseTableCells(line) {
+        return line
+          .trim()
+          .replace(/^\|/, "")
+          .replace(/\|$/, "")
+          .split("|")
+          .map((cell) => cell.trim());
+      }
+
+      function isTableSeparatorLine(line) {
+        const cells = parseTableCells(line);
+        if (!cells.length) {
+          return false;
+        }
+        return cells.every((cell) => /^:?-{3,}:?$/.test(cell.replace(/\s+/g, "")));
+      }
+
+      function isTableRowLine(line) {
+        return line.includes("|");
+      }
+
+      for (let index = 0; index < lines.length; index += 1) {
+        const line = lines[index];
         const fence = line.match(/^```(\w+)?\s*$/);
         if (fence) {
           if (inCode) {
@@ -468,6 +580,7 @@
           } else {
             closeList();
             inCode = true;
+            codeLanguage = fence[1] || "";
           }
           continue;
         }
@@ -482,10 +595,31 @@
           continue;
         }
 
-        const heading = line.match(/^###\s+(.+)$/);
+        const nextLine = lines[index + 1] || "";
+        if (isTableRowLine(line) && isTableSeparatorLine(nextLine)) {
+          closeList();
+          const headerCells = parseTableCells(line);
+          const bodyRows = [];
+          index += 2;
+          while (index < lines.length && lines[index].trim() && isTableRowLine(lines[index])) {
+            bodyRows.push(parseTableCells(lines[index]));
+            index += 1;
+          }
+          index -= 1;
+
+          const thead = `<thead><tr>${headerCells.map((cell) => `<th>${renderInlineMarkdown(cell)}</th>`).join("")}</tr></thead>`;
+          const tbody = bodyRows.length
+            ? `<tbody>${bodyRows.map((row) => `<tr>${row.map((cell) => `<td>${renderInlineMarkdown(cell)}</td>`).join("")}</tr>`).join("")}</tbody>`
+            : "";
+          html.push(`<div class="markdown-table-wrap"><table class="markdown-table">${thead}${tbody}</table></div>`);
+          continue;
+        }
+
+        const heading = line.match(/^(#{1,6})\s+(.+)$/);
         if (heading) {
           closeList();
-          html.push(`<h3>${renderInlineMarkdown(heading[1])}</h3>`);
+          const level = Math.min(3, heading[1].length);
+          html.push(`<h${level}>${renderInlineMarkdown(heading[2])}</h${level}>`);
           continue;
         }
 

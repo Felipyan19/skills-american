@@ -41,10 +41,3 @@ Tambien se puede componer desde modulo 1 usando `group: "MERCHANT - Socio"` y `c
 | `B46` | CTA final | `catalog/snippets/marigold-v4.2/tm04-merchant-special-offers-dic25-cta.html` |
 | `B47` | Disclaimer final | `catalog/snippets/marigold-v4.2/tm04-merchant-special-offers-dic25-disclaimer.html` |
 | `F07` | Footer + legales | `catalog/snippets/marigold-v4.2/fm05-merchant-special-offers-dic25-foodies.html`, `catalog/snippets/marigold-v4.2/fm05-merchant-special-offers-dic25-tagline.html`, `catalog/snippets/marigold-v4.2/fm02-merchant-special-offers-dic25.html`, `catalog/snippets/marigold-v4.2/fm03.html`, `catalog/snippets/marigold-v4.2/fm04-merchant-special-offers-dic25.html` |
-
-## Checklist antes de cerrar
-
-- Verificar CTAs y links en todos los bloques IM03.
-- Verificar coherencia entre disclaimer (`B47`) y legales de footer (`F07`).
-- Probar `POST /api/compose-email?html` con el payload de arriba.
-- Revisar `manifest.expanded` para confirmar la secuencia exacta de `sourceId`.

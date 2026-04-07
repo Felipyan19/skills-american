@@ -43,10 +43,3 @@ Tambien se puede componer por ejemplo desde modulo 1 usando `group: "MERCHANT - 
 | `B26` | Beneficios Hoteles 50/50 | `catalog/snippets/marigold-v4.2/hb08-merchant-newsletter-dic25-hoteles.html` |
 | `B27` | CTA final | `catalog/snippets/marigold-v4.2/tm04-merchant-newsletter-dic25-cta.html` |
 | `F04` | Footer + legales | `catalog/snippets/marigold-v4.2/fm05.html`, `catalog/snippets/marigold-v4.2/fm02-merchant-newsletter-dic25.html`, `catalog/snippets/marigold-v4.2/fm03.html`, `catalog/snippets/marigold-v4.2/fm04-merchant-newsletter-dic25.html` |
-
-## Checklist antes de cerrar
-
-- Verificar Shopping Days, PedidoYa Plus, Especial Gastronomia, NH, Escapadas con Amex, Especial Viajes y Especial Hoteles.
-- Verificar que los indicadores legales `(1)` a `(7)` correspondan con el footer.
-- Probar `POST /api/compose-email?html` con el payload de arriba.
-- Revisar el `manifest.expanded` para confirmar que la secuencia mantenga los snippets dedicados.

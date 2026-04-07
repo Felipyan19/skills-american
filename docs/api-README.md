@@ -660,18 +660,18 @@ Payload base:
 }
 ```
 
-> Los componentes usan defaults exactos del HTML de referencia. Los body components `B28` a `B32` tambien aceptan variantes por `props`; ver `docs/campanas/MERCHANT-Shot-deporte-DIC25.md`.
+> Los componentes usan defaults exactos del HTML de referencia. `H02`, `B12` a `B17` y `F03` aceptan variantes por `props`; ver `docs/campanas/MERCHANT-Shot-Travel-Agst25.md`.
 
 | Componente | Módulo | Contenido |
 |---|---|---|
-| `H02` | PH01-v4.2 + Consumer Default-v4.2 | Brand panel hardcodeado |
+| `H02` | PH01-v4.2 + Consumer Default-v4.2 | Brand panel con props para logos, saludo, cuenta y login |
 | `B12` | HB18-v4.2 | Hero: "Elegí el destino, los beneficios ya los tenés." |
 | `B13` | TM04-v4.2 | Bloque Agencias (Aerolíneas, Despegar, Al Mundo) |
 | `B14` | TM04-v4.2 | Bloque Compras (Samsonite, Delsey, Equipaje Urbano) |
 | `B15` | TM04-v4.2 | Bloque Spa (Alvear, Marriott, Madero, Las Balsas, Palladio) |
 | `B17` | TM03-v4.2 | How To hoteles (25% OFF, 4x3, 30% OFF Alvarez Argüelles) |
 | `B16` | TM04-v4.2 | Banner hashtag "#conAmex" |
-| `F03` | FM05 + FM02 + FM03 + FM04 | Footer con taglines + legales hardcodeados |
+| `F03` | FM05 + FM02 + FM03 + FM04 | Footer con props para tagline, redes, nav, CFT y legales |
 
 ### 6. MERCHANT Newsletter DIC25
 Referencia:
@@ -698,7 +698,7 @@ Payload base:
 }
 ```
 
-> Todos los componentes son **estáticos hardcodeados** para este email. No requieren props adicionales.
+> `H04`, `B28` a `B32` y `F05` aceptan variantes por `props`; ver `docs/campanas/MERCHANT-Shot-deporte-DIC25.md`.
 
 | Componente | Módulo | Contenido |
 |---|---|---|

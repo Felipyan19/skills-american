@@ -20,6 +20,8 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 MODULE1_PAYLOADS_PATH = Path(__file__).resolve().parents[1] / "catalog" / "examples" / "module1.json"
 MODULE1_UI_PATH = Path(__file__).resolve().parent / "ui" / "module1_ui.html"
 EXAMPLE_UI_PATH = Path(__file__).resolve().parent / "ui" / "example_ui.html"
+CAMPAIGN_DOCS_DIR = ROOT_DIR / "docs" / "campanas"
+CAMPAIGN_DOCS_INDEX_PATH = CAMPAIGN_DOCS_DIR / "README.md"
 
 _OPENAPI_SPEC = {
     "openapi": "3.0.3",
@@ -276,6 +278,73 @@ def _load_module1_examples() -> list[dict]:
     return enriched
 
 
+@lru_cache(maxsize=1)
+def _load_campaign_docs_index() -> dict[tuple[str, str], str]:
+    if not CAMPAIGN_DOCS_INDEX_PATH.is_file():
+        return {}
+
+    index_content = CAMPAIGN_DOCS_INDEX_PATH.read_text(encoding="utf-8")
+    mapping: dict[tuple[str, str], str] = {}
+    for raw_line in index_content.splitlines():
+        line = raw_line.strip()
+        if not line.startswith("|"):
+            continue
+        if "Campana" in line and "campaignType" in line:
+            continue
+        if line.startswith("|---"):
+            continue
+
+        parts = [part.strip() for part in line.strip("|").split("|")]
+        if len(parts) < 5:
+            continue
+        group = parts[1].strip("`").strip()
+        campaign_type = parts[2].strip("`").strip()
+        doc = parts[4].strip("`").strip()
+        if not group or not campaign_type or not doc:
+            continue
+        mapping[(group.casefold(), campaign_type.casefold())] = doc
+    return mapping
+
+
+@lru_cache(maxsize=32)
+def _campaign_doc_supports_variants(doc_name: str) -> bool:
+    doc_path = CAMPAIGN_DOCS_DIR / doc_name
+    if not doc_path.is_file():
+        return False
+    content = doc_path.read_text(encoding="utf-8").casefold()
+    markers = (
+        "edicion version corta",
+        "edicion corta desde tipo de campana y grupo",
+        "campos de variantes",
+        "aceptan variantes por `props`",
+    )
+    return any(marker in content for marker in markers)
+
+
+def _dashboard_status_for_example(example: dict) -> str:
+    group = str(example.get("group", "")).casefold()
+    campaign_type = str(example.get("campaignType", "")).casefold()
+    doc_name = _load_campaign_docs_index().get((group, campaign_type), "")
+    has_dynamic_doc = bool(doc_name) and _campaign_doc_supports_variants(doc_name)
+
+    if has_dynamic_doc:
+        return "dinamico"
+    if example.get("fidelity") == "alta":
+        return "exacto"
+    return "pendiente"
+
+
+def _with_dashboard_fields(example: dict) -> dict:
+    enriched = dict(example)
+    dashboard_status = _dashboard_status_for_example(example)
+    group = str(example.get("group", "")).casefold()
+    campaign_type = str(example.get("campaignType", "")).casefold()
+    doc_name = _load_campaign_docs_index().get((group, campaign_type))
+    enriched["dashboardStatus"] = dashboard_status
+    enriched["campaignDoc"] = doc_name or ""
+    return enriched
+
+
 def _slugify(value: str) -> str:
     normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
     slug = re.sub(r"[^a-zA-Z0-9]+", "-", normalized.lower()).strip("-")
@@ -304,7 +373,11 @@ def _module1_examples_response(group: str = "", campaign_type: str = "") -> dict
         examples = [e for e in examples if e.get("group", "").lower() == group.lower()]
     if campaign_type:
         examples = [e for e in examples if e.get("campaignType", "").lower() == campaign_type.lower()]
+    examples = [_with_dashboard_fields(item) for item in examples]
     summary = {
+        "dynamic": sum(1 for item in examples if item.get("dashboardStatus") == "dinamico"),
+        "exactDashboard": sum(1 for item in examples if item.get("dashboardStatus") == "exacto"),
+        "pending": sum(1 for item in examples if item.get("dashboardStatus") == "pendiente"),
         "total": len(examples),
         "exact": sum(1 for item in examples if item.get("fidelity") == "alta"),
         "structural": sum(1 for item in examples if item.get("fidelity") == "estructural"),
@@ -438,7 +511,7 @@ def _module1_example_response(example_id: str) -> dict | None:
     example = _find_module1_example(example_id)
     if example is None:
         return None
-    return {"example": example}
+    return {"example": _with_dashboard_fields(example)}
 
 
 def _module1_example_markdown(example: dict) -> str:
@@ -469,15 +542,35 @@ def _module1_example_markdown(example: dict) -> str:
     return "\n".join(lines).strip() + "\n"
 
 
+def _module1_campaign_doc_markdown(example: dict) -> tuple[str, str]:
+    dashboard_example = _with_dashboard_fields(example)
+    doc_name = dashboard_example.get("campaignDoc", "")
+    if not isinstance(doc_name, str) or not doc_name:
+        return _module1_example_markdown(example), ""
+
+    doc_path = (CAMPAIGN_DOCS_DIR / doc_name).resolve()
+    docs_root = CAMPAIGN_DOCS_DIR.resolve()
+    if doc_path != docs_root and docs_root not in doc_path.parents:
+        return _module1_example_markdown(example), ""
+    if not doc_path.is_file():
+        return _module1_example_markdown(example), ""
+    return doc_path.read_text(encoding="utf-8"), doc_name
+
+
 def _module1_example_markdown_response(example_id: str) -> dict | None:
     example = _find_module1_example(example_id)
     if example is None:
         return None
+    dashboard_example = _with_dashboard_fields(example)
+    markdown, markdown_doc = _module1_campaign_doc_markdown(example)
     return {
-        "exampleId": example["id"],
-        "name": example["name"],
-        "group": example["group"],
-        "markdown": _module1_example_markdown(example),
+        "exampleId": dashboard_example["id"],
+        "name": dashboard_example["name"],
+        "group": dashboard_example["group"],
+        "dashboardStatus": dashboard_example["dashboardStatus"],
+        "markdownDoc": markdown_doc,
+        "markdownSource": "campaign-doc" if markdown_doc else "generated",
+        "markdown": markdown,
     }
 
 

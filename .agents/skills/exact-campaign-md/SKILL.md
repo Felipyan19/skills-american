@@ -83,8 +83,8 @@ Also keep or add these sections when useful:
 - `Contrato de edicion`: explain that `props` are merged over registry defaults.
 - `Mapa de componentes`: list header, body, and footer IDs with snippet filenames.
 - `Campos de variantes`: table of each component and its supported props.
-- `Plan de prueba 1 a 1`: one request per component plus a combined test.
-- `Checklist`: JSON validity, short vs detailed equivalence, legal consistency, and test command.
+
+Do not add QA/process notes, test plans, checklists, or agent-facing validation sections to campaign MDs. Keep validation steps in your own execution and final response, not in the campaign contract.
 
 ## Rules For Defaults And Variants
 
