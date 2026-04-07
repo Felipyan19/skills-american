@@ -2,6 +2,8 @@
 
 Campana exacta de modulo 1 para PP (Cent y Plat). Usa componentes dedicados de `marigold-v4.2` y snippets dinamicos con defaults para reproducir la pieza de Farmacity de octubre 2025.
 
+Status API: `dinamico`. `H07`, `B48`, `B49` y `F08` aceptan variantes por `props`.
+
 ## Payloads de uso
 
 ### Version corta

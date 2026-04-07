@@ -2,6 +2,8 @@
 
 Campana exacta de modulo 1 para MERCHANT - Socio. Usa componentes dedicados de `marigold-v4.2` para el Shot Deporte de diciembre 2025.
 
+Status API: `dinamico`. `H04`, `B28`, `B29`, `B30`, `B31`, `B32` y `F05` aceptan variantes por `props`.
+
 ## Payloads de uso
 
 ### Version corta

@@ -2,6 +2,8 @@
 
 Campana exacta de modulo 1 para MERCHANT - Socio. Usa componentes dedicados de `marigold-v4.2` y snippets dinamicos con defaults para reproducir la pieza de Travel de agosto 2025.
 
+Status API: `dinamico`. `H02`, `B12`, `B13`, `B14`, `B15`, `B17`, `B16` y `F03` aceptan variantes por `props`.
+
 ## Payloads de uso
 
 ### Version corta

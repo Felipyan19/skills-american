@@ -31,6 +31,12 @@ The expected outcome is a reusable MD with short examples, editable examples, an
 
 The campaign doc should include a `Payloads de uso` section with these examples, in this order:
 
+Before `Payloads de uso`, include a short status line when variants are supported:
+
+```text
+Status API: `dinamico`. `H04`, `B28` and `F05` accept variants by `props`.
+```
+
 1. `Version corta`
    - Explicit compact payload with string component IDs.
    - Example shape:

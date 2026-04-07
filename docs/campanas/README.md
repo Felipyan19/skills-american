@@ -23,9 +23,9 @@ Si dos filas parecen posibles o la evidencia es debil, no inventar. Leer el `.md
 
 | Campana | Fidelity | Status | Doc |
 |---|---|---|---|
-| MERCHANT-Shot-Travel-Agst25 | `alta` | `exacto` | `MERCHANT-Shot-Travel-Agst25.md` |
+| MERCHANT-Shot-Travel-Agst25 | `alta` | `dinamico` | `MERCHANT-Shot-Travel-Agst25.md` |
 | MERCHANT-Newsletter-Dic25 | `alta` | `exacto` | `MERCHANT-Newsletter-Dic25.md` |
-| MERCHANT-Shot-deporte-DIC25 | `alta` | `exacto` | `MERCHANT-Shot-deporte-DIC25.md` |
+| MERCHANT-Shot-deporte-DIC25 | `alta` | `dinamico` | `MERCHANT-Shot-deporte-DIC25.md` |
 | MERCHANT-SHOT-Navidad-Dic25 | `alta` | `exacto` | `MERCHANT-SHOT-Navidad-Dic25.md` |
 | MERCHANT-Special-Offers-Dic25 | `alta` | `exacto` | `MERCHANT-Special-Offers-Dic25.md` |
 | PLAT-Spend-Farmacity-Oct25 | `alta` | `dinamico` | `PLAT-Spend-Farmacity-Oct25.md` |
