@@ -697,7 +697,7 @@
       ],
       "footer": "F06"
     },
-    "fidelity": "alta",
+    "fidelity": "estructural",
     "substitutions": [
       {
         "sourceId": "CTM04",
@@ -706,6 +706,7 @@
     ],
     "unsupportedSourceIds": [],
     "notes": [
+      "Fondo negro pendiente de validacion exacta.",
       "Se sustituyo CTM04 por B02 porque aun no existe un componente publico especifico para CTM04.",
       "El HTML de referencia incluye CFM01 en footer, pero la API actual no lo expone como componente publico separado."
     ],
@@ -820,10 +821,11 @@
       ],
       "footer": "F02"
     },
-    "fidelity": "alta",
+    "fidelity": "estructural",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [
+      "Fondo negro pendiente de validacion exacta.",
       "El HTML de referencia incluye CFM01 en footer, pero la API actual no lo expone como componente publico separado."
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Cata-Piedra-Pasillo-OCT25/PP-Cata-Piedra-Pasillo-OCT25.html",
@@ -866,7 +868,7 @@
       ],
       "footer": "F05"
     },
-    "fidelity": "alta",
+    "fidelity": "estructural",
     "substitutions": [
       {
         "sourceId": "CTM04",
@@ -875,6 +877,7 @@
     ],
     "unsupportedSourceIds": [],
     "notes": [
+      "Fondo negro pendiente de validacion exacta.",
       "Se sustituyo CTM04 por B02 porque aun no existe un componente publico especifico para CTM04.",
       "El HTML de referencia incluye CFM01 en footer, pero la API actual no lo expone como componente publico separado."
     ],
@@ -949,10 +952,11 @@
       ],
       "footer": "F03"
     },
-    "fidelity": "alta",
+    "fidelity": "estructural",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [
+      "Fondo negro pendiente de validacion exacta.",
       "El HTML de referencia incluye CFM01 en footer, pero la API actual no lo expone como componente publico separado."
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Min-Agostini-Oct25-CENT/PP-Min-Agostini-Oct25-CENT.html",
@@ -994,10 +998,11 @@
       ],
       "footer": "F07"
     },
-    "fidelity": "alta",
+    "fidelity": "estructural",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [
+      "Fondo negro pendiente de validacion exacta.",
       "El HTML de referencia incluye CFM01 en footer, pero la API actual no lo expone como componente publico separado."
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Spend-TBBM-Iphone17_CENT_dic25/PP-Spend-TBBM-Iphone17_CENT_dic25.html",
@@ -1075,10 +1080,11 @@
       ],
       "footer": "F04"
     },
-    "fidelity": "alta",
+    "fidelity": "estructural",
     "substitutions": [],
     "unsupportedSourceIds": [],
     "notes": [
+      "Fondo negro pendiente de validacion exacta.",
       "El HTML de referencia incluye CFM01 en footer, pero la API actual no lo expone como componente publico separado."
     ],
     "relativePath": "1. Referencias por segmento/PP (Cent y Plat)/PP-Teatro-Colon-2026-Dic25-CENT/PP-Teatro-Colon-2026-Dic25-CENT.html",
@@ -1151,7 +1157,7 @@
       ],
       "footer": "F08"
     },
-    "fidelity": "alta",
+    "fidelity": "estructural",
     "substitutions": [
       {
         "sourceId": "CTM02",
@@ -1160,6 +1166,7 @@
     ],
     "unsupportedSourceIds": [],
     "notes": [
+      "Fondo negro pendiente de validacion exacta.",
       "Se sustituyo CTM02 por B02 como el texto full-width mas cercano disponible."
     ],
     "relativePath": "1. Referencias por segmento/TRAVEL (Cent y Plat)/TRAVEL-Dia-De-La-Madre-Oct25-CENT/TRAVEL-Dia-De-La-Madre-Oct25-CENT.html",
@@ -1244,10 +1251,12 @@
       ],
       "footer": "F10"
     },
-    "fidelity": "alta",
+    "fidelity": "estructural",
     "substitutions": [],
     "unsupportedSourceIds": [],
-    "notes": [],
+    "notes": [
+      "Fondo negro pendiente de validacion exacta."
+    ],
     "relativePath": "1. Referencias por segmento/TRAVEL (Cent y Plat)/TRAVEL-Mexico-Sept25-CENT/TRAVEL-Mexico-Sept25-CENT.html",
     "name": "TRAVEL-Mexico-Sept25-CENT",
     "group": "TRAVEL (Cent y Plat)",
@@ -1325,10 +1334,12 @@
       ],
       "footer": "F09"
     },
-    "fidelity": "alta",
+    "fidelity": "estructural",
     "substitutions": [],
     "unsupportedSourceIds": [],
-    "notes": [],
+    "notes": [
+      "Fondo negro pendiente de validacion exacta."
+    ],
     "relativePath": "1. Referencias por segmento/TRAVEL (Cent y Plat)/TRAVEL-Miami-Nov25-CENT/TRAVEL-Miami-Nov25-CENT.html",
     "name": "TRAVEL-Miami-Nov25-CENT",
     "group": "TRAVEL (Cent y Plat)",
