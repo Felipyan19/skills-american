@@ -86,6 +86,32 @@ Si dos filas parecen posibles o la evidencia es debil, no inventar. Leer el `.md
 | TRAVEL-Miami-Nov25-CENT | `centurion-1.0` | `estructural` | `pendiente` | `sin doc` |
 | TRAVEL-Miami-Nov25_PLAT | `marigold-v4.2` | `aproximada` | `pendiente` | `sin doc` |
 
+## Fallback: Ruta Lego
+
+Si ninguna fila de este índice coincide con la evidencia del PDF, usar el skill `.agents/skills/lego-block-builder/SKILL.md`.
+
+El agente lego **no lee este índice ni los `.md` de campañas**. Lee únicamente `docs/componentes/README.md` y los `visual_blocks` entregados por el nodo anterior.
+
+**Prerequisito obligatorio**: el nodo anterior debe haber convertido el HTML posicionado del PDF en `visual_blocks` — una lista de bloques con `block_type`, `layout_signature`, `text`, `images`, `y_start` y `y_end`. Sin ese paso intermedio, no activar la ruta lego.
+
+**Condiciones n8n:**
+
+```js
+// Derivar al agente lego cuando el router exacto no encontró campaña
+{{ $json.flow_route !== 'compose_email' }}
+
+// Llamar /api/compose-email si el lego tuvo suficiente confianza
+{{ $json.flow_route === 'lego_compose_email' && $json.confidence >= 0.6 }}
+
+// Auto-envío sin revisión manual
+{{ $json.flow_route === 'lego_compose_email' && $json.review_required === false }}
+
+// Retener para revisión
+{{ $json.flow_route === 'lego_compose_email' && $json.review_required === true }}
+```
+
+---
+
 ## Reglas generales
 
 - El contrato de `/api/compose-email` usa `id`, no `componentId`. Un componente editable debe tener la forma `{ "id": "B28", "props": { ... } }`.

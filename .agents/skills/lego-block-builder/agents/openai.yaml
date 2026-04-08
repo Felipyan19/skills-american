@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lego Block Builder"
+  short_description: "Reconstruct email payloads as reusable component blocks when no exact campaign doc exists."
