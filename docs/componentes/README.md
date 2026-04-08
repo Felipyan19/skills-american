@@ -161,8 +161,57 @@ fuente: HB18-v4.2
 
 | Prop | Descripción |
 |---|---|
+| `heroBgColor` | Color hex de respaldo del hero |
+| `heroBgPosition` | Posición CSS del background del hero, normalmente `center` |
+| `heroBgSize` | Tamaño CSS del background del hero, normalmente `cover` |
 | `heroImageUrl` | URL de la imagen hero (extraer de `images[0].src`) |
+| `headlineAccentColor` | Color hex de la barra lateral del headline |
+| `headlineBoxBgColor` | Color hex del fondo de la caja de headline |
 | `headlineHtml` | HTML del headline (extraer de `text`, puede tener negrita o salto de línea) |
+| `headlineTextColor` | Color hex del texto del headline |
+
+**Override estructural San Valentín / febrero:**
+
+Si el router exacto devuelve `flow_route: lower_html_flow`, `route_reason: no_match` y el texto de `visual_blocks` contiene señales de MERCHANT San Valentín (`San Valentín` o `San Valentin`, `febrero`, `JOYERÍA`, `VINOS`, `PERFUMERÍA`, `EXPERIENCIAS` o `VIAJES`), usar el fallback estructural de newsletter con hero editable en lugar de devolver `lower_html_flow`.
+
+Payload base:
+
+```json
+{
+  "templateFamily": "marigold-v4.2",
+  "header": "H03",
+  "body": [
+    {
+      "id": "B28",
+      "props": {
+        "heroBgColor": "#00175a",
+        "heroBgPosition": "center",
+        "heroBgSize": "cover",
+        "heroImageUrl": "https://...",
+        "headlineAccentColor": "#006FCF",
+        "headlineBoxBgColor": "#00175A",
+        "headlineHtml": "",
+        "headlineTextColor": "#FFFFFF"
+      }
+    },
+    "B19",
+    "B20",
+    "B21",
+    "B22",
+    "B23",
+    "B24",
+    "B25",
+    "B26",
+    "B27"
+  ],
+  "footer": "F04",
+  "globals": {
+    "includeSeparators": false
+  }
+}
+```
+
+Para `heroImageUrl`, usar la primera imagen no-data dentro del bloque superior que no sea fondo full-width global si existe; en el caso extraído con prefijo `b64-1775620787767`, usar `.../b64-1775620787767-1.png`. Mantener `headlineHtml` vacío si el texto ya viene integrado en la imagen.
 
 ---
 

@@ -24,6 +24,7 @@ Do **not** read `docs/campanas/README.md` or any `docs/campanas/*.md` file. Do *
 2. Determine `templateFamily`:
    - Use `marigold-v4.2` for standard AMEX Argentina light-background emails.
    - If the design is dark / black background (Centurion style), return `lower_html_flow` — centurion-1.0 is not in phase 1.
+   - If the exact router returned `lower_html_flow`/`no_match` but the visual text clearly identifies MERCHANT San Valentín / febrero with categories like `JOYERÍA`, `VINOS`, `PERFUMERÍA`, `EXPERIENCIAS`, or `VIAJES`, use the documented San Valentín structural override in `docs/componentes/README.md`: return a `marigold-v4.2` compose payload with `H03`, `B28` hero override, `B19`–`B27`, `F04`, and `includeSeparators: false`.
 3. Process `visual_blocks` in order of `block_index`:
    - Use the **Tabla de decisión rápida** in the catalog as a starting point.
    - Confirm the match by checking `layout_signature` fields and `text` patterns documented in the component entry.
@@ -47,6 +48,7 @@ Do **not** read `docs/campanas/README.md` or any `docs/campanas/*.md` file. Do *
 - Valid component forms: `"B28"` (string) or `{ "id": "B28", "props": { ... } }` (object).
 - Use object form whenever you have at least one prop to pass.
 - Always include `"globals": { "includeSeparators": false }`.
+- For the San Valentín structural override, include B28 style props (`heroBgColor`, `heroBgPosition`, `heroBgSize`, `headlineAccentColor`, `headlineBoxBgColor`, `headlineTextColor`) and keep `headlineHtml` empty when the selected hero image already contains the text.
 - Do not call `/api/compose-email`. Only build and return the payload.
 
 ## Output Format

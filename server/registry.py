@@ -812,8 +812,14 @@ MARIGOLD_V42_COMPONENTS = MappingProxyType(
             repeatable=False,
             compatible_families=("marigold-v4.2",),
             defaults={
+                "heroBgColor": "#00175a",
+                "heroBgPosition": "center",
+                "heroBgSize": "cover",
                 "heroImageUrl": "https://i.email.americanexpress.com/wpm/1288/Images/101225-MERCHANT-Shot-deporte-DIC25_04b.jpg",
+                "headlineAccentColor": "#006FCF",
+                "headlineBoxBgColor": "#00175A",
                 "headlineHtml": "<strong style=\"font-family: 'BentonSans400', HelveticaNeue, Helvetica Neue Regular, Helvetica, Arial, sans-serif;font-size:29px;\">La energ&iacute;a</strong> <br>\n                        que te mueve",
+                "headlineTextColor": "#FFFFFF",
             },
         ),
         "B29": ComponentDefinition(

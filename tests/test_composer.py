@@ -379,8 +379,12 @@ class ComposerTests(unittest.TestCase):
                 {
                     "id": "B28",
                     "props": {
+                        "heroBgColor": "#4b1231",
+                        "headlineAccentColor": "#e7b7c8",
+                        "headlineBoxBgColor": "#2b0b1c",
                         "heroImageUrl": "https://example.com/deporte-hero.jpg",
                         "headlineHtml": "<strong>Nuevo headline</strong><br>para deporte",
+                        "headlineTextColor": "#fff4f8",
                     },
                 },
                 "B29",
@@ -421,6 +425,10 @@ class ComposerTests(unittest.TestCase):
         self.assertIn("Hola Tester", result["html"])
         self.assertIn(">Entrar</a>", result["html"])
         self.assertIn("https://example.com/deporte-hero.jpg", result["html"])
+        self.assertIn("#4b1231", result["html"])
+        self.assertIn("#e7b7c8", result["html"])
+        self.assertIn("#2b0b1c", result["html"])
+        self.assertIn("#fff4f8", result["html"])
         self.assertIn("<strong>Nuevo headline</strong><br>para deporte", result["html"])
         self.assertIn("Del 2 al 9 de enero", result["html"])
         self.assertIn("https://example.com/club-a.jpg", result["html"])

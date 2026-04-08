@@ -116,6 +116,7 @@ Cuando uses este documento:
 - Si no hay match exacto por nombre pero el patron es claro, si se puede caer a una campana exacta existente.
 - Newsletter: usar `MERCHANT-Newsletter-Dic25`.
 - Shot: usar `MERCHANT-Shot-Travel-Agst25` o `MERCHANT-Shot-deporte-DIC25` segun la evidencia.
+- San Valentín / febrero con varias categorias (`JOYERÍA`, `VINOS`, `PERFUMERÍA`, `EXPERIENCIAS`, `VIAJES`): usar el fallback estructural de `MERCHANT-Newsletter-Dic25` (`H03`, `B19` a `B27`, `F04`) con `B28` como hero editable y `props` de estilo, tomando `heroImageUrl` desde `visual_blocks`.
 - Special Offers: usar `MERCHANT-Special-Offers-Dic25`.
 
 ### MR
