@@ -8,6 +8,8 @@ Este archivo es el punto de entrada fijo para agentes externos. Primero leer est
 
 Antes de reconstruir o editar payloads, leer tambien `.agents/skills/exact-campaign-md/SKILL.md`. Si la campana no esta marcada como `dinamico` y se necesitan variantes por `props`, leer `.agents/skills/exact-campaign-api/SKILL.md` para confirmar que requiere trabajo de snippets/registry antes de prometer edicion dinamica.
 
+Si la fila elegida dice `sin doc`, si el status del dashboard es `pendiente`, o si no hay una fila con evidencia fuerte, leer `.agents/skills/generic-campaign-fallback/SKILL.md` y despues `docs/campanas/generic.md`. Ese fallback global debe elegir el payload valido mas cercano desde `catalog/examples/module1.md`; no dejar la campana sin match y no inventar componentes nuevos.
+
 Para entender la diferencia entre MD real, markdown generado, `campaignDoc` y `dashboardStatus`, leer `docs/campanas/ARQUITECTURA.md`.
 
 | Campana | group | campaignType | Señales fuertes | Doc |
@@ -45,8 +47,9 @@ Para entender la diferencia entre MD real, markdown generado, `campaignDoc` y `d
 | TRAVEL-Mexico-Sept25-PLAT | `TRAVEL (Cent y Plat)` | `mexico` | platinum, Mexico, septiembre, travel | `sin doc` |
 | TRAVEL-Miami-Nov25-CENT | `TRAVEL (Cent y Plat)` | `miami` | centurion, Miami, noviembre, travel, fondo negro | `sin doc` |
 | TRAVEL-Miami-Nov25_PLAT | `TRAVEL (Cent y Plat)` | `miami` | platinum, Miami, noviembre, travel | `sin doc` |
+| GENERIC-FALLBACK | `*` | `*` | `sin doc`, `pendiente`, match debil, plantilla no reconocida | `generic.md` |
 
-Si dos filas parecen posibles o la evidencia es debil, no inventar. Leer el `.md` de cada candidata y elegir la que tenga payload y snippets compatibles con el input. Si la fila dice `sin doc`, no inventar un MD: usar los docs generales de segmento/modulo o marcar que falta documentacion exacta.
+Si dos filas parecen posibles o la evidencia es debil, no inventar. Leer el `.md` de cada candidata y elegir la que tenga payload y snippets compatibles con el input. Si la fila dice `sin doc` o la campana sigue `pendiente`, no marcarla vacia por defecto: leer `docs/campanas/generic.md`, elegir el ejemplo mas cercano del catalogo y usar ese payload como fallback rastreable.
 
 ## Inventario dashboard
 
@@ -122,3 +125,4 @@ El agente lego **no lee este índice ni los `.md` de campañas**. Lee únicament
 - Si cambia el orden, se agrega o se quita un bloque, actualizar tambien el payload del ejemplo correspondiente en `catalog/examples/module1.json` y el override en `scripts/generate_examples.py`.
 - Validar que los legales y los numeros de referencia sigan alineados con los claims visuales del cuerpo.
 - Preservar los tokens de Marigold usados por el HTML, por ejemplo `{(FULLNAME)}`, `{(EMAIL)}` y `{(URLSignature1)}`.
+- En casos `pendiente` o no reconocidos, usar `docs/campanas/generic.md` como skill operativo global y completar `matched_campaign` con el ejemplo realmente reutilizado.

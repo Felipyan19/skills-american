@@ -13,19 +13,20 @@ The expected outcome is a reusable MD with short examples, editable examples, an
 ## Workflow
 
 1. Identify the target campaign doc in `docs/campanas/` and read `docs/campanas/README.md` to confirm its group, campaign type, and exact-status expectations.
-2. Read the target `.md`, the component definitions in `server/registry.py`, and the referenced snippets under `catalog/snippets/<templateFamily>/`.
-3. For every header, body, and footer component in the campaign, identify editable fields:
+2. If the router says `sin doc`, the dashboard status is `pendiente`, or no exact row is convincing, switch to `.agents/skills/generic-campaign-fallback/SKILL.md` and `docs/campanas/generic.md` before falling back to broader segment docs.
+3. Read the target `.md`, the component definitions in `server/registry.py`, and the referenced snippets under `catalog/snippets/<templateFamily>/`.
+4. For every header, body, and footer component in the campaign, identify editable fields:
    - Text and HTML copy.
    - Image URLs and alt text.
    - CTA URLs and labels.
    - Social/nav links.
    - Legal/disclaimer HTML.
    - Account, greeting, preheader, or member labels when the header owns them.
-4. If code changes are required, make campaign-specific snippets dynamic with `{{placeholder}}` values and put the current exact values into `defaults` in `server/registry.py`.
-5. Avoid changing generic shared snippets for campaign-specific behavior. Prefer creating or using a dedicated campaign snippet key in `registry.py` when only one exact campaign needs different placeholders.
-6. If using `group` plus `campaignType`, verify the server can merge `header`, `body`, `footer`, and `globals` overrides onto the looked-up example payload.
-7. Update the campaign `.md` with the required sections below.
-8. Validate the JSON blocks and render equivalence before finishing.
+5. If code changes are required, make campaign-specific snippets dynamic with `{{placeholder}}` values and put the current exact values into `defaults` in `server/registry.py`.
+6. Avoid changing generic shared snippets for campaign-specific behavior. Prefer creating or using a dedicated campaign snippet key in `registry.py` when only one exact campaign needs different placeholders.
+7. If using `group` plus `campaignType`, verify the server can merge `header`, `body`, `footer`, and `globals` overrides onto the looked-up example payload.
+8. Update the campaign `.md` with the required sections below.
+9. Validate the JSON blocks and render equivalence before finishing.
 
 ## Required MD Sections
 
